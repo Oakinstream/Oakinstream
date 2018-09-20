@@ -24,5 +24,8 @@ namespace Oakinstream.Models
         {
             get { return string.Format("{0} {1}", this.FirstName, this.LastName); }
         }
+
+        public virtual ApplicationUser User { get; set; }
+        public string ApplicationUserId { get; set; }
     }
 }

@@ -155,6 +155,10 @@ namespace Oakinstream.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var db = new  ApplicationDbContext();
+                    var checkingAccount = new CheckingAccount { FirstName = model.FirstName, LastName = model.LastName, AccountNumber = "0000123456", ApplicationUserId = user.Id };
+                    db.CheckingAccounts.Add(checkingAccount);
+                    db.SaveChanges();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
