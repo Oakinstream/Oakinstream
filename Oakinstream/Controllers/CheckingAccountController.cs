@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
@@ -17,7 +18,9 @@ namespace Oakinstream.Controllers
         // GET: CheckingAccount/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var checkingAccount = new CheckingAccount
+                {AccountNumber = "0000123456", FirstName = "Chris", LastName = "Ek"};
+            return View(checkingAccount);
         }
 
         // GET: CheckingAccount/Create
