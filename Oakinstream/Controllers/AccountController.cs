@@ -156,7 +156,8 @@ namespace Oakinstream.Controllers
                 if (result.Succeeded)
                 {
                     var db = new  ApplicationDbContext();
-                    var checkingAccount = new CheckingAccount { FirstName = model.FirstName, LastName = model.LastName, AccountNumber = "0000123456", ApplicationUserId = user.Id };
+                    var accountNumber = (123456 + db.CheckingAccounts.Count()).ToString().PadLeft(10, '0');
+                    var checkingAccount = new CheckingAccount { FirstName = model.FirstName, LastName = model.LastName, AccountNumber = accountNumber, ApplicationUserId = user.Id };
                     db.CheckingAccounts.Add(checkingAccount);
                     db.SaveChanges();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

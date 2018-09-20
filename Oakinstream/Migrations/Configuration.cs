@@ -9,7 +9,7 @@ namespace Oakinstream.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Oakinstream.Models.ApplicationDbContext";
         }
 
