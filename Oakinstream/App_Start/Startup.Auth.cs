@@ -54,9 +54,9 @@ namespace Oakinstream
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "340931830028412",
+               appSecret: "0696c7fb34ddc90664ff8f4094ac8480");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
