@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Oakinstream.Models.BlogImage>
+
+@{
+    ViewBag.Title = "Blog Images";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Upload New Image", "Upload")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Url.Content(Constants.ThumbnailPath+item.FileName)" alt="@item.FileName" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
