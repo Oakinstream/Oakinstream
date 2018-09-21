@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Oakinstream.Models.CheckingAccount>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach(var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(model => item.User.Pin)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.FirstName)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.LastName)
+            </th>
+            <th>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "DetailsForAdmin", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+            </th>
+        </tr>
+    }
+</table>
