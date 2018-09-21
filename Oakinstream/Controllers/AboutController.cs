@@ -6,10 +6,13 @@ using System.Web.Mvc;
 
 namespace Oakinstream.Controllers
 {
-    public class HomeController : Controller
+    public class AboutController : Controller
     {
+        // GET: About
         public ActionResult Index()
         {
+            ViewBag.Message = "Your application description page.";
+
             return View();
         }
     }

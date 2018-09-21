@@ -6,10 +6,13 @@ using System.Web.Mvc;
 
 namespace Oakinstream.Controllers
 {
-    public class HomeController : Controller
+    public class ContactController : Controller
     {
+        // GET: Contact
         public ActionResult Index()
         {
+            ViewBag.Message = "Information:";
+
             return View();
         }
     }
