@@ -4,8 +4,7 @@
     ViewBag.Title = "Upload";
 }
 
-<h2>ViewBag.Title</h2>
-
+<h2>@ViewBag.Title</h2>
 
     @using (Html.BeginForm("Upload", "BlogImages", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -30,7 +29,6 @@
             </div>
         </div>
     }
-
 
 <div>
     @Html.ActionLink("Back to List", "Index")

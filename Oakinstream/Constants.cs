@@ -13,6 +13,6 @@ namespace Oakinstream
         public const int ImageMinWidth = 200;
         public const int ImageMaxWidth = 300;
         public const int ThumbnailMaxWidth = 100;
-        public const int NumberOfProductImages = 5;
+        public const int NumberOfBlogImages = 5;
     }
 }

@@ -1,51 +1,90 @@
-﻿@model IEnumerable<Oakinstream.Models.BlogModels>
-
+﻿@model Oakinstream.ViewModels.BlogIndexViewModel
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Blog";
 }
 
-<h2>Index</h2>
-
+<h2>@ViewBag.Title</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrentTime)
-        </th>
-        <th></th>
-    </tr>
+    @(String.IsNullOrWhiteSpace(Model.Search) ? "Showing all" : "You searched for " +
+            Model.Search + ", found") @Model.BlogPosts.TotalItemCount blogposts
+        </p>
+        <p>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <span class="glyphicon glyphicon-plus-sign"></span> @Html.ActionLink("Create New", "Create")
+            }
+            @using (Html.BeginRouteForm("BlogpostIndex", FormMethod.Get))
+            {
+                <label>Filter by category: </label>
+                @Html.DropDownListFor(vm => vm.Category,
+                         Model.CategoryFilterItems, "All", new { @class = "form-control" })
+                <label>Sort by: </label>
+                @Html.DropDownListFor(vm => vm.SortBy,
+                         new SelectList(Model.Sorts, "Value", "Key"), "Default",
+                         new { @class = "form-control" })
+                <input type="submit" value="Filter" class="btn btn-default" />
+                <input type="hidden" name="Search" id="Search" value="@Model.Search" />
+            }
+        </p>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BlogPosts.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BlogPosts.First().Description)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model.BlogPosts)
+            {
+                <tr>
+                    <td>
+                        @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
+                        {
+                            <a href="@Url.Action("Details",new { id = item.ID })">
+                                <img src="@(Url.Content(Constants.ThumbnailPath)
+                        +item.BlogImageMappings.OrderBy(pim => pim.ImageNumber)
+                        .ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BlogCategoryModels.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-list-alt"></span> @Html.ActionLink("Details", "Details", new { id = item.ID })
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @Html.Raw(" | ")
+                            <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                            @Html.Raw(" | ")
+                            <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        }
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+        <div>
+            Page @(Model.BlogPosts.PageCount < Model.BlogPosts.PageNumber ? 0 :
+                   Model.BlogPosts.PageNumber) of @Model.BlogPosts.PageCount
+                @Html.PagedListPager(Model.BlogPosts,
+                page => Url.Action("Index",
+                    new { category = Model.Category,
+                        search = Model.Search,
+                        sortBy = Model.SortBy,
+                        page}))
+            </div>

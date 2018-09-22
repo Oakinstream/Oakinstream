@@ -65,7 +65,7 @@ namespace Oakinstream.Controllers
                             catch (Exception e)
                             {
                                 ModelState.AddModelError("FileName",
-                                    "An error occured while saving files to disk! " + file.FileName);
+                                    "An error occured while saving files to disk!");
                             }
                         }
                     }

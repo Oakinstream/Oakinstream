@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Oakinstream.Models;
+using Oakinstream.ViewModels;
+using PagedList;
 
 namespace Oakinstream.Controllers
 {
@@ -15,9 +17,62 @@ namespace Oakinstream.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Blog
-        public ActionResult Index()
+        [AllowAnonymous]
+        public ActionResult Index(string category, string search, string sortBy, int? page)
         {
-            return View(db.BlogModels.ToList());
+            BlogIndexViewModel viewModel = new BlogIndexViewModel();
+            var blogPost = db.BlogModels.Include(p => p.BlogCategoryModels);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                blogPost = blogPost.Where(p => p.Title.Contains(search) ||
+                p.Description.Contains(search) ||
+                p.BlogCategoryModels.Name.Contains(search));
+                viewModel.Search = search;
+            }
+            viewModel.CategoryWithCount = from matchingProducts in blogPost
+                                          where
+                                          matchingProducts.BlogCategoryID != null
+                                          group matchingProducts by
+                                          matchingProducts.BlogCategoryModels.Name into
+                                          catGroup
+                                          select new CategoryWithCount()
+                                          {
+                                              CategoryName = catGroup.Key,
+                                              BlogCount = catGroup.Count()
+                                          };
+            if (!string.IsNullOrEmpty(category))
+            {
+                blogPost = blogPost.Where(p => p.BlogCategoryModels.Name == category);
+                viewModel.Category = category;
+            }
+
+            switch (sortBy)
+            {
+                case "A-Ö":
+                    blogPost = blogPost.OrderBy(p => p.Title);
+                    break;
+                case "Ö-A":
+                    blogPost = blogPost.OrderByDescending(p => p.Title);
+                    break;
+                default:
+                    blogPost = blogPost.OrderBy(p => p.Title);
+                    break;
+            }
+
+            if (page > (blogPost.Count() / Constants.ItemsPerPage))
+            {
+                page = (int)Math.Ceiling(blogPost.Count() / (float)Constants.ItemsPerPage);
+            }
+            int currentPage = (page ?? 1);
+            viewModel.BlogPosts = blogPost.ToPagedList(currentPage, Constants.ItemsPerPage);
+            viewModel.SortBy = sortBy;
+            viewModel.Sorts = new Dictionary<string, string>
+            {
+                {"A To Ö", "A-Ö" },
+                {"Ö To A", "price_highest" }
+            };
+            return View(viewModel);
         }
 
         // GET: Blog/Details/5
@@ -38,7 +93,14 @@ namespace Oakinstream.Controllers
         // GET: Blog/Create
         public ActionResult Create()
         {
-            return View();
+            BlogViewModel viewModel = new BlogViewModel();
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name");
+            viewModel.ImageLists = new List<SelectList>();
+            for (int i = 0; i < Constants.NumberOfBlogImages; i++)
+            {
+                viewModel.ImageLists.Add(new SelectList(db.BlogImages, "ID", "FileName"));
+            }
+            return View(viewModel);
         }
 
         // POST: Blog/Create
@@ -46,16 +108,37 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Description,CreatedBy,CurrentTime")] BlogModels blogModels)
+        public ActionResult Create(BlogViewModel viewModel)
         {
+            BlogModels blogPost = new BlogModels();
+            blogPost.Title = viewModel.Title;
+            blogPost.Description = viewModel.Description;
+            blogPost.BlogCategoryID = viewModel.BlogCategoryID;
+            blogPost.BlogImageMappings = new List<BlogImageMapping>();
+            string[] blogImages = viewModel.BlogImages.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
+            for (int i = 0; i < blogImages.Length; i++)
+            {
+                blogPost.BlogImageMappings.Add(new BlogImageMapping()
+                {
+                    BlogImage = db.BlogImages.Find(int.Parse(blogImages[i])),
+                    ImageNumber = i
+                });
+            }
             if (ModelState.IsValid)
             {
-                db.BlogModels.Add(blogModels);
+                db.BlogModels.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(blogModels);
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name", blogPost.BlogCategoryID);
+            viewModel.ImageLists = new List<SelectList>();
+            for (int i = 0; i < Constants.NumberOfBlogImages; i++)
+            {
+                viewModel.ImageLists.Add(new SelectList(db.BlogImages, "ID", "FileName",
+                    viewModel.BlogImages[i]));
+            }
+            return View(viewModel);
         }
 
         // GET: Blog/Edit/5
@@ -70,7 +153,21 @@ namespace Oakinstream.Controllers
             {
                 return HttpNotFound();
             }
-            return View(blogModels);
+            BlogViewModel viewModel = new BlogViewModel();
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name", blogModels.BlogCategoryID);
+            viewModel.ImageLists = new List<SelectList>();
+            foreach (var imageMapping in blogModels.BlogImageMappings.OrderBy(pim => pim.ImageNumber))
+            {
+                viewModel.ImageLists.Add(new SelectList(db.BlogImages, "ID", "FileName", imageMapping.BlogImageID));
+            }
+            for (int i = viewModel.ImageLists.Count; i < Constants.NumberOfBlogImages; i++)
+            {
+                viewModel.ImageLists.Add(new SelectList(db.BlogImages, "ID", "FileName"));
+            }
+            viewModel.Title = blogModels.Title;
+            viewModel.Description = blogModels.Description;
+            viewModel.ID = blogModels.ID;
+            return View(viewModel);
         }
 
         // POST: Blog/Edit/5
@@ -78,15 +175,52 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Description,CreatedBy,CurrentTime")] BlogModels blogModels)
+        public ActionResult Edit(BlogViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            var blogToUpdate = db.BlogModels.Include(p => p.BlogImageMappings).
+                    Where(p => p.ID == viewModel.ID).Single();
+            if (TryUpdateModel(blogToUpdate, "",
+                    new string[] { "Name", "Description", "BlogCategoryID" }))
             {
-                db.Entry(blogModels).State = EntityState.Modified;
+                if (blogToUpdate.BlogImageMappings == null)
+                {
+                    blogToUpdate.BlogImageMappings = new List<BlogImageMapping>();
+                }
+                string[] blogImages = viewModel.BlogImages.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
+                for (int i = 0; i < blogImages.Length; i++)
+                {
+                    var imageMappingToEdit = blogToUpdate.BlogImageMappings.Where(pim => pim.ImageNumber == i).FirstOrDefault();
+                    var image = db.BlogImages.Find(int.Parse(blogImages[i]));
+                    if (imageMappingToEdit == null)
+                    {
+                        blogToUpdate.BlogImageMappings.Add(new BlogImageMapping
+                        {
+                            ImageNumber = i,
+                            BlogImage = image,
+                            BlogImageID = image.ID
+                        });
+                    }
+                    else
+                    {
+                        if (imageMappingToEdit.BlogImageID != int.Parse(blogImages[i]))
+                        {
+                            imageMappingToEdit.BlogImage = image;
+                        }
+                    }
+                }
+                for (int i = blogImages.Length; i < Constants.NumberOfBlogImages; i++)
+                {
+                    var imageMappingToEdit = blogToUpdate.BlogImageMappings
+                        .Where(pim => pim.ImageNumber == i).FirstOrDefault();
+                    if (imageMappingToEdit != null)
+                    {
+                        db.BlogImageMappings.Remove(imageMappingToEdit);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(blogModels);
+            return View(viewModel);
         }
 
         // GET: Blog/Delete/5
