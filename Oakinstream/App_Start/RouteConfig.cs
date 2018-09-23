@@ -14,32 +14,32 @@ namespace Oakinstream
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "BlogpostCreate",
-                url: "Blogpost/Create",
+                name: "BlogCreate",
+                url: "Blog/Create",
                 defaults: new { controller = "Blog", action = "Create" }
             );
 
             routes.MapRoute(
-                name: "BlogpostbyCategorybyPage",
-                url: "Blogpost/{category}/Page{page}",
+                name: "BlogbyCategorybyPage",
+                url: "Blog/{category}/Page{page}",
                 defaults: new { controller = "Blog", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "ProductsbyPage",
-                url: "Blogpost/Page{page}",
+                name: "BlogsbyPage",
+                url: "Blog/Page{page}",
                 defaults: new { controller = "Blog", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "BlogpostsbyCategory",
-                url: "Blogpost/{category}",
+                name: "BlogsbyCategory",
+                url: "Blog/{category}",
                 defaults: new { controller = "Blog", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "BlogpostIndex",
-                url: "Blogpost",
+                name: "BlogsIndex",
+                url: "Blog",
                 defaults: new { controller = "Blog", action = "Index" }
             );
 

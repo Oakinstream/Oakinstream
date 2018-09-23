@@ -13,6 +13,7 @@ using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BlogImagesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

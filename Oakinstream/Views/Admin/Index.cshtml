@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="row">
+        @Html.ActionLink("Manage BlogImages", "Index", "BlogImages")
+    </div>
+    <div class="row">
+        @Html.ActionLink("Manage BlogCategory", "Index", "BlogCategory")
+    </div>
+    <div class="row">
+        @Html.ActionLink("Manage ProjectCategory", "Index", "ProjectCategory")
+    </div>
+    <div class="row">
+        @Html.ActionLink("Manage Users", "List", "CheckingAccount")
+    </div>
+</div>

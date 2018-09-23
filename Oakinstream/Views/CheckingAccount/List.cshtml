@@ -43,9 +43,7 @@
                 @Html.DisplayFor(model => item.LastName)
             </th>
             <th>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "DetailsForAdmin", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                @Html.ActionLink("Details", "DetailsForAdmin", new { id = item.ID })
             </th>
         </tr>
     }

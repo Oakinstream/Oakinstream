@@ -24,8 +24,6 @@ namespace Oakinstream.ViewModels
         public string Description { get; set; }
         public int BlogCategoryID { get; set; }
         public SelectList BlogCategoryList { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CurrentTime { get; set; }
 
     }
 }

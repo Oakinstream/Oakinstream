@@ -10,6 +10,7 @@ using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BlogCategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -16,8 +16,6 @@ namespace Oakinstream.Models
         public string Description { get; set; }
         public int? BlogCategoryID { get; set; }
         public virtual BlogCategoryModels BlogCategoryModels { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CurrentTime { get; set; }
 
     }
 }

@@ -14,6 +14,10 @@
                 <li>@Html.ActionLink("Project", "Index", "Project")</li>
                 <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
                 <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                }
             </ul>
             @Html.Partial("_LoginPartial")
             </div>

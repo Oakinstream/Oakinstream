@@ -203,6 +203,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogImagesController.cs" />
@@ -329,6 +330,7 @@
     <Content Include="Views\BlogCategory\Details.cshtml" />
     <Content Include="Views\BlogCategory\Edit.cshtml" />
     <Content Include="Views\BlogCategory\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

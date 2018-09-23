@@ -14,7 +14,7 @@
             {
                 <span class="glyphicon glyphicon-plus-sign"></span> @Html.ActionLink("Create New", "Create")
             }
-            @using (Html.BeginRouteForm("BlogpostIndex", FormMethod.Get))
+            @using (Html.BeginRouteForm("BlogsIndex", FormMethod.Get))
             {
                 <label>Filter by category: </label>
                 @Html.DropDownListFor(vm => vm.Category,
@@ -56,7 +56,8 @@
                         }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.BlogCategoryModels.Name)
+                        [Category Here]
+                        @Html.DisplayFor(modelItem => item.BlogCategoryModels.BlogPost.Count)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
