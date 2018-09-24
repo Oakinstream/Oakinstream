@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Oakinstream.DAL;
 using Oakinstream.Models;
 
 namespace Oakinstream.Controllers

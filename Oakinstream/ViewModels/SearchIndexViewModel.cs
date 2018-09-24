@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Oakinstream.Models;
@@ -7,14 +6,16 @@ using PagedList;
 
 namespace Oakinstream.ViewModels
 {
-    public class BlogIndexViewModel
+    public class SearchIndexViewModel
     {
-        public IPagedList<BlogModels> BlogPosts { get; set; }
-        public string Search { get; set; }
+        public List<Project> Projects { get; set; }
+        public List<BlogModels> Blog { get; set; }
+        public IPagedList<SearchItem> SearchResult { get; set; }
         public IEnumerable<CategoryWithCount> CategoryWithCount { get; set; }
-        public string Category { get; set; }
+        public string Search { get; set; }
         public string SortBy { get; set; }
-        public Dictionary<string, string> Sorts { get; set; }
+        public Dictionary<string, string> Sort { get; set; }
+        public int? CategoryID { get; set; }
         public IEnumerable<SelectListItem> CategoryFilterItems
         {
             get
@@ -28,16 +29,15 @@ namespace Oakinstream.ViewModels
             }
         }
     }
-
     public class CategoryWithCount
     {
-        public int BlogCount { get; set; }
+        public int Count { get; set; }
         public string CategoryName { get; set; }
         public string CategoryNameWithCount
         {
             get
             {
-                return CategoryName + " (" + BlogCount.ToString() + ")";
+                return CategoryName + " (" + Count.ToString() + ")";
             }
         }
     }

@@ -12,6 +12,6 @@ namespace Oakinstream.Models
         [Required]
         [Display(Name = "Category Name")]
         public  string Name { get; set; }
-        public ICollection<ProjectModels> Project { get; set; }
+        public ICollection<Project> Project { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Oakinstream.Controllers
         // GET: About
         public ActionResult Index()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Right now this is a template for someone on github who is interested in this project";
 
             return View();
         }

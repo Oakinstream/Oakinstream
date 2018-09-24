@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Oakinstream.DAL;
 using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
@@ -18,7 +19,7 @@ namespace Oakinstream.Controllers
         // GET: ProjectCategory
         public ActionResult Index()
         {
-            return View(db.ProjectCategoryModels.ToList());
+            return View(db.ProjectCategorys.ToList());
         }
 
         // GET: ProjectCategory/Details/5
@@ -28,7 +29,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectCategoryModels projectCategoryModels = db.ProjectCategoryModels.Find(id);
+            ProjectCategoryModels projectCategoryModels = db.ProjectCategorys.Find(id);
             if (projectCategoryModels == null)
             {
                 return HttpNotFound();
@@ -51,7 +52,7 @@ namespace Oakinstream.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProjectCategoryModels.Add(projectCategoryModels);
+                db.ProjectCategorys.Add(projectCategoryModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +67,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectCategoryModels projectCategoryModels = db.ProjectCategoryModels.Find(id);
+            ProjectCategoryModels projectCategoryModels = db.ProjectCategorys.Find(id);
             if (projectCategoryModels == null)
             {
                 return HttpNotFound();
@@ -97,7 +98,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectCategoryModels projectCategoryModels = db.ProjectCategoryModels.Find(id);
+            ProjectCategoryModels projectCategoryModels = db.ProjectCategorys.Find(id);
             if (projectCategoryModels == null)
             {
                 return HttpNotFound();
@@ -110,8 +111,8 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProjectCategoryModels projectCategoryModels = db.ProjectCategoryModels.Find(id);
-            db.ProjectCategoryModels.Remove(projectCategoryModels);
+            ProjectCategoryModels projectCategoryModels = db.ProjectCategorys.Find(id);
+            db.ProjectCategorys.Remove(projectCategoryModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

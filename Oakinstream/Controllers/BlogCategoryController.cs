@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Oakinstream.DAL;
 using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
@@ -18,7 +19,7 @@ namespace Oakinstream.Controllers
         // GET: BlogCategory
         public ActionResult Index()
         {
-            return View(db.BlogCategoryModels.ToList());
+            return View(db.BlogCategorys.ToList());
         }
 
         // GET: BlogCategory/Details/5
@@ -28,7 +29,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogCategoryModels blogCategoryModels = db.BlogCategoryModels.Find(id);
+            BlogCategoryModels blogCategoryModels = db.BlogCategorys.Find(id);
             if (blogCategoryModels == null)
             {
                 return HttpNotFound();
@@ -51,7 +52,7 @@ namespace Oakinstream.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.BlogCategoryModels.Add(blogCategoryModels);
+                db.BlogCategorys.Add(blogCategoryModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +67,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogCategoryModels blogCategoryModels = db.BlogCategoryModels.Find(id);
+            BlogCategoryModels blogCategoryModels = db.BlogCategorys.Find(id);
             if (blogCategoryModels == null)
             {
                 return HttpNotFound();
@@ -97,7 +98,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogCategoryModels blogCategoryModels = db.BlogCategoryModels.Find(id);
+            BlogCategoryModels blogCategoryModels = db.BlogCategorys.Find(id);
             if (blogCategoryModels == null)
             {
                 return HttpNotFound();
@@ -110,8 +111,8 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogCategoryModels blogCategoryModels = db.BlogCategoryModels.Find(id);
-            db.BlogCategoryModels.Remove(blogCategoryModels);
+            BlogCategoryModels blogCategoryModels = db.BlogCategorys.Find(id);
+            db.BlogCategorys.Remove(blogCategoryModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

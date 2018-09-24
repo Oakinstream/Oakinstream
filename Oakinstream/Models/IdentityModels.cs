@@ -34,15 +34,15 @@ namespace Oakinstream.Models
 
         public DbSet<CheckingAccount> CheckingAccounts { get; set; }
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectCategoryModels> ProjectCategoryModels { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.Project> Projects { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectCategoryModels> ProjectCategorys { get; set; }
+        public DbSet<ProjectFile> ProjectFiles { get; set; }
+        public DbSet<ProjectFileMapping> ProjectFileMappins { get; set; }
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectModels> ProjectModels { get; set; }
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.BlogModels> BlogModels { get; set; }
-
+        public System.Data.Entity.DbSet<Oakinstream.Models.BlogModels> Blogs { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.BlogCategoryModels> BlogCategorys { get; set; }
         public System.Data.Entity.DbSet<Oakinstream.Models.BlogImage> BlogImages { get; set; }
         public DbSet<BlogImageMapping> BlogImageMappings { get; set; }
-
-        public System.Data.Entity.DbSet<Oakinstream.Models.BlogCategoryModels> BlogCategoryModels { get; set; }
     }
 }

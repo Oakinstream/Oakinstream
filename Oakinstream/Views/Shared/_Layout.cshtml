@@ -10,16 +10,16 @@
 </head>
 <body>
 
-@Html.Partial("_Navbar")
+    @Html.Partial("_Navbar")
 
-<div class="container body-content">
-    @RenderBody()
-</div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
 
-@Html.Partial("_Footer")
+    @Html.Partial("_Footer")
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

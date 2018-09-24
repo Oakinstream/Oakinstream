@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Oakinstream.DAL;
 using Oakinstream.Models;
 using Oakinstream.ViewModels;
 using PagedList;
@@ -18,61 +19,9 @@ namespace Oakinstream.Controllers
 
         // GET: Blog
         [AllowAnonymous]
-        public ActionResult Index(string category, string search, string sortBy, int? page)
+        public ActionResult Index()
         {
-            BlogIndexViewModel viewModel = new BlogIndexViewModel();
-            var blogPost = db.BlogModels.Include(p => p.BlogCategoryModels);
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                blogPost = blogPost.Where(p => p.Title.Contains(search) ||
-                p.Description.Contains(search) ||
-                p.BlogCategoryModels.Name.Contains(search));
-                viewModel.Search = search;
-            }
-            viewModel.CategoryWithCount = from matchingProducts in blogPost
-                                          where
-                                          matchingProducts.BlogCategoryID != null
-                                          group matchingProducts by
-                                          matchingProducts.BlogCategoryModels.Name into
-                                          catGroup
-                                          select new CategoryWithCount()
-                                          {
-                                              CategoryName = catGroup.Key,
-                                              BlogCount = catGroup.Count()
-                                          };
-            if (!string.IsNullOrEmpty(category))
-            {
-                blogPost = blogPost.Where(p => p.BlogCategoryModels.Name == category);
-                viewModel.Category = category;
-            }
-
-            switch (sortBy)
-            {
-                case "A-Ö":
-                    blogPost = blogPost.OrderBy(p => p.Title);
-                    break;
-                case "Ö-A":
-                    blogPost = blogPost.OrderByDescending(p => p.Title);
-                    break;
-                default:
-                    blogPost = blogPost.OrderBy(p => p.Title);
-                    break;
-            }
-
-            if (page > (blogPost.Count() / Constants.ItemsPerPage))
-            {
-                page = (int)Math.Ceiling(blogPost.Count() / (float)Constants.ItemsPerPage);
-            }
-            int currentPage = (page ?? 1);
-            viewModel.BlogPosts = blogPost.ToPagedList(currentPage, Constants.ItemsPerPage);
-            viewModel.SortBy = sortBy;
-            viewModel.Sorts = new Dictionary<string, string>
-            {
-                {"A To Ö", "A-Ö" },
-                {"Ö To A", "price_highest" }
-            };
-            return View(viewModel);
+            return View();
         }
 
         // GET: Blog/Details/5
@@ -82,7 +31,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogModels blogModels = db.BlogModels.Find(id);
+            BlogModels blogModels = db.Blogs.Find(id);
             if (blogModels == null)
             {
                 return HttpNotFound();
@@ -94,7 +43,7 @@ namespace Oakinstream.Controllers
         public ActionResult Create()
         {
             BlogViewModel viewModel = new BlogViewModel();
-            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name");
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategorys, "ID", "Name");
             viewModel.ImageLists = new List<SelectList>();
             for (int i = 0; i < Constants.NumberOfBlogImages; i++)
             {
@@ -126,12 +75,12 @@ namespace Oakinstream.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.BlogModels.Add(blogPost);
+                db.Blogs.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name", blogPost.BlogCategoryID);
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategorys, "ID", "Name", blogPost.BlogCategoryID);
             viewModel.ImageLists = new List<SelectList>();
             for (int i = 0; i < Constants.NumberOfBlogImages; i++)
             {
@@ -148,13 +97,13 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogModels blogModels = db.BlogModels.Find(id);
+            BlogModels blogModels = db.Blogs.Find(id);
             if (blogModels == null)
             {
                 return HttpNotFound();
             }
             BlogViewModel viewModel = new BlogViewModel();
-            viewModel.BlogCategoryList = new SelectList(db.BlogCategoryModels, "ID", "Name", blogModels.BlogCategoryID);
+            viewModel.BlogCategoryList = new SelectList(db.BlogCategorys, "ID", "Name", blogModels.BlogCategoryID);
             viewModel.ImageLists = new List<SelectList>();
             foreach (var imageMapping in blogModels.BlogImageMappings.OrderBy(pim => pim.ImageNumber))
             {
@@ -177,7 +126,7 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(BlogViewModel viewModel)
         {
-            var blogToUpdate = db.BlogModels.Include(p => p.BlogImageMappings).
+            var blogToUpdate = db.Blogs.Include(p => p.BlogImageMappings).
                     Where(p => p.ID == viewModel.ID).Single();
             if (TryUpdateModel(blogToUpdate, "",
                     new string[] { "Name", "Description", "BlogCategoryID" }))
@@ -230,7 +179,7 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogModels blogModels = db.BlogModels.Find(id);
+            BlogModels blogModels = db.Blogs.Find(id);
             if (blogModels == null)
             {
                 return HttpNotFound();
@@ -243,8 +192,8 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogModels blogModels = db.BlogModels.Find(id);
-            db.BlogModels.Remove(blogModels);
+            BlogModels blogModels = db.Blogs.Find(id);
+            db.Blogs.Remove(blogModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

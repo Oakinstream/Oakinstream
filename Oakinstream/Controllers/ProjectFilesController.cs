@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Oakinstream.DAL;
+using Oakinstream.Models;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
-using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class BlogImagesController : Controller
+    public class ProjectFilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: BlogImages
+        // GET: ProjectFiles
         public ActionResult Index()
         {
-            return View(db.BlogImages.ToList());
+            return View(db.ProjectFiles.ToList());
         }
 
         public ActionResult Upload()
@@ -29,75 +26,72 @@ namespace Oakinstream.Controllers
             return View();
         }
 
-        // POST: BlogImages/Upload
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Upload(HttpPostedFileBase[] files)
+        public ActionResult Upload(HttpPostedFileBase[] Files)
         {
-            bool allValid = true;
+            bool allFilesIsVailid = true;
             string inValidFiles = "";
-            if (files[0] != null)
+
+            if (Files[0] != null)
             {
-                if (files.Length <= 10)
+                if (Files.Length <= 8)
                 {
-                    foreach (var file in files)
+                    foreach (var file in Files)
                     {
                         if (!ValidateFile(file))
                         {
-                            allValid = false;
+                            allFilesIsVailid = false;
                             inValidFiles += file.FileName + " ";
                         }
                     }
-                    if (allValid)
+
+                    if (allFilesIsVailid)
                     {
-                        foreach (var file in files)
+                        foreach (var file in Files)
                         {
                             try
                             {
                                 SaveToDisk(file);
                             }
-                            catch (BadImageFormatException bife)
-                            {
-                                ModelState.AddModelError("FileName",
-                                    file.FileName + " was to small, must be at least 200px wide.");
-                            }
                             catch (Exception e)
                             {
-                                ModelState.AddModelError("FileName",
-                                    "An error occured while saving files to disk!");
+                                ModelState.AddModelError("Filename",
+                                    "An error occured while saving the files to disk! " + e.Message);
                             }
                         }
                     }
                     else
                     {
                         ModelState.AddModelError("FileName",
-                            "All files must be gif, jpg or png and less than 2MB. " +
+                            "All files must be pdf, odt or txt and less than" + Constants.MaxFileSizeMB + "MB" +
                             "The following files are not valid: " + inValidFiles);
                     }
+
                 }
                 else
                 {
-                    ModelState.AddModelError("FileName", "Please only upload up to ten images at once.");
+                    ModelState.AddModelError("FileName", "Please only upload up to eight images at once.");
                 }
+
             }
             else
             {
                 ModelState.AddModelError("FileName", "Please choose a file.");
             }
+
             if (ModelState.IsValid)
             {
                 bool duplicates = false;
                 bool otherDbError = false;
                 string duplicateFiles = "";
 
-                foreach (var file in files)
+                foreach (var file in Files)
                 {
-                    var blogToAdd = new BlogImage { FileName = file.FileName };
+                    var fileToAdd = new ProjectFile {FileName = file.FileName};
                     try
                     {
-                        db.BlogImages.Add(blogToAdd);
+                        db.ProjectFiles.Add(fileToAdd);
                         db.SaveChanges();
                     }
                     catch (DbUpdateException e)
@@ -107,7 +101,7 @@ namespace Oakinstream.Controllers
                         {
                             duplicateFiles += file.FileName + " ";
                             duplicates = true;
-                            db.Entry(blogToAdd).State = EntityState.Detached;
+                            db.Entry(fileToAdd).State = EntityState.Detached;
                         }
                         else
                         {
@@ -115,6 +109,7 @@ namespace Oakinstream.Controllers
                         }
                     }
                 }
+
                 if (duplicates)
                 {
                     ModelState.AddModelError("FileName",
@@ -125,27 +120,29 @@ namespace Oakinstream.Controllers
                 else if (otherDbError)
                 {
                     ModelState.AddModelError("FileName", "Error occured while " +
-                        "saving to database. Please try again.");
+                                                         "saving to database. Please try again.");
                     return View();
                 }
+
                 return RedirectToAction("Index");
             }
+
             return View();
         }
 
-        // GET: BlogImages/Delete/5
+        // GET: ProjectFiles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogImage blogImage = db.BlogImages.Find(id);
-            if (blogImage == null)
+            ProjectFile projectFile = db.ProjectFiles.Find(id);
+            if (projectFile == null)
             {
                 return HttpNotFound();
             }
-            return View(blogImage);
+            return View(projectFile);
         }
 
         // POST: BlogImages/Delete/5
@@ -153,22 +150,22 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogImage blogImage = db.BlogImages.Find(id);
-            var mappings = blogImage.BlogImageMappings.Where(pim => pim.BlogImageID == id);
+            ProjectFile projectFile = db.ProjectFiles.Find(id);
+            var mappings = projectFile.ProjectFileMappings.Where(pim => pim.ProjectFileID == id);
             foreach (var mapping in mappings)
             {
-                var mappingsToUpdate = db.BlogImageMappings.Where(pim => pim.BlogID == mapping.BlogID);
+                var mappingsToUpdate = db.ProjectFileMappins.Where(pim => pim.ProjectID == mapping.ProjectID);
                 foreach (var mappingToUpdate in mappingsToUpdate)
                 {
-                    if (mappingToUpdate.ImageNumber > mapping.ImageNumber)
+                    if (mappingToUpdate.FileNumber > mapping.FileNumber)
                     {
-                        mappingToUpdate.ImageNumber--;
+                        mappingToUpdate.FileNumber--;
                     }
                 }
             }
-            System.IO.File.Delete(Request.MapPath(Constants.BlogImagePath + blogImage.FileName));
-            System.IO.File.Delete(Request.MapPath(Constants.BlogThumbnailPath + blogImage.FileName));
-            db.BlogImages.Remove(blogImage);
+            System.IO.File.Delete(Request.MapPath(Constants.FilePath + projectFile.FileName));
+            System.IO.File.Delete(Request.MapPath(Constants.ProjectThumbnailPath + projectFile.FileName));
+            db.ProjectFiles.Remove(projectFile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -181,39 +178,30 @@ namespace Oakinstream.Controllers
             base.Dispose(disposing);
         }
 
+
+
+        #region DOCFILES
         private bool ValidateFile(HttpPostedFileBase file)
         {
-            string[] allowedFileTypes = { ".gif", ".jpg", ".jpeg", ".png" };
+            string[] allowedFileTypes = {".pdf", ".odt", ".doc", ".txt"};
             string fileExtension = System.IO.Path.GetExtension(file.FileName).ToLower();
+
             if (allowedFileTypes.Contains(fileExtension))
             {
-                if (file.ContentLength > 0 && file.ContentLength < 2097152)
+                if (file.ContentLength > 0 && file.ContentLength < Constants.MegabytesToBytes(Constants.MaxFileSizeMB))
                 {
                     return true;
                 }
             }
+
             return false;
         }
 
         private void SaveToDisk(HttpPostedFileBase file)
         {
-            WebImage img = new WebImage(file.InputStream);
-            if (img.Width < Constants.ImageMinWidth)
-            {
-                throw new BadImageFormatException();
-            }
-
-            if (img.Width > Constants.ImageMaxWidth)
-            {
-                img.Resize(Constants.ImageMaxWidth, img.Height);
-            }
-            img.Save(Constants.BlogImagePath + file.FileName);
-
-            if (img.Width > Constants.ThumbnailMaxWidth)
-            {
-                img.Resize(Constants.ThumbnailMaxWidth, img.Height);
-            }
-            img.Save(Constants.BlogThumbnailPath + file.FileName);
+            file.SaveAs(Server.MapPath(Constants.FilePath + file.FileName));
         }
+        #endregion
     }
 }
+   
