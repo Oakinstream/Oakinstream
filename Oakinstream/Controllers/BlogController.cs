@@ -19,11 +19,59 @@ namespace Oakinstream.Controllers
 
         // GET: Blog
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string category, string search, string sortBy, int? page)
         {
-            return View();
+            SearchIndexViewModel viewModel = new SearchIndexViewModel();
+            var blogPost = db.Blogs.Include(p => p.BlogCategoryModels);
+            if (!string.IsNullOrEmpty(search))
+            {
+                blogPost = blogPost.Where(p => p.Title.Contains(search) ||
+                p.Description.Contains(search) ||
+                p.BlogCategoryModels.Name.Contains(search));
+                viewModel.Search = search;
+            }
+            viewModel.CategoryWithCount = from matchingProducts in blogPost
+                                          where
+                                          matchingProducts.BlogCategoryID != null
+                                          group matchingProducts by
+                                          matchingProducts.BlogCategoryModels.Name into
+                                          catGroup
+                                          select new CategoryWithCount()
+                                          {
+                                              CategoryName = catGroup.Key,
+                                              Count = catGroup.Count()
+                                          };
+            if (!string.IsNullOrEmpty(category))
+            {
+                blogPost = blogPost.Where(p => p.BlogCategoryModels.Name == category);
+                viewModel.Category = category;
+            }
+            switch (sortBy)
+            {
+                case "A-Ö":
+                    blogPost = blogPost.OrderBy(p => p.Title);
+                    break;
+                case "Ö-A":
+                    blogPost = blogPost.OrderByDescending(p => p.Title);
+                    break;
+                default:
+                    blogPost = blogPost.OrderBy(p => p.Title);
+                    break;
+            }
+            if (page > (blogPost.Count() / Constants.ItemsPerPage))
+            {
+                page = (int)Math.Ceiling(blogPost.Count() / (float)Constants.ItemsPerPage);
+            }
+            int currentPage = (page ?? 1);
+            viewModel.Blogs = blogPost.ToPagedList(currentPage, Constants.ItemsPerPage);
+            viewModel.SortBy = sortBy;
+            viewModel.Sorts = new Dictionary<string, string>
+            {
+                {"A To Ö", "A-Ö" },
+                {"Ö To A", "price_highest" }
+            };
+            return View(viewModel);
         }
-
         // GET: Blog/Details/5
         public ActionResult Details(int? id)
         {

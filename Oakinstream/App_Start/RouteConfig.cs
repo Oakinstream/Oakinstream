@@ -13,6 +13,7 @@ namespace Oakinstream
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            #region Blog
             routes.MapRoute(
                 name: "BlogCreate",
                 url: "Blog/Create",
@@ -42,6 +43,39 @@ namespace Oakinstream
                 url: "Blog",
                 defaults: new { controller = "Blog", action = "Index" }
             );
+            #endregion
+
+            #region Project
+            routes.MapRoute(
+                name: "ProjectCreate",
+                url: "Project/Create",
+                defaults: new { controller = "Project", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "ProjectbyCategorybyPage",
+                url: "Project/{category}/Page{page}",
+                defaults: new { controller = "Project", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "ProjectsbyPage",
+                url: "Project/Page{page}",
+                defaults: new { controller = "Project", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "ProjectsbyCategory",
+                url: "Project/{category}",
+                defaults: new { controller = "Project", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "ProjectIndex",
+                url: "Project",
+                defaults: new { controller = "Project", action = "Index" }
+            );
+            #endregion
 
             routes.MapRoute(
                 name: "Default",

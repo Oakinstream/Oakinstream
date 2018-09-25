@@ -1,4 +1,4 @@
-﻿@model Oakinstream.ViewModels.BlogIndexViewModel
+﻿@model Oakinstream.ViewModels.SearchIndexViewModel
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Blog";
@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 <p>
     @(String.IsNullOrWhiteSpace(Model.Search) ? "Showing all" : "You searched for " +
-            Model.Search + ", found") @Model.BlogPosts.TotalItemCount blogposts
+            Model.Search + ", found") @Model.Blogs.TotalItemCount blogs
         </p>
         <p>
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
@@ -34,22 +34,22 @@
                     @Html.DisplayNameFor(model => model.Category)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.BlogPosts.First().Title)
+                    @Html.DisplayNameFor(model => model.Blogs.First().Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.BlogPosts.First().Description)
+                    @Html.DisplayNameFor(model => model.Blogs.First().Description)
                 </th>
                 <th></th>
             </tr>
 
-            @foreach (var item in Model.BlogPosts)
+            @foreach (var item in Model.Blogs)
             {
                 <tr>
                     <td>
                         @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
                         {
                             <a href="@Url.Action("Details",new { id = item.ID })">
-                                <img src="@(Url.Content(Constants.ThumbnailPath)
+                                <img src="@(Url.Content(Constants.BlogThumbnailPath)
                         +item.BlogImageMappings.OrderBy(pim => pim.ImageNumber)
                         .ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
                             </a>
@@ -80,9 +80,9 @@
 
         </table>
         <div>
-            Page @(Model.BlogPosts.PageCount < Model.BlogPosts.PageNumber ? 0 :
-                   Model.BlogPosts.PageNumber) of @Model.BlogPosts.PageCount
-                @Html.PagedListPager(Model.BlogPosts,
+            Page @(Model.Blogs.PageCount < Model.Blogs.PageNumber ? 0 :
+                   Model.Blogs.PageNumber) of @Model.Blogs.PageCount
+                @Html.PagedListPager(Model.Blogs,
                 page => Url.Action("Index",
                     new { category = Model.Category,
                         search = Model.Search,

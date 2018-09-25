@@ -1,81 +1,99 @@
-﻿@model IEnumerable<Oakinstream.Models.Project>
-
+﻿@model Oakinstream.ViewModels.SearchIndexViewModel
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Projects";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
+
+
+@(String.IsNullOrWhiteSpace(Model.Search) ? "Showing all" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount projects
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <span class="glyphicon glyphicon-plus-sign"></span> @Html.ActionLink("Create New", "Create")
+    }
+    @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get))
+    {
+        <label>Filter by category: </label>
+        @Html.DropDownListFor(vm => vm.Category,
+            Model.CategoryFilterItems, "All", new { @class = "form-control" })
+        <label>Sort by: </label>
+        @Html.DropDownListFor(vm => vm.SortBy,
+            new SelectList(Model.Sorts, "Value", "Key"), "Default",
+            new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn btn-default" />
+        <input type="hidden" name="Search" id="Search" value="@Model.Search" />
+    }
 </p>
+
 <table class="table">
     <tr>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectCategory.Name)
+            @Html.DisplayNameFor(model => model.Projects.First().ProjectImage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Projects.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectImage)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Projects.First().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
+            @Html.DisplayNameFor(model => model.Projects.First().ProjectFileMappings)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectCategory.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+
+
+    @foreach (var item in Model.Projects)
+    {
+        <tr>
+            @if(item.ProjectImage != null)
+            {
+                <td>
+                    <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName"/>
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+
+                @if (item.ProjectFileMappings != null && item.ProjectFileMappings.Any())
+                {
+                    <a src="@(Url.Content(Constants.ProjectThumbnailPath) + item.ProjectFileMappings.OrderBy(pim => pim.FileNumber).ElementAt(0).ProjectFile.FileName)"></a>
+                }
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-list-alt"></span> @Html.ActionLink("Details", "Details", new {id = item.ID})
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.Raw(" | ")
+                    <span class="glyphicon glyphicon-edit"></span>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ID})
+                    @Html.Raw(" | ")
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+<div>
+    Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of 
+    @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page => 
+                               Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
+</div>

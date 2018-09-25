@@ -11,6 +11,7 @@ using Oakinstream.DAL;
 using Microsoft.AspNet.Identity;
 using System.Web.Helpers;
 using Oakinstream.ViewModels;
+using PagedList;
 
 namespace Oakinstream.Controllers
 {
@@ -19,10 +20,59 @@ namespace Oakinstream.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
-        public ActionResult Index()
+        [AllowAnonymous]
+        public ActionResult Index(string category, string search, string sortBy, int? page)
         {
+            SearchIndexViewModel viewModel = new SearchIndexViewModel();
             var project = db.Projects.Include(p => p.ProjectCategory);
-            return View(project.ToList());
+            if (!string.IsNullOrEmpty(search))
+            {
+                project = project.Where(p => p.Name.Contains(search) ||
+                p.Description.Contains(search) ||
+                p.ProjectCategory.Name.Contains(search));
+                viewModel.Search = search;
+            }
+            viewModel.CategoryWithCount = from matchingProjects in project
+                                          where
+                                              matchingProjects.ProjectCategoryID != null
+                                          group matchingProjects by
+                                              matchingProjects.ProjectCategory.Name into
+                                          catGroup
+                                          select new CategoryWithCount()
+                                          {
+                                              CategoryName = catGroup.Key,
+                                              Count = catGroup.Count()
+                                          };
+            if (!string.IsNullOrEmpty(category))
+            {
+                project = project.Where(p => p.ProjectCategory.Name == category);
+                viewModel.Category = category;
+            }
+            switch (sortBy)
+            {
+                case "A-Ö":
+                    project = project.OrderBy(p => p.Name);
+                    break;
+                case "Ö-A":
+                    project = project.OrderByDescending(p => p.Name);
+                    break;
+                default:
+                    project = project.OrderBy(p => p.Name);
+                    break;
+            }
+            if (page > (project.Count() / Constants.ItemsPerPage))
+            {
+                page = (int)Math.Ceiling(project.Count() / (float)Constants.ItemsPerPage);
+            }
+            int currentPage = (page ?? 1);
+            viewModel.Projects = project.ToPagedList(currentPage, Constants.ItemsPerPage);
+            viewModel.SortBy = sortBy;
+            viewModel.Sorts = new Dictionary<string, string>
+            {
+                {"A To Ö", "A-Ö" },
+                {"Ö To A", "Ö-A" }
+            };
+            return View(viewModel);
         }
 
         // GET: Projects/Details/5
@@ -45,6 +95,7 @@ namespace Oakinstream.Controllers
         {
             ProjectViewModel viewModel = new ProjectViewModel();
             viewModel.ProjectCategoryList = new SelectList(db.BlogCategorys, "ID", "Name");
+            viewModel.ProjectImageList = new SelectList(db.ProjectImages, "ID", "FileName");
             viewModel.FileList = new List<SelectList>();
             for (int i = 0; i < Constants.NumberOfProjectFiles; i++)
             {
@@ -56,13 +107,13 @@ namespace Oakinstream.Controllers
         // POST: Projects/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProjectViewModel viewModel, HttpPostedFileBase ImageFile)
+        public ActionResult Create(ProjectViewModel viewModel)
         {
             Project project = new Project();
             project.Name = viewModel.Name;
             project.ProjectCategoryID = viewModel.ProjectCategoryID;
+            project.ProjectImageID = viewModel.ProjectImageID;
             project.Description = viewModel.Description;
-            project.Date = viewModel.Date;
             project.ProjectFileMappings = new List<ProjectFileMapping>();
             string[] projectFiles  = viewModel.ProjectFiles.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
             for (int i = 0; i < projectFiles.Length; i++)
@@ -78,38 +129,6 @@ namespace Oakinstream.Controllers
             project.UpdatedDate = DateTime.Now;
             project.UpdatedBy = viewModel.CreatedBy;
 
-            if (ImageFile != null)
-            {
-                if (ValidateImageFile(ImageFile))
-                {
-                    try
-                    {
-                        SaveImageToDisk(ImageFile);
-                        project.ProjectImage = ImageFile.FileName;
-                    }
-                    catch (BadImageFormatException bife)
-                    {
-                        ModelState.AddModelError("FileName",
-                            ImageFile.FileName + " was to small, must be at least 200px wide. [" + bife.Message + "]");
-                    }
-                    catch (Exception e)
-                    {
-                        ModelState.AddModelError("FileName",
-                            "An error occured while saving files to disk! " + e.Message);
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("FileName",
-                        "All files must be gif, jpg or png and less than 2MB. " +
-                        "The following files are not valid: ");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("FileName", "Please choose a file.");
-            }
-
             if (ModelState.IsValid)
             {
                 db.Projects.Add(project);
@@ -117,6 +136,7 @@ namespace Oakinstream.Controllers
                 return RedirectToAction("Index");
             }
             viewModel.ProjectCategoryList = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
+            viewModel.ProjectImageList = new SelectList(db.ProjectImages, "ID", "FileName", project.ProjectImageID);
             viewModel.FileList = new List<SelectList>();
             for (int i = 0; i < Constants.NumberOfProjectFiles; i++)
             {
@@ -299,42 +319,5 @@ namespace Oakinstream.Controllers
               }
               base.Dispose(disposing);
           }*/
-
-        #region IMAGES
-        private bool ValidateImageFile(HttpPostedFileBase file)
-        {
-            string[] allowedFileTypes = { ".gif", ".jpg", ".jpeg", ".png" };
-            string fileExtension = System.IO.Path.GetExtension(file.FileName).ToLower();
-            if (allowedFileTypes.Contains(fileExtension))
-            {
-                if (file.ContentLength > 0 && file.ContentLength < 2097152)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void SaveImageToDisk(HttpPostedFileBase file)
-        {
-            WebImage img = new WebImage(file.InputStream);
-            if (img.Width < Constants.ImageMinWidth)
-            {
-                throw new BadImageFormatException();
-            }
-
-            if (img.Width > Constants.ImageMaxWidth)
-            {
-                img.Resize(Constants.ImageMaxWidth, img.Height);
-            }
-            img.Save(Constants.ProjectImagePath + file.FileName);
-
-            if (img.Width > Constants.ThumbnailMaxWidth)
-            {
-                img.Resize(Constants.ThumbnailMaxWidth, img.Height);
-            }
-            img.Save(Constants.ProjectThumbnailPath + file.FileName);
-        }
-        #endregion
     }
 }

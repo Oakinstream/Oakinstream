@@ -8,13 +8,14 @@ namespace Oakinstream.ViewModels
 {
     public class SearchIndexViewModel
     {
-        public List<Project> Projects { get; set; }
-        public List<BlogModels> Blog { get; set; }
+        public IPagedList<Project> Projects { get; set; }
+        public IPagedList<BlogModels> Blogs { get; set; }
         public IPagedList<SearchItem> SearchResult { get; set; }
         public IEnumerable<CategoryWithCount> CategoryWithCount { get; set; }
         public string Search { get; set; }
         public string SortBy { get; set; }
-        public Dictionary<string, string> Sort { get; set; }
+        public Dictionary<string, string> Sorts { get; set; }
+        public string Category { get; set; }
         public int? CategoryID { get; set; }
         public IEnumerable<SelectListItem> CategoryFilterItems
         {

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace Oakinstream.Models
@@ -8,11 +10,11 @@ namespace Oakinstream.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string ProjectImage { get; set; }
+        public int? ProjectImageID { get; set; }
+        public virtual ProjectImage ProjectImage { get; set; }
         public int? ProjectCategoryID { get; set; }
         public virtual ProjectCategoryModels ProjectCategory { get; set; }
         public string Description { get; set; }
-        public string Date { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
