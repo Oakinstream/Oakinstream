@@ -21,7 +21,7 @@ namespace Oakinstream
             );
 
             routes.MapRoute(
-                name: "BlogbyCategorybyPage",
+                name: "BlogsbyCategorybyPage",
                 url: "Blog/{category}/Page{page}",
                 defaults: new { controller = "Blog", action = "Index" }
             );
@@ -48,32 +48,32 @@ namespace Oakinstream
             #region Project
             routes.MapRoute(
                 name: "ProjectCreate",
-                url: "Project/Create",
-                defaults: new { controller = "Project", action = "Create" }
+                url: "Projects/Create",
+                defaults: new { controller = "Projects", action = "Create" }
             );
 
             routes.MapRoute(
-                name: "ProjectbyCategorybyPage",
-                url: "Project/{category}/Page{page}",
-                defaults: new { controller = "Project", action = "Index" }
+                name: "ProjectsbyCategorybyPage",
+                url: "Projects/{category}/Page{page}",
+                defaults: new { controller = "Projects", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "ProjectsbyPage",
-                url: "Project/Page{page}",
-                defaults: new { controller = "Project", action = "Index" }
+                url: "Projects/Page{page}",
+                defaults: new { controller = "Projects", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "ProjectsbyCategory",
-                url: "Project/{category}",
-                defaults: new { controller = "Project", action = "Index" }
+                url: "Projects/{category}",
+                defaults: new { controller = "Projects", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "ProjectIndex",
-                url: "Project",
-                defaults: new { controller = "Project", action = "Index" }
+                url: "Projects",
+                defaults: new { controller = "Projects", action = "Index" }
             );
             #endregion
 

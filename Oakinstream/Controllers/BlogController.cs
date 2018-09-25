@@ -30,11 +30,11 @@ namespace Oakinstream.Controllers
                 p.BlogCategoryModels.Name.Contains(search));
                 viewModel.Search = search;
             }
-            viewModel.CategoryWithCount = from matchingProducts in blogPost
+            viewModel.CategoryWithCount = from matchingBlogs in blogPost
                                           where
-                                          matchingProducts.BlogCategoryID != null
-                                          group matchingProducts by
-                                          matchingProducts.BlogCategoryModels.Name into
+                                              matchingBlogs.BlogCategoryID != null
+                                          group matchingBlogs by
+                                              matchingBlogs.BlogCategoryModels.Name into
                                           catGroup
                                           select new CategoryWithCount()
                                           {
@@ -68,7 +68,7 @@ namespace Oakinstream.Controllers
             viewModel.Sorts = new Dictionary<string, string>
             {
                 {"A To Ö", "A-Ö" },
-                {"Ö To A", "price_highest" }
+                {"Ö To A", "Ö-A" }
             };
             return View(viewModel);
         }

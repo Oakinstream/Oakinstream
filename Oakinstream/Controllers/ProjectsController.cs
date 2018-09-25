@@ -94,7 +94,7 @@ namespace Oakinstream.Controllers
         public ActionResult Create()
         {
             ProjectViewModel viewModel = new ProjectViewModel();
-            viewModel.ProjectCategoryList = new SelectList(db.BlogCategorys, "ID", "Name");
+            viewModel.ProjectCategoryList = new SelectList(db.ProjectCategorys, "ID", "Name");
             viewModel.ProjectImageList = new SelectList(db.ProjectImages, "ID", "FileName");
             viewModel.FileList = new List<SelectList>();
             for (int i = 0; i < Constants.NumberOfProjectFiles; i++)
@@ -147,7 +147,7 @@ namespace Oakinstream.Controllers
         }
 
 
-        /*  // GET: Projects/Edit/5
+        // GET: Projects/Edit/5
           public ActionResult Edit(int? id)
           {
               if (id == null)
@@ -159,18 +159,27 @@ namespace Oakinstream.Controllers
               {
                   return HttpNotFound();
               }
-              project.ProjectCategoryList = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
-              project.FileList = new List<SelectList>();
+              ProjectViewModel viewModel = new ProjectViewModel();
+              viewModel.ProjectCategoryList = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
+              viewModel.ProjectImageList = new SelectList(db.ProjectImages, "ID", "FileName", project.ProjectImageID);
+              viewModel.FileList = new List<SelectList>();
               foreach (var imageMapping in project.ProjectFileMappings.OrderBy(pim => pim.FileNumber))
               {
-                  project.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName", imageMapping.ProjectFileID));
+                  viewModel.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName", imageMapping.ProjectFileID));
               }
-              for (int i = project.FileList.Count; i < Constants.NumberOfBlogImages; i++)
+              for (int i = viewModel.FileList.Count; i < Constants.NumberOfBlogImages; i++)
               {
-                  project.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName"));
+                  viewModel.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName"));
               }
               ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
-              return View(project);
+              viewModel.ID = project.ID;
+              viewModel.Name = project.Name;
+
+              viewModel.CreatedDate = DateTime.Now;
+              viewModel.CreatedBy = viewModel.CreatedBy;
+              viewModel.UpdatedDate = DateTime.Now;
+              viewModel.UpdatedBy = viewModel.CreatedBy;
+              return View(viewModel);
           }
 
           // POST: Projects/Edit/5
@@ -178,70 +187,18 @@ namespace Oakinstream.Controllers
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
           [HttpPost]
           [ValidateAntiForgeryToken]
-          public ActionResult Edit(int ID, string Name, string Description, string ProjectCategoryID, string Date, string CreatedBy, string CreatedDate, string UpdatedBy, HttpPostedFileBase[] ProjectFiles, HttpPostedFileBase ImageFile)
+          public ActionResult Edit(ProjectViewModel viewModel)
           {
-
-              Project project = new Project();
-
-              project.ID = ID;
-              project.Name = Name;
-              project.ProjectCategoryID = db.ProjectCategorys.Where(s => s.Name == ProjectCategoryID).Single().ID;
-              project.Description = Description;
-              project.Date = Date;
-              project.ProjectFileMappings = new List<ProjectFileMapping>();
-              string[] projectFiles  = project.ProjectFiles.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
-              for (int i = 0; i < projectFiles.Length; i++)
-              {
-                  project.ProjectFileMappings.Add(new ProjectFileMapping()
-                  {
-                      ProjectFile = db.ProjectFiles.Find(int.Parse(projectFiles[i])),
-                      FileNumber = i
-                  });
-              }
-              project.CreatedBy = CreatedBy;
-              project.CreatedDate = DateTime.Parse(CreatedDate);
-              project.UpdatedBy = UpdatedBy;
-              project.UpdatedDate = DateTime.Now;
-
-              if (ImageFile != null)
-              {
-                  if (ValidateImageFile(ImageFile))
-                  {
-                      try
-                      {
-                          if (ModelState.IsValid)
-                          {
-                              SaveImageToDisk(ImageFile);
-                              project.ProjectImage = ImageFile.FileName;
-                          }
-                      }
-                      catch (Exception e)
-                      {
-                          ModelState.AddModelError("FileName", "An error occured while saving files to disk! " + e.Message);
-                      }
-                  }
-                  else
-                  {
-                      ModelState.AddModelError("FileName",
-                          "All files must be gif, jpg or png and less than 2MB. " +
-                          "The following files are not valid: ");
-                  }
-              }
-              else if (!string.IsNullOrEmpty(project.ProjectImage))
-              {
-                  project.ProjectImage = ImageFile.FileName;
-              }
-
               var projectToUpdate = db.Projects.Include(p => p.ProjectFileMappings).
-                  Where(p => p.ID == project.ID).Single();
+                  Where(p => p.ID == viewModel.ID).Single();
               if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "BlogCategoryID"}))
               {
                   if (projectToUpdate.ProjectFileMappings == null)
                   {
                       projectToUpdate.ProjectFileMappings = new List<ProjectFileMapping>();
                   }
-                  string[] projectfiles = project.ProjectFiles.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
-                  for (int i = 0; i < projectFiles.Length; i++)
+                  string[] projectfiles = viewModel.ProjectFiles.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
+                  for (int i = 0; i < projectfiles.Length; i++)
                   {
                       var imageMappingToEdit = projectToUpdate.ProjectFileMappings.Where(pim => pim.FileNumber == i)
                           .FirstOrDefault();
@@ -273,16 +230,11 @@ namespace Oakinstream.Controllers
                           db.ProjectFileMappins.Remove(imageMappingToEdit);
                       }
                   }
-              }
-              if (ModelState.IsValid)
-              {
-                  db.Entry(project).State = EntityState.Modified;
                   db.SaveChanges();
-                  return RedirectToAction("Details", new { id = ID });
-              }
-              ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
-              return View(project);
-          }
+                  return RedirectToAction("Index");
+            }
+              return View(viewModel);
+        }
 
 
           // GET: Projects/Delete/5
@@ -318,6 +270,6 @@ namespace Oakinstream.Controllers
                   db.Dispose();
               }
               base.Dispose(disposing);
-          }*/
+          }
     }
 }
