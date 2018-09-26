@@ -163,7 +163,7 @@ namespace Oakinstream.Controllers
                     }
                 }
             }
-            System.IO.File.Delete(Request.MapPath(Constants.FilePath + projectFile.FileName));
+            System.IO.File.Delete(Request.MapPath(Constants.ProjectFilePath + projectFile.FileName));
             System.IO.File.Delete(Request.MapPath(Constants.ProjectThumbnailPath + projectFile.FileName));
             db.ProjectFiles.Remove(projectFile);
             db.SaveChanges();
@@ -199,7 +199,7 @@ namespace Oakinstream.Controllers
 
         private void SaveToDisk(HttpPostedFileBase file)
         {
-            file.SaveAs(Server.MapPath(Constants.FilePath + file.FileName));
+            file.SaveAs(Server.MapPath(Constants.ProjectFilePath + file.FileName));
         }
         #endregion
     }

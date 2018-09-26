@@ -32,7 +32,7 @@ namespace Oakinstream
         }
 
         public static int MaxFileSizeMB { get; } = 10;
-        public static string FilePath { get; } = "~/Content/Files/ProjectFiles/";
+        public static string ProjectFilePath { get; } = "~/Content/Files/ProjectFiles/";
 
         public static int DescriptionLengthIndex { get; } = 65;
 

@@ -125,9 +125,9 @@ namespace Oakinstream.Controllers
                 });
             }
             project.CreatedDate = DateTime.Now;
-            project.CreatedBy = viewModel.CreatedBy;
+            project.CreatedBy = User.Identity.Name;
             project.UpdatedDate = DateTime.Now;
-            project.UpdatedBy = viewModel.CreatedBy;
+            project.UpdatedBy = null;
 
             if (ModelState.IsValid)
             {
@@ -174,12 +174,10 @@ namespace Oakinstream.Controllers
               ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
               viewModel.ID = project.ID;
               viewModel.Name = project.Name;
+              viewModel.CreatedDate = project.CreatedDate;
+              viewModel.CreatedBy = project.CreatedBy;
 
-              viewModel.CreatedDate = DateTime.Now;
-              viewModel.CreatedBy = viewModel.CreatedBy;
-              viewModel.UpdatedDate = DateTime.Now;
-              viewModel.UpdatedBy = viewModel.CreatedBy;
-              return View(viewModel);
+            return View(viewModel);
           }
 
           // POST: Projects/Edit/5
@@ -191,7 +189,7 @@ namespace Oakinstream.Controllers
           {
               var projectToUpdate = db.Projects.Include(p => p.ProjectFileMappings).
                   Where(p => p.ID == viewModel.ID).Single();
-              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "BlogCategoryID"}))
+              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "BlogCategoryID", "UpdatedBy, UpdatedDate" }))
               {
                   if (projectToUpdate.ProjectFileMappings == null)
                   {
@@ -230,7 +228,11 @@ namespace Oakinstream.Controllers
                           db.ProjectFileMappins.Remove(imageMappingToEdit);
                       }
                   }
-                  db.SaveChanges();
+
+                projectToUpdate.UpdatedBy = User.Identity.Name;
+                projectToUpdate.UpdatedDate = DateTime.Now;
+
+                db.SaveChanges();
                   return RedirectToAction("Index");
             }
               return View(viewModel);

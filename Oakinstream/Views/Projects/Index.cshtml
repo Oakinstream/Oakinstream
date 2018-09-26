@@ -30,7 +30,6 @@
 
 <table class="table">
     <tr>
-        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Projects.First().ProjectImage)
         </th>
@@ -46,6 +45,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Projects.First().ProjectFileMappings)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projects.First().CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projects.First().CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projects.First().UpdatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projects.First().UpdatedDate)
+        </th>
         <th></th>
     </tr>
 
@@ -53,42 +64,58 @@
 
     @foreach (var item in Model.Projects)
     {
-        <tr>
-            @if(item.ProjectImage != null)
-            {
-                <td>
-                    <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName"/>
-                </td>
-            }
+    <tr>
+        @if (item.ProjectImage != null)
+        {
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectCategory.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
 
-                @if (item.ProjectFileMappings != null && item.ProjectFileMappings.Any())
+            @if (item.ProjectFileMappings != null && item.ProjectFileMappings.Any())
+            {
+                foreach (var file in item.ProjectFileMappings)
                 {
-                    <a src="@(Url.Content(Constants.ProjectThumbnailPath) + item.ProjectFileMappings.OrderBy(pim => pim.FileNumber).ElementAt(0).ProjectFile.FileName)"></a>
+                    <a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
+                    <br />
                 }
-            </td>
-            <td>
-                <span class="glyphicon glyphicon-list-alt"></span> @Html.ActionLink("Details", "Details", new {id = item.ID})
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-edit"></span>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.ID})
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-remove-circle"></span>
-                    @Html.ActionLink("Delete", "Delete", new {id = item.ID})
-                }
-            </td>
-        </tr>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedDate)
+        </td>
+        <td>
+            <span class="glyphicon glyphicon-list-alt"></span> @Html.ActionLink("Details", "Details", new { id = item.ID })
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @Html.Raw(" | ")
+                <span class="glyphicon glyphicon-edit"></span>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.Raw(" | ")
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
+        </td>
+    </tr>
     }
 
 </table>
