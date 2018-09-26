@@ -19,11 +19,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProjectImage.FileName)
+            @Html.DisplayNameFor(model => model.ProjectFileMappings.First().ProjectFile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ProjectImage.FileName)
+            @foreach (var file in Model.ProjectFileMappings)
+            {
+                <a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a> @Html.Raw(" | ")
+            }
         </dd>
 
         <dt>
