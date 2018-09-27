@@ -37,10 +37,8 @@
             <br />
             <div class="well Width-80 Margin-Auto ">
                 <h1>Description:</h1>
-                <textarea class="ProjectDescription" readonly rows="5">
-                @Html.DisplayFor(model => model.Description)
-                </textarea>
-                <br />
+                <textarea class="ProjectDescription" readonly rows="10">@Html.DisplayFor(model => model.Description)</textarea>
+                <hr />
                 <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
                 @if (Model.UpdatedBy != null)
                 {

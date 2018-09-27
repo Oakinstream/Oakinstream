@@ -11,8 +11,6 @@ namespace Oakinstream.Controllers
         // GET: Contact
         public ActionResult Index()
         {
-            ViewBag.Message = "Information:";
-
             return View();
         }
     }
