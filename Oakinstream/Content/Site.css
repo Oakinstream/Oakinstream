@@ -49,3 +49,11 @@ textarea {
     font-size: 24px;
     text-align: center;
 }
+
+.ProjectItem {
+    width:50%;
+    height:auto;
+    margin: auto;
+    background-color:white;
+    text-align:center;
+}

@@ -14,8 +14,9 @@
     </div>
     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
-        <div class="btn-group btn-group-justified">
-            <a href="@Url.Action("Create", "Projects")" class="btn btn-success" style="margin:25px;">Create</a>
+        <div class="btn" style="width:30%;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <a href="@Url.Action("Create", "Projects")" class="btn btn-success" style="width:50%;">Create Project</a>
         </div>
     }
     <hr />
@@ -49,52 +50,52 @@
             }
         </div>
     </div>
-    <hr />
 </div>
+<hr />
 
-<table>
-    @foreach (var item in Model.Projects)
-    {
-        <tr>
-
-            <td>
-                @if (item.ProjectImage != null)
-                {
-                    <a href="@Url.Action("Details",new { id = item.ID })">
-                        <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
-                    </a>
-                }
-                else
-                {
-                    <a href="@Url.Action("Details",new { id = item.ID })">
-                        <img src="@Url.Content(Constants.ProjectThumbnailPath + "default.jpg")" alt="Default" />
-                    </a>
-                }
-                <br />
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-
-            <td>
-
-            </td>
-            <td>
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-edit"></span>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-remove-circle"></span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
-            </td>
-        </tr>
-    }
-</table>
-
-
-<div>
-    Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of
-    @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page =>
-Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
+<div class="container" style="text-align:center">
+    <div class="row" style="margin-top:10px;">
+        @foreach (var item in Model.Projects)
+        {
+        <div class="col-md-12" style="text-align:center">
+            @if (item.ProjectImage != null)
+            {
+                <a href="@Url.Action("Details", new { id = item.ID })" style="text-decoration:none;">
+                    <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" title="@item.ProjectImage.FileName" />
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
+                    <img src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default" title="ProjectDefault.png" />
+                </a>
+            }
+            <br />
+            <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
+                <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
+            </a>
+            <br />
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <span class="glyphicon glyphicon-edit"></span>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.Raw(" | ")
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
+            <hr />
+        </div>
+        }
+    </div>
 </div>
+<hr />
+
+@if (Model.Projects.PageCount > 10)
+{
+    <div class="row" style="text-align:center;">
+        Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of
+        @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page =>
+        Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
+        </div>
+}
+

@@ -9,16 +9,16 @@ namespace Oakinstream
     {
         public static string SiteName { get; } = "Oakinstream";
 
-        public const int ItemsPerPage = 3;
+        public const int ItemsPerPage = 10;
         public const int ImageMinWidth = 200;
-        public const int ImageMaxWidth = 300;
-        public const int ThumbnailMaxWidth = 100;
+        public const int ImageMaxWidth = 1000;
+        public const int ThumbnailMaxWidth = 500;
 
         public const int NumberOfBlogImages = 3;
         public const string BlogImagePath = "~/Content/Images/BlogImages/";
         public const string BlogThumbnailPath = "~/Content/Images/BlogImages/Thumbnails/";
 
-        public const int NumberOfProjectFiles = 2;
+        public const int NumberOfProjectFiles = 5;
         public const string ProjectImagePath = "~/Content/Images/ProjectImages/";
         public const string ProjectThumbnailPath = "~/Content/Images/ProjectImages/Thumbnails/";
 

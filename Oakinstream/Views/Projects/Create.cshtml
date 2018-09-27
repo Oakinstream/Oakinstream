@@ -24,33 +24,43 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ProjectCategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ProjectCategoryID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
         </div>
     </div>
-    
+
     <div class="form-group">
-        @Html.LabelFor(model => model.ProjectImageID, "ProjectImageID", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ProjectImageID, "ProjectImage", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList,"Choose File", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProjectImageID, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    @for (int i = 0; i < Model.FileList.Count; i++)
-    {
-        <div class="form-group">
-            <label class="control-label col-md-2">Project File @(i + 1): </label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i],
-                    "Choose File", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProjectFiles, "",
-                    new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Project File 1 </label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProjectFiles, "", new { @class = "text-danger" })
+                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#Files" style="">Add more files</button>
         </div>
-    }
+    </div>
+
+
+    <div id="Files" class="collapse">
+        @for (int i = 1; i < Model.FileList.Count; i++)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">Project File @(i + 1): </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectFiles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -65,12 +75,12 @@
         </div>
     </div>
 </div>
-}
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -174,6 +174,7 @@ namespace Oakinstream.Controllers
               ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
               viewModel.ID = project.ID;
               viewModel.Name = project.Name;
+              viewModel.Description = project.Description;
               viewModel.CreatedDate = project.CreatedDate;
               viewModel.CreatedBy = project.CreatedBy;
 

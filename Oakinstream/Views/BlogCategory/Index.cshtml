@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Oakinstream.Models.BlogCategoryModels>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Blog Categorys";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <span class="glyphicon glyphicon-plus-sign"></span>@Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
