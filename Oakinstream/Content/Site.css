@@ -57,3 +57,84 @@ textarea {
     background-color:white;
     text-align:center;
 }
+
+.ProjectDescription {
+    width: 80%;
+    max-width: none;
+    resize: none;
+    border:none;
+    text-align: center;
+    text-shadow: 0px 0px 1px #000000;
+    font-size: 1.5em;
+}
+
+.ProjectComments {
+    width: 80%;
+    max-width: none;
+    resize: none;
+    border: none;
+    text-align: center;
+    text-shadow: 0px 0px 1px #000000;
+    font-size: 1.5em;
+}
+
+.Width-auto {
+    width: auto;
+}
+.Width-50 {
+    width: 50%;
+}
+
+.Width-60 {
+    width: 80%;
+}
+
+.Width-70 {
+    width: 90%;
+}
+
+.Width-80 {
+    width: 80%;
+}
+
+.Width-90 {
+    width: 90%;
+}
+
+.Width-100 {
+    width: 100%;
+}
+
+
+.NormalBorder {
+    border: 2px solid black;
+}
+.NormalBorder-Top {
+    border-top: 2px solid black;
+}
+.NormalBorder-Right {
+    border-Right: 2px solid black;
+}
+.NormalBorder-Bottom {
+    border-bottom: 2px solid black;
+}
+.NormalBorder-Left {
+    border-left: 2px solid black;
+}
+
+.Margin-Auto{
+    margin:auto;
+}
+.Margin-Top-10{
+    margin-top:10px;
+}
+.Margin-Top-20 {
+    margin-top: 20px;
+}
+
+.float-left {
+    float:left;
+}
+.float-right {
+    float: left;
+}

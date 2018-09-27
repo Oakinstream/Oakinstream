@@ -1,85 +1,69 @@
 ﻿@model Oakinstream.Models.Project
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Html.DisplayFor(@model => model.Name);
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectCategory.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjectCategory.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectFileMappings.First().ProjectFile)
-        </dt>
-
-        <dd>
-            @foreach (var file in Model.ProjectFileMappings)
+<div class="container text-center Margin-Top-20">
+    <div class="row">
+        <div class="col-md-12 text-info tex">
+            <h1>@Html.DisplayFor(model => model.ProjectCategory.Name) / @ViewBag.Title</h1>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            @if (Model.ProjectImage != null)
             {
-                <a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a> @Html.Raw(" | ")
+                <a href="@Url.Action("Details", new { id = Model.ID })" style="text-decoration:none;">
+                    <img class="NormalBorder" src="@Url.Content(Constants.ProjectThumbnailPath + Model.ProjectImage.FileName)" alt="@Model.ProjectImage.FileName" title="@Model.ProjectImage.FileName" />
+                </a>
             }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-    </dl>
+            else
+            {
+                <img src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default" title="ProjectDefault.png" />
+            }
+        </div>
+    </div>
+    <br />
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="well Width-80 Margin-Auto ">
+                <h1>Description:</h1>
+                <textarea class="ProjectDescription" readonly rows="5">
+                @Html.DisplayFor(model => model.Description)
+                </textarea>
+                <br />
+                <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
+                @if (Model.UpdatedBy != null)
+                {
+                    <p><strong>Updated by: @Html.DisplayFor(model => model.UpdatedBy) - @Html.DisplayFor(model => model.UpdatedDate)</strong></p>
+                }
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="well Width-80 Margin-Auto Margin-Top-10">
+                <h1>Files:</h1>
+                @foreach (var file in Model.ProjectFileMappings)
+                {
+                    <span class="glyphicon glyphicon-file"></span><a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
+                }
+            </div>
+        </div>
+        @* --------Adding Comments Later--------
+        <div class="col-md-12">
+            <div class="well Width-80 Margin-Auto NormalBorder Margin-Top-10">
+                <h1>Write a comments:</h1>
+                <textarea class="ProjectComments NormalBorder" rows="1"></textarea>
+            </div>
+        </div>
+        *@
+    </div>
+</div>
