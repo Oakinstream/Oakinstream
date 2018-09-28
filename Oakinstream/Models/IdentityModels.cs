@@ -40,8 +40,8 @@ namespace Oakinstream.Models
         public DbSet<ProjectFileMapping> ProjectFileMappins { get; set; }
 
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.BlogModels> Blogs { get; set; }
-        public System.Data.Entity.DbSet<Oakinstream.Models.BlogCategoryModels> BlogCategorys { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.Blog> Blogs { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.BlogCategory> BlogCategorys { get; set; }
         public System.Data.Entity.DbSet<Oakinstream.Models.BlogImage> BlogImages { get; set; }
         public DbSet<BlogImageMapping> BlogImageMappings { get; set; }
 

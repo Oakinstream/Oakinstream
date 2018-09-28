@@ -11,7 +11,7 @@ namespace Oakinstream.Models
         public int BlogID { get; set; }
         public int BlogImageID { get; set; }
         public int ImageNumber { get; set; }
-        public virtual BlogModels BlogPost { get; set; }
+        public virtual Blog BlogPost { get; set; }
         public virtual BlogImage BlogImage { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Oakinstream.DAL
         public DbSet<ProjectFile> ProjectFiles { get; set; }
         public DbSet<ProjectFileMapping> ProjectFileMappins { get; set; }
 
-        public DbSet<BlogModels> Blogs { get; set; }
-        public DbSet<BlogCategoryModels> BlogCategorys { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogCategory> BlogCategorys { get; set; }
         public DbSet<BlogImage> BlogImages { get; set; }
         public DbSet<BlogImageMapping> BlogImageMappings { get; set; }
 

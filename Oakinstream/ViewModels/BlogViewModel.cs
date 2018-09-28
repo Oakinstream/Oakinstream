@@ -22,8 +22,12 @@ namespace Oakinstream.ViewModels
         [RegularExpression(@"^[a-zåäöA-ZÅÄÖ0-9]+[,.a-zåäöA-ZÅÄÖ0-9'-'---\s]*$", ErrorMessage = "Project description can not contain special characters")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        public string Link { get; set; }
         public int BlogCategoryID { get; set; }
         public SelectList BlogCategoryList { get; set; }
-
+        public DateTime CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; } = "";
     }
 }

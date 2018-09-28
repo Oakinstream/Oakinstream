@@ -6,11 +6,22 @@
 }
 
 <div class="container" style="text-align:center">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-primary"><strong>My @ViewBag.Title</strong></h1>
-            <hr />
-        </div>
+    <div class="row NormalBorder-Bottom">
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="col-md-12">
+                <br />
+                <h1 class="text-primary"><strong>My @ViewBag.Title</strong></h1>
+                <hr />
+            </div>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <br />
+                <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+            </div>
+        }
     </div>
     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
@@ -47,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                <br />
             }
         </div>
     </div>

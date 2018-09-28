@@ -6,12 +6,12 @@ using System.Web;
 
 namespace Oakinstream.Models
 {
-    public class BlogCategoryModels
+    public class BlogCategory
     {
         public int ID { get; set; }
         [Required]
         [Display(Name = "Category Name")]
         public string Name { get; set; }
-        public ICollection<BlogModels> BlogPost { get; set; }
+        public ICollection<Blog> BlogPost { get; set; }
     }
 }

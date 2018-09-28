@@ -9,7 +9,7 @@ namespace Oakinstream.ViewModels
     public class SearchIndexViewModel
     {
         public IPagedList<Project> Projects { get; set; }
-        public IPagedList<BlogModels> Blogs { get; set; }
+        public IPagedList<Blog> Blogs { get; set; }
         public IPagedList<SearchItem> SearchResult { get; set; }
         public IEnumerable<CategoryWithCount> CategoryWithCount { get; set; }
         public string Search { get; set; }

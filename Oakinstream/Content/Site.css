@@ -70,6 +70,14 @@ textarea {
     font-size: 1.5em;
 }
 
+.BlogDescription {
+    width: 80%;
+    max-width: none;
+    resize: none;
+    border: none;
+    font-size: 1.5em;
+}
+
 .ProjectComments {
     width: 80%;
     max-width: none;
