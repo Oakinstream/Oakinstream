@@ -4,103 +4,90 @@
     ViewBag.Title = "Blog";
 }
 
-<h2>@ViewBag.Title</h2>
-<p>
-    @(String.IsNullOrWhiteSpace(Model.Search) ? "Showing all" : "You searched for " +
-                    Model.Search + ", found") @Model.Blogs.TotalItemCount blogs
-                </p>
-                <p>
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <span class="glyphicon glyphicon-plus-sign"></span> @Html.ActionLink("Create New", "Create")
-                    }
-                    @using (Html.BeginRouteForm("BlogsIndex", FormMethod.Get))
-                    {
-                        <label>Filter by category: </label>
-                        @Html.DropDownListFor(vm => vm.Category,
-                                 Model.CategoryFilterItems, "All", new { @class = "form-control" })
-                        <label>Sort by: </label>
-                        @Html.DropDownListFor(vm => vm.SortBy,
-                                 new SelectList(Model.Sorts, "Value", "Key"), "Default",
-                                 new { @class = "form-control" })
-                        <input type="submit" value="Filter" class="btn btn-default" />
-                        <input type="hidden" name="Search" id="Search" value="@Model.Search" />
-                    }
-                </p>
-                <table class="table">
-                    <tr>
-                        <th></th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Category)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Blogs.First().Title)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Blogs.First().Description)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model.Blogs)
-                    {
-                        <tr>
-                            <td>
-                                @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
-                                {
-                                    <a href="@Url.Action("Details",new { id = item.ID })">
-                                        <img src="@(Url.Content(Constants.BlogThumbnailPath)
-                        +item.BlogImageMappings.OrderBy(pim => pim.ImageNumber)
-                        .ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
-                                    </a>
-                                }
-                            </td>
-                            <td>
-                                [Category Here]
-                                @Html.DisplayFor(modelItem => item.BlogCategoryModels.BlogPost.Count)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <span class="glyphicon glyphicon-list-alt"></span> @Html.ActionLink("Details", "Details", new { id = item.ID })
-                                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                                {
-                                    @Html.Raw(" | ")
-                                    <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                                    @Html.Raw(" | ")
-                                    <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                                }
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-                <div>
-                    Page @(Model.Blogs.PageCount < Model.Blogs.PageNumber ? 0 :
-                              Model.Blogs.PageNumber) of @Model.Blogs.PageCount
-                            @Html.PagedListPager(Model.Blogs,
-                            page => Url.Action("Index",
-                                new { category = Model.Category,
-                                    search = Model.Search,
-                                    sortBy = Model.SortBy,
-                                    page}))
+<div class="container text-center NormalBorder-Bottom">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-primary"><strong>The @ViewBag.Title</strong></h1>
+            <hr />
+        </div>
+    </div>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="btn" style="width:30%;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <a href="@Url.Action("Create", "Blog")" class="btn btn-success" style="width:50%;">Create Project</a>
+            <button type="button" class="btn btn-default btn-info" data-toggle="collapse" data-target="#AdminSearch">Search</button>
+        </div>
+        <div id="AdminSearch" class="collapse">
+            <br />
+            <div class="col-md-12">
+                @using (Html.BeginRouteForm("BlogsIndex", FormMethod.Get, new { @class = "SearchBar" }))
+                {
+                    @Html.TextBox("Search", null, new { @class = "SearchBar", @placeholder = "Search" })
+                }
+                @{
+                    string ProjectString = "";
+                    if (Model.Blogs.TotalItemCount == 1) { ProjectString = "project"; } else { ProjectString = "projects"; }
+                }
+                @(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Blogs.TotalItemCount @ProjectString
+                @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get))
+                {
+                    <button type="button" class="btn btn-default FilterBtn" data-toggle="collapse" data-target="#filters">Filters</button>
+                    <hr />
+                    <div id="filters" class="collapse">
+                        <div class="row" style="text-align:center">
+                            <div class="btn-group-vertical">
+                                @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "FilterLists" })
+                                @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "FilterLists" })
+                                <input type="submit" value="Filter" class="btn btn-success" />
+                                <input type="hidden" name="Search" id="Search" value="@Model.Search" />
+                            </div>
                         </div>
+                    </div>
+                }
+                <br />
+            </div>
+        </div>
+        <hr />
+    }
+</div>
+<hr />
 
+<div class="container">
+    <div class="row text-center">
+        @foreach (var item in Model.Blogs)
+        {
+            <div class="jumbotron col-md-12 NormalBorder Margin-Top-20">
+                <h1>@Html.DisplayFor(Model => item.Title)</h1>
+                <br />
+                <h2>@Html.DisplayFor(Model => item.BlogCategoryModels.Name)</h2>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.Raw(" | ")
+                    <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.Raw(" | ")
+                    <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+                <hr />
 
-                        @*
-                            <td>
+                @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
+                {
+                    <img src="@(Url.Content(Constants.BlogThumbnailPath)+item.BlogImageMappings.OrderBy(pim => pim.ImageNumber).ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
+                }
+                <hr />
 
-                                @if (item.ProjectFileMappings != null && item.ProjectFileMappings.Any())
-                                {
-                                    foreach (var file in item.ProjectFileMappings)
-                                    {
-                                        <a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
-                                        <br />
-                                    }
-                                }
-                            </td>
-                        *@
+                <textarea class="ProjectDescription NormalBorder" readonly rows="10">@Html.DisplayFor(Model => item.Description)</textarea>
+                <hr />
+            </div>
+        }
+    </div>
+</div>
+
+@if (Model.Blogs.PageCount > 10)
+{
+    <div class="row" style="text-align:center;">
+        Page @(Model.Blogs.PageCount < Model.Blogs.PageNumber ? 0 : Model.Blogs.PageNumber) of
+        @Model.Blogs.PageCount @Html.PagedListPager(Model.Blogs, page =>
+Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
+    </div>
+}
