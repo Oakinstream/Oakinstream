@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Oakinstream.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         // GET: Contact

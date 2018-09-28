@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Oakinstream.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProjectFilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

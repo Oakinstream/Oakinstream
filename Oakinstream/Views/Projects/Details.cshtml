@@ -6,12 +6,16 @@
 
 <div class="container text-center Margin-Top-20">
     <div class="row">
-        <div class="col-md-12 text-info tex">
-            <h1>@Html.DisplayFor(model => model.ProjectCategory.Name) / @ViewBag.Title</h1>
+        <div class="col-md-12">
+            <h1 class="text-primary text-uppercase"><strong>@ViewBag.Title</strong></h1>
         </div>
+        <hr />
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-            @Html.ActionLink("Back to List", "Index")
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+            }
+            @Html.ActionLink("Back to Projects", "Index")
         </p>
     </div>
     <div class="row">
@@ -34,6 +38,7 @@
 <div class="container text-center">
     <div class="row">
         <div class="col-md-12">
+            <h3>This project is a @Html.DisplayFor(model => model.ProjectCategory.Name)</h3>
             <br />
             <div class="well Width-80 Margin-Auto ">
                 <h1>Description:</h1>
@@ -46,6 +51,8 @@
                 }
             </div>
         </div>
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        { 
         <div class="col-md-12">
             <div class="well Width-80 Margin-Auto Margin-Top-10">
                 <h1>Files:</h1>
@@ -55,6 +62,7 @@
                 }
             </div>
         </div>
+        }
         @* --------Adding Comments Later--------
         <div class="col-md-12">
             <div class="well Width-80 Margin-Auto NormalBorder Margin-Top-10">

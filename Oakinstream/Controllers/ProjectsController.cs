@@ -76,6 +76,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Projects/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -91,6 +92,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ProjectViewModel viewModel = new ProjectViewModel();
@@ -107,6 +109,7 @@ namespace Oakinstream.Controllers
         // POST: Projects/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(ProjectViewModel viewModel)
         {
             Project project = new Project();
@@ -148,7 +151,8 @@ namespace Oakinstream.Controllers
 
 
         // GET: Projects/Edit/5
-          public ActionResult Edit(int? id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int? id)
           {
               if (id == null)
               {
@@ -186,6 +190,7 @@ namespace Oakinstream.Controllers
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
           [HttpPost]
           [ValidateAntiForgeryToken]
+          [Authorize(Roles = "Admin")]
           public ActionResult Edit(ProjectViewModel viewModel)
           {
               var projectToUpdate = db.Projects.Include(p => p.ProjectFileMappings).
@@ -240,7 +245,8 @@ namespace Oakinstream.Controllers
         }
 
 
-          // GET: Projects/Delete/5
+           // GET: Projects/Delete/5
+          [Authorize(Roles = "Admin")]
           public ActionResult Delete(int? id)
           {
               if (id == null)
@@ -256,6 +262,7 @@ namespace Oakinstream.Controllers
           }
 
           // POST: Projects/Delete/5
+          [Authorize(Roles = "Admin")]
           [HttpPost, ActionName("Delete")]
           [ValidateAntiForgeryToken]
           public ActionResult DeleteConfirmed(int id)

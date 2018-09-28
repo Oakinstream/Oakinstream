@@ -58,7 +58,6 @@
                         </div>
                     </div>
                 </div>
-                <br />
             }
         </div>
     </div>
@@ -88,7 +87,7 @@
             </a>
             <br />
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
+            { 
                 <span class="glyphicon glyphicon-edit"></span>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID })
                 @Html.Raw(" | ")

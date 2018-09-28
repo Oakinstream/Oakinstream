@@ -9,7 +9,7 @@ using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class CheckingAccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

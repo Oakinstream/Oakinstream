@@ -93,7 +93,7 @@
             <hr />
             <h2><strong>Link: <a href="@Html.DisplayFor(Model => item.Link)">@Html.DisplayFor(Model => item.Link)</a></strong></h2>
             <hr />
-            <p>Created by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>
+            <p>Posted by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>
             @if (item.UpdatedBy != null)
             {
                 <p>Updated by: @Html.DisplayFor(model => item.UpdatedBy) - @Html.DisplayFor(model => item.UpdatedDate)</p>

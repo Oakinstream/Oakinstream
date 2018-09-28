@@ -72,22 +72,9 @@ namespace Oakinstream.Controllers
             };
             return View(viewModel);
         }
-        // GET: Blog/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Blog blogModels = db.Blogs.Find(id);
-            if (blogModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blogModels);
-        }
 
         // GET: Blog/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             BlogViewModel viewModel = new BlogViewModel();
@@ -105,6 +92,7 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(BlogViewModel viewModel)
         {
             Blog blog = new Blog();
@@ -145,6 +133,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Blog/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -182,6 +171,7 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(BlogViewModel viewModel)
         {
             var blogToUpdate = db.Blogs.Include(p => p.BlogImageMappings).
@@ -235,6 +225,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Blog/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -250,6 +241,7 @@ namespace Oakinstream.Controllers
         }
 
         // POST: Blog/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
