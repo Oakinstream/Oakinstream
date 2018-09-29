@@ -88,6 +88,15 @@ textarea {
     font-size: 1.5em;
 }
 
+.ProjectImage {
+    transition: all .2s ease-in-out;
+}
+
+.ProjectImage:hover {
+ transform: scale(1.05);
+}
+
+
 .contact-forms {
     width: 80%;
     max-width: none;

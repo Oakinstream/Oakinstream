@@ -57,7 +57,7 @@ namespace Oakinstream.Controllers
                     project = project.OrderByDescending(p => p.Name);
                     break;
                 default:
-                    project = project.OrderBy(p => p.Name);
+                    project = project.OrderByDescending(p => p.CreatedDate);
                     break;
             }
             if (page > (project.Count() / Constants.ItemsPerPage))

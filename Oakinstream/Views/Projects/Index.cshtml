@@ -12,7 +12,6 @@
             <div class="col-md-12">
                 <br />
                 <h1 class="text-primary"><strong>My @ViewBag.Title</strong></h1>
-                <hr />
             </div>
         }
         else
@@ -25,6 +24,7 @@
     </div>
     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
+        <br />
         <div class="btn" style="width:30%;">
             <span class="glyphicon glyphicon-plus"></span>
             <a href="@Url.Action("Create", "Projects")" class="btn btn-success" style="width:50%;">Create Project</a>
@@ -72,13 +72,13 @@
             @if (item.ProjectImage != null)
             {
                 <a href="@Url.Action("Details", new { id = item.ID })" style="text-decoration:none;">
-                    <img src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" title="@item.ProjectImage.FileName" />
+                    <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
                 </a>
             }
             else
             {
                 <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
-                    <img src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default" title="ProjectDefault.png" />
+                    <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
                 </a>
             }
             <br />
