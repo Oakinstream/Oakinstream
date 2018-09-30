@@ -11,6 +11,7 @@
         </div>
         <hr />
         <p>
+            <h3 class="text-muted text-uppercase">Category: @Html.DisplayFor(model => model.ProjectCategory.Name)</h3>
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) @Html.Raw(" |")
@@ -28,48 +29,63 @@
             }
             else
             {
-                <img src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default" title="ProjectDefault.png" />
+                <img class="NormalBorder" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default" title="ProjectDefault.png" />
             }
         </div>
     </div>
     <br />
 </div>
 
+@{ 
+    var DescLength = @Html.DisplayFor(model => model.Description.Length);
+    var DescToDec = Convert.ToDecimal(DescLength.ToString());
+    var Cols = 100;
+    var Rows = Convert.ToInt32(DescToDec / Cols);
+}
+
 <div class="container text-center">
     <div class="row">
         <div class="col-md-12">
-            <h3>This project is a @Html.DisplayFor(model => model.ProjectCategory.Name)</h3>
-            <br />
             <div class="well Width-80 Margin-Auto ">
-                <h1>Description:</h1>
-                <textarea class="ProjectDescription" readonly rows="10">@Html.DisplayFor(model => model.Description)</textarea>
-                <hr />
-                <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
-                @if (Model.UpdatedBy != null)
+                <h1 class="text-info text-uppercase" style="text-decoration:underline;">Description:</h1>
+                <br />
+                @if (Rows < 50)
                 {
-                    <p><strong>Updated by: @Html.DisplayFor(model => model.UpdatedBy) - @Html.DisplayFor(model => model.UpdatedDate)</strong></p>
+                    <textarea class="ProjectDescription" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(model => model.Description)</textarea>
+                }
+                else
+                {
+                    <textarea class="ProjectDescription" readonly rows="50" cols="@Cols">@Html.DisplayFor(model => model.Description)</textarea>
+                }
+                <hr />
+                @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
+                    <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
+                    if (Model.UpdatedBy != null)
+                    {
+                        <p><strong>Updated by: @Html.DisplayFor(model => model.UpdatedBy) - @Html.DisplayFor(model => model.UpdatedDate)</strong></p>
+                    }
                 }
             </div>
         </div>
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-        { 
-        <div class="col-md-12">
-            <div class="well Width-80 Margin-Auto Margin-Top-10">
-                <h1>Files:</h1>
-                @foreach (var file in Model.ProjectFileMappings)
-                {
-                    <span class="glyphicon glyphicon-file"></span><a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
-                }
+        {
+            <div class="col-md-12">
+                <div class="well Width-80 Margin-Auto Margin-Top-10">
+                    <h1>Files:</h1>
+                    @foreach (var file in Model.ProjectFileMappings)
+                    {
+                        <span class="glyphicon glyphicon-file"></span><a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
+                    }
+                </div>
             </div>
-        </div>
         }
         @* --------Adding Comments Later--------
-        <div class="col-md-12">
-            <div class="well Width-80 Margin-Auto NormalBorder Margin-Top-10">
-                <h1>Write a comments:</h1>
-                <textarea class="ProjectComments NormalBorder" rows="1"></textarea>
+            <div class="col-md-12">
+                <div class="well Width-80 Margin-Auto NormalBorder Margin-Top-10">
+                    <h1>Write a comments:</h1>
+                    <textarea class="ProjectComments NormalBorder" rows="1"></textarea>
+                </div>
             </div>
-        </div>
         *@
     </div>
 </div>
