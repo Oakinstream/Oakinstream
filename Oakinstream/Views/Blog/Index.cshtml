@@ -58,7 +58,6 @@
                         </div>
                     </div>
                 }
-                <br />
             </div>
         </div>
     }
@@ -66,44 +65,46 @@
 
 <div class="container">
     <div class="row text-center">
+        <br />
         @foreach (var item in Model.Blogs)
         {
-            <div class="jumbotron col-md-12 NormalBorder Margin-Top-20">
-                <h1>@Html.DisplayFor(Model => item.Title)</h1>
+        <div class="jumbotron col-md-12 NormalBorder Margin-Top-20">
+            <h1>@Html.DisplayFor(Model => item.Title)</h1>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.Raw(" | ")
+                <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 <br />
-                <h2>@Html.DisplayFor(Model => item.BlogCategoryModels.Name)</h2>
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
-                <hr />
+                <h2>Category: @Html.DisplayFor(Model => item.BlogCategoryModels.Name)</h2>
+            }
 
-                @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
-                {
-                    <img src="@(Url.Content(Constants.BlogThumbnailPath)+item.BlogImageMappings.OrderBy(pim => pim.ImageNumber).ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
-                }
-                <hr />
-
-                @{
+            @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
+            {
+                <img src="@(Url.Content(Constants.BlogThumbnailPath)+item.BlogImageMappings.OrderBy(pim => pim.ImageNumber).ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
+            }
+            <hr />
+            @{
                 var DescLength = item.Description.Length;
                 var DescToDec = Convert.ToDecimal(DescLength.ToString());
                 var Cols = 100;
                 var Rows = Convert.ToInt32(DescToDec / Cols);
-                }
+                if (Rows == 0) { Rows = 1; }
+            }
 
-                <textarea class="BlogDescription" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(Model => item.Description)</textarea>
-                <hr />
+            <textarea class="BlogDescription" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(Model => item.Description)</textarea>
+            <hr />
+            @if (item.Link != null)
+            {
                 <h2><strong>Link: <a href="@Html.DisplayFor(Model => item.Link)">@Html.DisplayFor(Model => item.Link)</a></strong></h2>
                 <hr />
-                <p>Posted by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>
-                @if (item.UpdatedBy != null)
-                {
-                    <p>Updated by: @Html.DisplayFor(model => item.UpdatedBy) - @Html.DisplayFor(model => item.UpdatedDate)</p>
-                }
-            </div>
+            }
+            <p>Posted by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>
+            @if (item.UpdatedBy != null)
+            {
+                <p>Updated by: @Html.DisplayFor(model => item.UpdatedBy) - @Html.DisplayFor(model => item.UpdatedDate)</p>
+            }
+        </div>
         }
     </div>
 </div>

@@ -72,10 +72,12 @@
             <div class="col-md-12">
                 <div class="well Width-80 Margin-Auto Margin-Top-10">
                     <h1>Files:</h1>
-                    @foreach (var file in Model.ProjectFileMappings)
-                    {
-                        <span class="glyphicon glyphicon-file"></span><a href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer">@file.ProjectFile.FileName</a>
-                    }
+                    <div class="btn-group-justified">
+                        @foreach (var file in Model.ProjectFileMappings)
+                        {
+                        <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
+                        }
+                    </div>
                 </div>
             </div>
         }
