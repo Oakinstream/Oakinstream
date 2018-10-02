@@ -36,7 +36,7 @@
     <br />
 </div>
 
-@{ 
+@{
     var DescLength = @Html.DisplayFor(model => model.Description.Length);
     var DescToDec = Convert.ToDecimal(DescLength.ToString());
     var Cols = 100;
@@ -58,7 +58,8 @@
                     <textarea class="ProjectDescription" readonly rows="50" cols="@Cols">@Html.DisplayFor(model => model.Description)</textarea>
                 }
                 <hr />
-                @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
                     <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
                     if (Model.UpdatedBy != null)
                     {
@@ -75,19 +76,43 @@
                     <div class="btn-group-justified">
                         @foreach (var file in Model.ProjectFileMappings)
                         {
-                        <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
+                            <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
                         }
                     </div>
                 </div>
             </div>
         }
-        @* --------Adding Comments Later--------
-            <div class="col-md-12">
-                <div class="well Width-80 Margin-Auto NormalBorder Margin-Top-10">
-                    <h1>Write a comments:</h1>
-                    <textarea class="ProjectComments NormalBorder" rows="1"></textarea>
+        <div class="col-md-12">
+                <div class="well Width-80 Margin-Auto Margin-Top-10">
+                    <h1>Comments:</h1>
+                        @foreach (var comment in Model.ProjectComments)
+                        {
+                          <p>Hej</p>
+                        }
+                    </div>
                 </div>
-            </div>
-        *@
-    </div>
-</div>
+        </div>
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectComment.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProjectComment.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProjectComment.Comment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+
+        </div>

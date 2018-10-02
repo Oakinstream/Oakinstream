@@ -46,5 +46,7 @@ namespace Oakinstream.Models
         public DbSet<BlogImageMapping> BlogImageMappings { get; set; }
 
         public System.Data.Entity.DbSet<Oakinstream.Models.ProjectImage> ProjectImages { get; set; }
+
+        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectComment> ProjectComments { get; set; }
     }
 }

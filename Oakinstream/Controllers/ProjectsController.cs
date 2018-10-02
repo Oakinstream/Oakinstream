@@ -60,12 +60,12 @@ namespace Oakinstream.Controllers
                     project = project.OrderByDescending(p => p.CreatedDate);
                     break;
             }
-            if (page > (project.Count() / Constants.ItemsPerPage))
+            if (page > (project.Count() / Constants.ProjectItemsPerPage))
             {
-                page = (int)Math.Ceiling(project.Count() / (float)Constants.ItemsPerPage);
+                page = (int)Math.Ceiling(project.Count() / (float)Constants.ProjectItemsPerPage);
             }
             int currentPage = (page ?? 1);
-            viewModel.Projects = project.ToPagedList(currentPage, Constants.ItemsPerPage);
+            viewModel.Projects = project.ToPagedList(currentPage, Constants.ProjectItemsPerPage);
             viewModel.SortBy = sortBy;
             viewModel.Sorts = new Dictionary<string, string>
             {
@@ -88,7 +88,29 @@ namespace Oakinstream.Controllers
             {
                 return HttpNotFound();
             }
+            ProjectViewModel viewModel = new ProjectViewModel();
+           viewModel.ProjectCommentList = new SelectList(db.ProjectComments, "ID", "FileName");
             return View(project);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Details([Bind(Include = "ID,Comment,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] ProjectComment projectComment)
+        {
+            projectComment.CreatedDate = DateTime.Now;
+            projectComment.CreatedBy = User.Identity.Name;
+            projectComment.UpdatedDate = DateTime.Now;
+            projectComment.UpdatedBy = null;
+
+            if (ModelState.IsValid)
+            {
+                db.ProjectComments.Add(projectComment);
+                db.SaveChanges();
+                return RedirectToAction("Details");
+            }
+
+            return View(projectComment);
         }
 
         // GET: Projects/Create
@@ -127,6 +149,8 @@ namespace Oakinstream.Controllers
                     FileNumber = i
                 });
             }
+            //project.ProjectComment = null;
+
             project.CreatedDate = DateTime.Now;
             project.CreatedBy = User.Identity.Name;
             project.UpdatedDate = DateTime.Now;

@@ -198,20 +198,20 @@ namespace Oakinstream.Controllers
         private void SaveToDisk(HttpPostedFileBase file)
         {
             WebImage img = new WebImage(file.InputStream);
-            if (img.Width < Constants.ImageMinWidth)
+            if (img.Width < Constants.BlogImageMinWidth)
             {
                 throw new BadImageFormatException();
             }
 
-            if (img.Width > Constants.ImageMaxWidth)
+            if (img.Width > Constants.BlogImageMaxWidth)
             {
-                img.Resize(Constants.ImageMaxWidth, img.Height);
+                img.Resize(Constants.BlogImageMaxWidth, img.Height);
             }
             img.Save(Constants.BlogImagePath + file.FileName);
 
-            if (img.Width > Constants.ThumbnailMaxWidth)
+            if (img.Width > Constants.BlogThumbnailMaxWidth)
             {
-                img.Resize(Constants.ThumbnailMaxWidth, img.Height);
+                img.Resize(Constants.BlogThumbnailMaxWidth, img.Height);
             }
             img.Save(Constants.BlogThumbnailPath + file.FileName);
         }

@@ -25,6 +25,30 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2">Blog Image 1 </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(vm => vm.BlogImages, Model.ImageLists[0], "Choose Image", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ImageLists, "", new { @class = "text-danger" })
+                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#Files" style="">Add more images</button>
+            </div>
+        </div>
+
+        <div id="Files" class="collapse">
+            @for (int i = 1; i < Model.ImageLists.Count; i++)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Product Image @(i + 1): </label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(vm => vm.BlogImages, Model.ImageLists[i],
+                                 "Choose Image", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ImageLists, "",
+                                 new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
@@ -33,9 +57,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BlogCategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BlogCategoryID, "Category",  htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(vm => vm.BlogCategoryID, Model.BlogCategoryList, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(vm => vm.BlogCategoryID, Model.BlogCategoryList, "Choose Category", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BlogCategoryID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,20 +71,6 @@
                 @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-        @for (int i = 0; i < Model.ImageLists.Count; i++)
-        {
-            <div class="form-group">
-                <label class="control-label col-md-2">Product Image @(i + 1): </label>
-                <div class="col-md-10">
-                    @Html.DropDownListFor(vm => vm.BlogImages, Model.ImageLists[i],
-                             "Choose Image", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ImageLists, "",
-                             new { @class = "text-danger" })
-                </div>
-            </div>
-        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -68,22 +68,43 @@
         <br />
         @foreach (var item in Model.Blogs)
         {
-        <div class="jumbotron col-md-12 NormalBorder Margin-Top-20">
-            <h1>@Html.DisplayFor(Model => item.Title)</h1>
+        <div class="jumbotron col-md-12 Margin-Top-20" style="background-color:#f2f0f0; border: 1px solid #000000">
+            <h1 class="text-primary" style="text-decoration:underline"><strong>@Html.DisplayFor(Model => item.Title)</strong></h1>
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
+                <h2 class="text-info text-uppercase">Category: <strong>@Html.DisplayFor(Model => item.BlogCategoryModels.Name)</strong></h2>
                 <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
                 @Html.Raw(" | ")
                 <span class="glyphicon glyphicon-remove-circle"></span> @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 <br />
-                <h2>Category: @Html.DisplayFor(Model => item.BlogCategoryModels.Name)</h2>
-            }
 
-            @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
-            {
-                <img src="@(Url.Content(Constants.BlogThumbnailPath)+item.BlogImageMappings.OrderBy(pim => pim.ImageNumber).ElementAt(0).BlogImage.FileName)" alt="@item.Title" />
             }
             <hr />
+            <div class="container Margin-Auto">
+                @if (item.BlogImageMappings != null && item.BlogImageMappings.Any())
+                {
+                    <div class="row">
+                        @foreach (var image in item.BlogImageMappings)
+                        {
+                            if (image.ImageNumber == 0)
+                            {
+                                <div class="col-lg-12 Margin-Top-10">
+                                    <a href="@(Url.Content(Constants.BlogImagePath + image.BlogImage.FileName))"><img class="Margin-Bottom-10" src="@(Url.Content(Constants.BlogImagePath + image.BlogImage.FileName))" alt="@item.Title" /></a>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="col-lg-3 Margin-Top-10">
+                                    <a href="@(Url.Content(Constants.BlogImagePath + image.BlogImage.FileName))"><img class="form-group BlogImages" src="@(Url.Content(Constants.BlogThumbnailPath + image.BlogImage.FileName))" alt="@item.Title" /></a>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <hr />
+
             @{
                 var DescLength = item.Description.Length;
                 var DescToDec = Convert.ToDecimal(DescLength.ToString());
@@ -92,11 +113,10 @@
                 if (Rows == 0) { Rows = 1; }
             }
 
-            <textarea class="BlogDescription" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(Model => item.Description)</textarea>
-            <hr />
+            <textarea class="BlogDescription table-bordered Margin-Top-20" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(Model => item.Description)</textarea>
             @if (item.Link != null)
             {
-                <h2><strong>Link: <a href="@Html.DisplayFor(Model => item.Link)">@Html.DisplayFor(Model => item.Link)</a></strong></h2>
+                <p><strong>Link: <a style="text-decoration:underline;" href="@Html.DisplayFor(Model => item.Link)">@Html.DisplayFor(Model => item.Link)</a></strong></p>
                 <hr />
             }
             <p>Posted by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>

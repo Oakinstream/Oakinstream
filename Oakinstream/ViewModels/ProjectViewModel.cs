@@ -22,12 +22,17 @@ namespace Oakinstream.ViewModels
         public ProjectCategoryModels ProjectCategory { get; set; }
         public SelectList ProjectCategoryList { get; set; }
         public string Date { get; set; }
+
         public string[] ProjectFiles { get; set; }
         public List<SelectList> FileList { get; set; }
+
+        public int? ProjectCommentID { get; set; }
+        public virtual ProjectComment ProjectComment { get; set; }
+        public SelectList ProjectCommentList { get; set; }
+
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string UpdatedBy { get; set; } = "";
-
     }
 }

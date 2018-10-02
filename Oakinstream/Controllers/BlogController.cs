@@ -58,12 +58,12 @@ namespace Oakinstream.Controllers
                     blog = blog.OrderByDescending(p => p.CreatedDate);
                     break;
             }
-            if (page > (blog.Count() / Constants.ItemsPerPage))
+            if (page > (blog.Count() / Constants.BlogItemsPerPage))
             {
-                page = (int)Math.Ceiling(blog.Count() / (float)Constants.ItemsPerPage);
+                page = (int)Math.Ceiling(blog.Count() / (float)Constants.BlogItemsPerPage);
             }
             int currentPage = (page ?? 1);
-            viewModel.Blogs = blog.ToPagedList(currentPage, Constants.ItemsPerPage);
+            viewModel.Blogs = blog.ToPagedList(currentPage, Constants.BlogItemsPerPage);
             viewModel.SortBy = sortBy;
             viewModel.Sorts = new Dictionary<string, string>
             {
@@ -177,7 +177,7 @@ namespace Oakinstream.Controllers
             var blogToUpdate = db.Blogs.Include(p => p.BlogImageMappings).
                     Where(p => p.ID == viewModel.ID).Single();
             if (TryUpdateModel(blogToUpdate, "",
-                    new string[] { "Name", "Description", "BlogCategoryID", "UpdatedBy", "UpdatedDate" }))
+                    new string[] { "Title", "Description", "BlogCategoryID", "Link", "UpdatedBy", "UpdatedDate" }))
             {
                 if (blogToUpdate.BlogImageMappings == null)
                 {
