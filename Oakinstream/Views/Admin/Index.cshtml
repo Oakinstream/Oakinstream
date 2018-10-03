@@ -2,29 +2,50 @@
     ViewBag.Title = "Admin";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container" style="text-align:center">
+    <div class="row NormalBorder-Bottom">
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="col-md-12">
+                <br />
+                <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+            </div>
+        }
+    </div>
+    <hr />
+    <div class="jumbotron">
+        <h1>Manage Project:</h1>
+        <hr />
+        <div class="well Width-80 Margin-Auto Margin-Top-10">
+            <div class="btn-group-justified">
+                <a class="btn btn-default" href="@Url.Action("index", "ProjectImages")" style="cursor:pointer"><h2>Images</h2></a>
+                <a class="btn btn-default" href="@Url.Action("index", "ProjectFiles")" style="cursor:pointer"><h2>Files</h2></a>
+                <a class="btn btn-default" href="@Url.Action("index", "ProjectCategory")" style="cursor:pointer"><h2>Category</h2></a>
+            </div>
+        </div>
+        <hr />
+    </div>
 
-<div class="container">
-    <p>Images:</p>
-    <div class="row">
-        @Html.ActionLink("Manage ProjectImages", "Index", "ProjectImages")
-    </div>
-    <div class="row">
-        @Html.ActionLink("Manage BlogImages", "Index", "BlogImages")
-    </div>
-
-    <br />
-    <p>Categorys:</p>
-    <div class="row">
-        @Html.ActionLink("Manage ProjectCategory", "Index", "ProjectCategory")
-    </div>
-    <div class="row">
-        @Html.ActionLink("Manage BlogCategory", "Index", "BlogCategory")
+    <div class="jumbotron">
+        <h1>Manage Blog: </h1>
+        <hr />
+        <div class="well Width-80 Margin-Auto Margin-Top-10">
+            <div class="btn-group-justified">
+                <a class="btn btn-default" href="@Url.Action("index", "BlogImages")" style="cursor:pointer"><h2>Images</h2></a>
+                <a class="btn btn-default" href="@Url.Action("index", "BlogCategory")" style="cursor:pointer"><h2>Category</h2></a>
+            </div>
+        </div>
+        <hr />
     </div>
 
-    <br />
-    <p>Users:</p>
-    <div class="row">
-        @Html.ActionLink("Manage Users", "List", "CheckingAccount")
+    <div class="jumbotron">
+        <h1>Manage Account: </h1>
+        <hr />
+        <div class="well Width-80 Margin-Auto Margin-Top-10">
+            <div class="btn-group-justified">
+                <a class="btn btn-default" href="@Url.Action("List", "CheckingAccount")" style="cursor:pointer"><h2>Users</h2></a>
+            </div>
+        </div>
+        <hr />
     </div>
 </div>
