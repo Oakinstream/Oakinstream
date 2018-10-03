@@ -15,6 +15,7 @@ namespace Oakinstream
         public const int ProjectThumbnailMaxWidth = 500;
 
         public const int NumberOfProjectFiles = 5;
+        public const int NumberOfProjectComments = 5;
         public const string ProjectImagePath = "~/Content/Images/ProjectImages/";
         public const string ProjectThumbnailPath = "~/Content/Images/ProjectImages/Thumbnails/";
 

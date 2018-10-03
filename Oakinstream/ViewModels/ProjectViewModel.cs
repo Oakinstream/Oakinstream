@@ -19,17 +19,11 @@ namespace Oakinstream.ViewModels
         public string Description { get; set; }
         [Required(ErrorMessage = "Choose a category")]
         public int? ProjectCategoryID { get; set; }
-        public ProjectCategoryModels ProjectCategory { get; set; }
+        public ProjectCategory ProjectCategory { get; set; }
         public SelectList ProjectCategoryList { get; set; }
         public string Date { get; set; }
-
         public string[] ProjectFiles { get; set; }
         public List<SelectList> FileList { get; set; }
-
-        public int? ProjectCommentID { get; set; }
-        public virtual ProjectComment ProjectComment { get; set; }
-        public SelectList ProjectCommentList { get; set; }
-
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }

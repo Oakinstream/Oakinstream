@@ -35,7 +35,7 @@ namespace Oakinstream.Models
         public DbSet<CheckingAccount> CheckingAccounts { get; set; }
 
         public System.Data.Entity.DbSet<Oakinstream.Models.Project> Projects { get; set; }
-        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectCategoryModels> ProjectCategorys { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectCategory> ProjectCategorys { get; set; }
         public DbSet<ProjectFile> ProjectFiles { get; set; }
         public DbSet<ProjectFileMapping> ProjectFileMappins { get; set; }
 
@@ -47,6 +47,6 @@ namespace Oakinstream.Models
 
         public System.Data.Entity.DbSet<Oakinstream.Models.ProjectImage> ProjectImages { get; set; }
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectComment> ProjectComments { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.Contact> Contacts { get; set; }
     }
 }

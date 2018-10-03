@@ -108,7 +108,7 @@
             @{
                 var DescLength = item.Description.Length;
                 var DescToDec = Convert.ToDecimal(DescLength.ToString());
-                var Cols = 100;
+                var Cols = 60;
                 var Rows = Convert.ToInt32(DescToDec / Cols);
                 if (Rows == 0) { Rows = 1; }
             }
@@ -117,8 +117,8 @@
             @if (item.Link != null)
             {
                 <p><strong>Link: <a style="text-decoration:underline;" href="@Html.DisplayFor(Model => item.Link)">@Html.DisplayFor(Model => item.Link)</a></strong></p>
-                <hr />
             }
+            <hr />
             <p>Posted by: @Html.DisplayFor(model => item.CreatedBy) - @Html.DisplayFor(model => item.CreatedDate)</p>
             @if (item.UpdatedBy != null)
             {

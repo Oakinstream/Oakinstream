@@ -13,15 +13,12 @@ namespace Oakinstream.Models
         public int? ProjectImageID { get; set; }
         public virtual ProjectImage ProjectImage { get; set; }
         public int? ProjectCategoryID { get; set; }
-        public virtual ProjectCategoryModels ProjectCategory { get; set; }
-        public int? ProjectCommentID { get; set; }
-        public virtual ProjectComment ProjectComment { get; set; }
+        public virtual ProjectCategory ProjectCategory { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string UpdatedBy { get; set; } = "";
-        public virtual ICollection<ProjectComment> ProjectComments { get; set; }
         public virtual ICollection<ProjectFileMapping> ProjectFileMappings { get; set; }
     }
 }

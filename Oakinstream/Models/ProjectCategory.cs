@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Oakinstream.Models
 {
-    public class ProjectCategoryModels
+    public class ProjectCategory
     {
         public int ID { get; set; }
         [Required]

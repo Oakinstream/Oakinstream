@@ -88,29 +88,15 @@ namespace Oakinstream.Controllers
             {
                 return HttpNotFound();
             }
-            ProjectViewModel viewModel = new ProjectViewModel();
-           viewModel.ProjectCommentList = new SelectList(db.ProjectComments, "ID", "FileName");
             return View(project);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Details([Bind(Include = "ID,Comment,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] ProjectComment projectComment)
+        public ActionResult Details()
         {
-            projectComment.CreatedDate = DateTime.Now;
-            projectComment.CreatedBy = User.Identity.Name;
-            projectComment.UpdatedDate = DateTime.Now;
-            projectComment.UpdatedBy = null;
-
-            if (ModelState.IsValid)
-            {
-                db.ProjectComments.Add(projectComment);
-                db.SaveChanges();
-                return RedirectToAction("Details");
-            }
-
-            return View(projectComment);
+            return View();
         }
 
         // GET: Projects/Create
@@ -149,12 +135,12 @@ namespace Oakinstream.Controllers
                     FileNumber = i
                 });
             }
-            //project.ProjectComment = null;
 
             project.CreatedDate = DateTime.Now;
             project.CreatedBy = User.Identity.Name;
             project.UpdatedDate = DateTime.Now;
             project.UpdatedBy = null;
+
 
             if (ModelState.IsValid)
             {
@@ -195,10 +181,11 @@ namespace Oakinstream.Controllers
               {
                   viewModel.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName", imageMapping.ProjectFileID));
               }
-              for (int i = viewModel.FileList.Count; i < Constants.NumberOfBlogImages; i++)
+              for (int i = viewModel.FileList.Count; i < Constants.NumberOfProjectFiles; i++)
               {
                   viewModel.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName"));
               }
+
               ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
               viewModel.ID = project.ID;
               viewModel.Name = project.Name;
