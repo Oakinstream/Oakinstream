@@ -242,7 +242,7 @@ namespace Oakinstream.Controllers
                           .Where(pim => pim.FileNumber == i).FirstOrDefault();
                       if (imageMappingToEdit != null)
                       {
-                          db.ProjectFileMappins.Remove(imageMappingToEdit);
+                          db.ProjectFileMappings.Remove(imageMappingToEdit);
                       }
                   }
 

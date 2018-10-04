@@ -1,6 +1,6 @@
-﻿using Oakinstream.DAL;
-using Oakinstream.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
@@ -8,25 +8,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class ProjectFilesController : Controller
+    public class AboutFilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ProjectFiles
+        // GET: AboutFiles
         public ActionResult Index()
         {
-            return View(db.ProjectFiles.ToList());
+            return View(db.AboutFiles.ToList());
         }
 
+        // GET: AboutFiles/Create
         public ActionResult Upload()
         {
             return View();
         }
 
+        // POST: AboutFiles/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Upload(HttpPostedFileBase[] Files)
@@ -89,10 +93,10 @@ namespace Oakinstream.Controllers
 
                 foreach (var file in Files)
                 {
-                    var fileToAdd = new ProjectFile {FileName = file.FileName};
+                    var fileToAdd = new AboutFile { FileName = file.FileName };
                     try
                     {
-                        db.ProjectFiles.Add(fileToAdd);
+                        db.AboutFiles.Add(fileToAdd);
                         db.SaveChanges();
                     }
                     catch (DbUpdateException e)
@@ -131,31 +135,32 @@ namespace Oakinstream.Controllers
             return View();
         }
 
-        // GET: ProjectFiles/Delete/5
+
+        // GET: AboutFiles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectFile projectFile = db.ProjectFiles.Find(id);
-            if (projectFile == null)
+            AboutFile aboutFile = db.AboutFiles.Find(id);
+            if (aboutFile == null)
             {
                 return HttpNotFound();
             }
-            return View(projectFile);
+            return View(aboutFile);
         }
 
-        // POST: BlogImages/Delete/5
+        // POST: AboutFiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProjectFile projectFile = db.ProjectFiles.Find(id);
-            var mappings = projectFile.ProjectFileMappings.Where(pim => pim.ProjectFileID == id);
+            AboutFile aboutFile = db.AboutFiles.Find(id);
+            var mappings = aboutFile.AboutFileMappings.Where(pim => pim.AboutFileID == id);
             foreach (var mapping in mappings)
             {
-                var mappingsToUpdate = db.ProjectFileMappings.Where(pim => pim.ProjectID == mapping.ProjectID);
+                var mappingsToUpdate = db.AboutFileMappings.Where(pim => pim.AboutID == mapping.AboutID);
                 foreach (var mappingToUpdate in mappingsToUpdate)
                 {
                     if (mappingToUpdate.FileNumber > mapping.FileNumber)
@@ -164,12 +169,13 @@ namespace Oakinstream.Controllers
                     }
                 }
             }
-            System.IO.File.Delete(Request.MapPath(Constants.ProjectFilePath + projectFile.FileName));
-            System.IO.File.Delete(Request.MapPath(Constants.ProjectThumbnailPath + projectFile.FileName));
-            db.ProjectFiles.Remove(projectFile);
+            System.IO.File.Delete(Request.MapPath(Constants.AboutFilePath + aboutFile.FileName));
+            System.IO.File.Delete(Request.MapPath(Constants.AboutThumbnailPath + aboutFile.FileName));
+            db.AboutFiles.Remove(aboutFile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -179,12 +185,10 @@ namespace Oakinstream.Controllers
             base.Dispose(disposing);
         }
 
-
-
         #region DOCFILES
         private bool ValidateFile(HttpPostedFileBase file)
         {
-            string[] allowedFileTypes = {".pdf", ".odt", ".doc", ".txt"};
+            string[] allowedFileTypes = { ".pdf", ".odt", ".doc", ".txt" };
             string fileExtension = System.IO.Path.GetExtension(file.FileName).ToLower();
 
             if (allowedFileTypes.Contains(fileExtension))
@@ -200,9 +204,8 @@ namespace Oakinstream.Controllers
 
         private void SaveToDisk(HttpPostedFileBase file)
         {
-            file.SaveAs(Server.MapPath(Constants.ProjectFilePath + file.FileName));
+            file.SaveAs(Server.MapPath(Constants.AboutFilePath + file.FileName));
         }
         #endregion
     }
 }
-   

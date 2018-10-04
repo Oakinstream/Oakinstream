@@ -1,7 +1,83 @@
-﻿@{
+﻿@model IEnumerable<Oakinstream.Models.About>
+
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Here is my finished website: <a href="https://oakinstream.com">Check it out!</a></p>
+<div class="container text-center">
+    <div class="row">
+            <div class="col-md-12  NormalBorder-Bottom">
+                <br />
+                <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+            </div>
+        <hr />
+
+        @foreach (var item in Model)
+        {
+            Html.ActionLink("Edit", "Edit", new { id = item.ID });
+
+            Html.ActionLink("Delete", "Delete", new { id = item.ID });
+        }
+
+
+
+        <div class="jumbotron col-md-12">
+            <h1>@Html.DisplayFor(model => model.First().Name)</h1>
+            <h3>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.First().Age)</h3>
+            <br />
+
+            @if (Model.First().AboutImage != null)
+            {
+                <img class="ProjectImage" src="@Url.Content(Constants.AboutThumbnailPath + Model.First().AboutImage.FileName)" alt="@Model.First().AboutImage.FileName" />
+            }
+            else
+            {
+                <img class="ProjectImage" src="@Url.Content(Constants.AboutThumbnailPath + "AboutDefault.png")" alt="AboutDefault.png" />
+            }
+            <hr />
+
+            <div class="row" style="text-align:center;">
+                <div class="col-md-4">
+                    <h4>About:</h4>
+                    <textarea class="BlogDescription table-bordered Margin-Top-20" readonly>@Html.DisplayFor(model => model.First().Info1)</textarea>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hobby:</h4>
+                    <textarea class="BlogDescription table-bordered Margin-Top-20" readonly>@Html.DisplayFor(model => model.First().Info2)</textarea>
+                </div>
+                <div class="col-md-4">
+                    <h4>Experience:</h4>
+                    <textarea class="BlogDescription table-bordered Margin-Top-20" readonly>@Html.DisplayFor(model => model.First().Info3)</textarea>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="col-md-12">
+                <h4>Files:</h4>
+                <div class="well Width-80 Margin-Auto Margin-Top-10">
+                    <div class="btn-group-justified">
+                        @foreach (var file in Model.First().AboutFileMappings)
+                        {
+                            <a class="btn btn-default" href="@Url.Content(Constants.AboutFilePath + file.AboutFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.AboutFile.FileName</a>
+                        }
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <br />
+
+                <p>Created by: @Html.DisplayFor(model => model.First().CreatedBy) - @Html.DisplayFor(model => model.First().CreatedDate)</p>
+                if (Model.First().UpdatedBy != null)
+                {
+                    <p>Updated by: @Html.DisplayFor(model => model.First().UpdatedBy) - @Html.DisplayFor(model => model.First().UpdatedDate)</p>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+

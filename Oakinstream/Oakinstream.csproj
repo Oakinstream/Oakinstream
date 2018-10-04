@@ -202,6 +202,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AboutFilesController.cs" />
+    <Compile Include="Controllers\AboutImagesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
@@ -228,6 +230,10 @@
       <DependentUpon>201809202151133_AccountNumberChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\About.cs" />
+    <Compile Include="Models\AboutFile.cs" />
+    <Compile Include="Models\AboutFileMapping.cs" />
+    <Compile Include="Models\AboutImage.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogCategory.cs" />
     <Compile Include="Models\BlogImage.cs" />
@@ -246,6 +252,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CheckingAccountService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\SearchIndexViewModel.cs" />
@@ -317,7 +324,6 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\CheckingAccount\Details.cshtml" />
     <Content Include="Views\CheckingAccount\Create.cshtml" />
-    <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\CheckingAccount\List.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\Delete.cshtml" />
@@ -346,10 +352,22 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Delete.cshtml" />
     <Content Include="Views\Contact\List.cshtml" />
+    <Content Include="Views\About\Create.cshtml" />
+    <Content Include="Views\About\Delete.cshtml" />
+    <Content Include="Views\About\Edit.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\AboutImages\Upload.cshtml" />
+    <Content Include="Views\AboutImages\Delete.cshtml" />
+    <Content Include="Views\AboutImages\Index.cshtml" />
+    <Content Include="Views\AboutFiles\Upload.cshtml" />
+    <Content Include="Views\AboutFiles\Delete.cshtml" />
+    <Content Include="Views\AboutFiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Files\AboutFiles\" />
     <Folder Include="Content\Files\ProjectFiles\" />
+    <Folder Include="Content\Images\AboutImages\Thumbnails\" />
     <Folder Include="Content\Images\BlogImages\Thumbnails\" />
     <Folder Include="Content\Images\ProjectImages\Thumbnails\" />
   </ItemGroup>

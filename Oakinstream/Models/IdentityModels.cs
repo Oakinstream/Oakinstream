@@ -37,15 +37,18 @@ namespace Oakinstream.Models
         public System.Data.Entity.DbSet<Oakinstream.Models.Project> Projects { get; set; }
         public System.Data.Entity.DbSet<Oakinstream.Models.ProjectCategory> ProjectCategorys { get; set; }
         public DbSet<ProjectFile> ProjectFiles { get; set; }
-        public DbSet<ProjectFileMapping> ProjectFileMappins { get; set; }
-
+        public DbSet<ProjectFileMapping> ProjectFileMappings { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectImage> ProjectImages { get; set; }
 
         public System.Data.Entity.DbSet<Oakinstream.Models.Blog> Blogs { get; set; }
         public System.Data.Entity.DbSet<Oakinstream.Models.BlogCategory> BlogCategorys { get; set; }
         public System.Data.Entity.DbSet<Oakinstream.Models.BlogImage> BlogImages { get; set; }
         public DbSet<BlogImageMapping> BlogImageMappings { get; set; }
 
-        public System.Data.Entity.DbSet<Oakinstream.Models.ProjectImage> ProjectImages { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.About> Abouts { get; set; }
+        public DbSet<AboutFile> AboutFiles { get; set; }
+        public DbSet<AboutFileMapping> AboutFileMappings { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.AboutImage> AboutImages { get; set; }
 
         public System.Data.Entity.DbSet<Oakinstream.Models.Contact> Contacts { get; set; }
     }
