@@ -51,5 +51,7 @@ namespace Oakinstream
         public static int MaxFileSizeMB { get; } = 10;
         public static int DescriptionLengthIndex { get; } = 65;
 
+        public const string DefualtImagePath = "~/Content/Images/Default/";
+
     }
 }

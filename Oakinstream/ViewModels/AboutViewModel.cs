@@ -18,8 +18,11 @@ namespace Oakinstream.ViewModels
         public About AboutImage { get; set; }
         public SelectList AboutImageList { get; set; }
         public int Age { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Info1 { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Info2 { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Info3 { get; set; }
         public string[] AboutFiles { get; set; }
         public List<SelectList> FileList { get; set; }

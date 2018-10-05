@@ -69,17 +69,6 @@ textarea {
     font-size: 16px;
 }
 
-.BlogDescription {
-    width: auto;
-    max-width: none;
-    resize: none;
-    border: none;
-    text-align: center;
-    font-weight: bold;
-    text-decoration:double;
-    font-size: 16px;
-}
-
 .ProjectComments {
     width: 80%;
     max-width: none;
@@ -95,12 +84,35 @@ textarea {
 }
 
 .ProjectImage:hover {
- transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-.ProjectImage {
-    width:auto;
 
+.BlogDescription {
+    width: auto;
+    max-width: none;
+    resize: none;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-decoration:double;
+    font-size: 16px;
+}
+
+.AboutInfo {
+    width: auto;
+    max-width: none;
+    resize: none;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    font-size: 16px;
+}
+
+.AboutImage {
+    border: 1px solid black;
+    width:auto;
 }
 
 .contact-forms {
@@ -156,7 +168,9 @@ textarea {
     width: 100%;
 }
 
-
+.SmalBorder {
+    border: 1px solid black;
+}
 .NormalBorder {
     border: 2px solid black;
 }
@@ -191,5 +205,38 @@ textarea {
 }
 .float-right {
     float: left;
+}
+
+.FormBox{
+    height: 50px;
+    max-width: none;
+    width:50%;
+    font-size:24px;
+}
+
+.FormBox-File {
+    border: 2px solid black;
+    padding: 20px;
+    max-width: none;
+    width: auto;
+    text-align:center;
+    font-size: 24px;
+}
+
+.FormText {
+    font-size: 36px;
+}
+
+.FormBtn {
+    height: 50px;
+    width: 100%;
+}
+
+.FormBtn-height {
+    border: 2px solid black;
+    height: 75px;
+    width: 50%;
+    font-size: 24px;
+    border-radius:unset;
 }
 

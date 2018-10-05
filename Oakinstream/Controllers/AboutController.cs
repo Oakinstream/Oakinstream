@@ -22,66 +22,8 @@ namespace Oakinstream.Controllers
             return View(abouts.ToList());
         }
 
-        // GET: About/Create
-        public ActionResult Create()
-        {
-            AboutViewModel viewModel = new AboutViewModel();
-            viewModel.AboutImageList = new SelectList(db.AboutImages, "ID", "FileName");
-            viewModel.FileList = new List<SelectList>();
-            for (int i = 0; i < Constants.NumberOfAboutFiles; i++)
-            {
-                viewModel.FileList.Add(new SelectList(db.AboutFiles, "ID", "FileName"));
-            }
-            return View(viewModel);
-        }
-
-        // POST: About/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(AboutViewModel viewModel)
-        {
-            About about = new About();
-            about.Name = viewModel.Name;
-            about.AboutImageID = viewModel.AboutImageID;
-            about.Age = viewModel.Age;
-            about.Info1 = viewModel.Info1;
-            about.Info2 = viewModel.Info2;
-            about.Info3 = viewModel.Info3;
-            about.AboutFileMappings = new List<AboutFileMapping>();
-            string[] aboutFiles = viewModel.AboutFiles.Where(pi => !string.IsNullOrEmpty(pi)).ToArray();
-            for (int i = 0; i < aboutFiles.Length; i++)
-            {
-                about.AboutFileMappings.Add(new AboutFileMapping()
-                {
-                    AboutFile = db.AboutFiles.Find(int.Parse(aboutFiles[i])),
-                    FileNumber = i
-                });
-            }
-            about.CreatedDate = DateTime.Now;
-            about.CreatedBy = User.Identity.Name;
-            about.UpdatedDate = DateTime.Now;
-            about.UpdatedBy = null;
-
-            if (ModelState.IsValid)
-            {
-                db.Abouts.Add(about);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            viewModel.AboutImageList = new SelectList(db.ProjectImages, "ID", "FileName", about.AboutImageID);
-            viewModel.FileList = new List<SelectList>();
-            for (int i = 0; i < Constants.NumberOfAboutFiles; i++)
-            {
-                viewModel.FileList.Add(new SelectList(db.AboutFiles, "ID", "FileName",
-                viewModel.AboutFiles[i]));
-            }
-            return View(viewModel);
-        }
-
         // GET: About/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -125,7 +67,7 @@ namespace Oakinstream.Controllers
         {
             var aboutToUpdate = db.Abouts.Include(p => p.AboutFileMappings).
                 Where(p => p.ID == viewModel.ID).Single();
-            if (TryUpdateModel(aboutToUpdate, "", new string[] { "Name", "Info1", "Info2", "Info3", "Age", "UpdatedBy", "UpdatedDate" }))
+            if (TryUpdateModel(aboutToUpdate, "", new string[] { "Name", "AboutImageID","Info1", "Info2", "Info3", "Age", "UpdatedBy", "UpdatedDate" }))
             {
                 if (aboutToUpdate.AboutFileMappings == null)
                 {
@@ -171,32 +113,6 @@ namespace Oakinstream.Controllers
                 return RedirectToAction("Index");
             }
             return View(viewModel);
-        }
-
-        // GET: About/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            About about = db.Abouts.Find(id);
-            if (about == null)
-            {
-                return HttpNotFound();
-            }
-            return View(about);
-        }
-
-        // POST: About/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            About about = db.Abouts.Find(id);
-            db.Abouts.Remove(about);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -64,38 +64,45 @@
 </div>
 <hr />
 
+@if (Model.Projects.TotalItemCount == 0)
+{
+    <div class="col-md-12" style="text-align:center;">
+        <h1 class="text-uppercase text-danger">No Projects! :(</h1>
+    </div>
+}
+
 <div class="container" style="text-align:center">
     <div class="row" style="margin-top:10px;">
         @foreach (var item in Model.Projects)
         {
-        <div class="col-md-12" style="text-align:center">
-            @if (item.ProjectImage != null)
-            {
-                <a href="@Url.Action("Details", new { id = item.ID })" style="text-decoration:none;">
-                    <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
-                </a>
-            }
-            else
-            {
+            <div class="col-md-12" style="text-align:center">
+                @if (item.ProjectImage != null)
+                {
+                    <a href="@Url.Action("Details", new { id = item.ID })" style="text-decoration:none;">
+                        <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
+                        <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
+                    </a>
+                }
+                <br />
                 <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
-                    <img class="ProjectImage" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
+                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
                 </a>
-            }
-            <br />
-            <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
-                <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
-            </a>
-            <br />
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            { 
-                <span class="glyphicon glyphicon-edit"></span>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                @Html.Raw(" | ")
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            }
-            <hr />
-        </div>
+                <br />
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <span class="glyphicon glyphicon-edit"></span>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.Raw(" | ")
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+                <hr />
+            </div>
         }
     </div>
 </div>
@@ -106,7 +113,7 @@
     <div class="row" style="text-align:center;">
         Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of
         @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page =>
-        Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
-        </div>
+Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
+    </div>
 }
 
