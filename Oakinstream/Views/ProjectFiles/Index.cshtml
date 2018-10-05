@@ -1,33 +1,45 @@
 ﻿@model IEnumerable<Oakinstream.Models.ProjectFile>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Project Files";
 }
 
-<h2>Index</h2>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12  NormalBorder-Bottom">
+            <br />
+            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Admin")" class="text-primary">Back to admin</a>
+    <br />
+    <div class="row">
+        <div class="btn" style="width:30%;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <a href="@Url.Action("Upload", "ProjectFiles")" class="btn btn-success" style="width:50%;">Add a file</a>
+        </div>
+    </div>
+    <hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FileName)
-        </th>
-        <th></th>
-    </tr>
+    @{
+        var itemcounter = 0;
+        foreach (var item in Model)
+        {
+            itemcounter++;
+        }
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+    @if (itemcounter != 0)
+    {
+        <div class="jumbotron col-md-12 NormalBorder">
+            <h2 class="text-primary">@Html.DisplayNameFor(model => model.First().FileName):</h2>
+            <hr />
+            @foreach (var item in Model)
+            {
+                <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + Html.DisplayFor(modelItem => item.FileName))" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @Html.DisplayFor(modelItem => item.FileName)</a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "ProjectFiles", new { id = item.ID })" style="cursor:pointer"><span class="glyphicon glyphicon-trash"></span></a>
+                <hr />
+            }
+        </div>
+    }
+</div>

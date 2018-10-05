@@ -22,21 +22,6 @@ namespace Oakinstream.Controllers
             return View(db.BlogCategorys.ToList());
         }
 
-        // GET: BlogCategory/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BlogCategory blogCategoryModels = db.BlogCategorys.Find(id);
-            if (blogCategoryModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blogCategoryModels);
-        }
-
         // GET: BlogCategory/Create
         public ActionResult Create()
         {
@@ -48,47 +33,16 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] BlogCategory blogCategoryModels)
+        public ActionResult Create([Bind(Include = "ID,Name")] BlogCategory blogCategory)
         {
             if (ModelState.IsValid)
             {
-                db.BlogCategorys.Add(blogCategoryModels);
+                db.BlogCategorys.Add(blogCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(blogCategoryModels);
-        }
-
-        // GET: BlogCategory/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BlogCategory blogCategoryModels = db.BlogCategorys.Find(id);
-            if (blogCategoryModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blogCategoryModels);
-        }
-
-        // POST: BlogCategory/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] BlogCategory blogCategoryModels)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(blogCategoryModels).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(blogCategoryModels);
+            return View(blogCategory);
         }
 
         // GET: BlogCategory/Delete/5
@@ -98,12 +52,12 @@ namespace Oakinstream.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogCategory blogCategoryModels = db.BlogCategorys.Find(id);
-            if (blogCategoryModels == null)
+            BlogCategory blogCategory = db.BlogCategorys.Find(id);
+            if (blogCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(blogCategoryModels);
+            return View(blogCategory);
         }
 
         // POST: BlogCategory/Delete/5
@@ -111,8 +65,8 @@ namespace Oakinstream.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogCategory blogCategoryModels = db.BlogCategorys.Find(id);
-            db.BlogCategorys.Remove(blogCategoryModels);
+            BlogCategory blogCategory= db.BlogCategorys.Find(id);
+            db.BlogCategorys.Remove(blogCategory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

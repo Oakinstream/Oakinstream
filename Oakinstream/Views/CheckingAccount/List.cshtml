@@ -1,50 +1,90 @@
 ﻿@model IEnumerable<Oakinstream.Models.CheckingAccount>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Account List";
 }
 
-<h2>List</h2>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12  NormalBorder-Bottom">
+            <br />
+            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Admin")" class="text-primary" ">Back to admin</a>
+    <br />
+    <div class="row">
+        <div class="btn" style="width:30%;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <a href="@Url.Action("Create", "CheckingAccount")" class="btn btn-success" style="width:50%;">Create a Account</a>
+        </div>
+    </div>
+    <hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Pin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccountNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th></th>
-    </tr>
-    
-    @foreach(var item in Model)
-    {
-        <tr>
-            <th>
-                @Html.DisplayFor(model => item.User.Pin)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.AccountNumber)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.FirstName)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.LastName)
-            </th>
-            <th>
-                @Html.ActionLink("Details", "DetailsForAdmin", new { id = item.ID })
-            </th>
-        </tr>
+    @{
+        var itemcounter = 0;
+        foreach (var item in Model)
+        {
+            itemcounter++;
+        }
     }
-</table>
+
+    @if (itemcounter != 0)
+    {
+    <div class="jumbotron col-md-12 NormalBorder">
+
+        <div class="row">
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Pin)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">@Html.DisplayNameFor(model => model.AccountNumber)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">@Html.DisplayNameFor(model => model.Name)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.UserName)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Email)</h3>
+            </div>
+            <div class="col-md-2">
+                <h3 class="text-uppercase text-primary" style="text-decoration:underline">Locked</h3>
+            </div>
+        </div>
+        <hr />
+        @foreach (var item in Model)
+        {
+        <div class="row">
+            <div class="col-md-2 NormalBorder-Right">
+                @if (item.User.Pin == null)
+                {
+                    @Html.Raw("No Pin");
+                }
+                else
+                {
+                    @Html.DisplayFor(model => item.User.Pin)
+                }
+            </div>
+            <div class="col-md-2 NormalBorder-Right">
+                @Html.DisplayFor(model => item.AccountNumber)
+            </div>
+            <div class="col-md-2 NormalBorder-Right">
+                @Html.DisplayFor(model => item.Name)
+            </div>
+            <div class="col-md-2 NormalBorder-Right">
+                @Html.DisplayFor(model => item.User.UserName)
+            </div>
+            <div class="col-md-2 NormalBorder-Right">
+                @Html.DisplayFor(model => item.User.Email)
+            </div>
+            <div class="col-md-2">
+                @Html.DisplayFor(model => item.User.LockoutEnabled)
+            </div>
+        </div>
+        <hr />
+        }
+    </div>
+    }
+</div>

@@ -4,29 +4,45 @@
     ViewBag.Title = "Blog Categorys";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12  NormalBorder-Bottom">
+            <br />
+            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Admin")" class="text-primary">Back to admin</a>
+    <br />
+    <div class="row">
+        <div class="btn" style="width:30%;">
+            <span class="glyphicon glyphicon-plus"></span>
+            <a href="@Url.Action("Create", "BlogCategory")" class="btn btn-success" style="width:50%;">Add a file</a>
+        </div>
+    </div>
+    <hr />
 
-<p>
-    <span class="glyphicon glyphicon-plus-sign"></span>@Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+    @{
+        var itemcounter = 0;
+        foreach (var item in Model)
+        {
+            itemcounter++;
+        }
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @if (itemcounter != 0)
+    {
+        <div class="jumbotron col-md-12 NormalBorder">
+            <h2 class="text-primary">@Html.DisplayNameFor(model => model.Name):</h2>
+            <hr />
+            @foreach (var item in Model)
+            {
+            <p>
+                @Html.DisplayFor(modelItem => item.Name)
+                <a class="btn btn-danger" href="@Url.Action("Delete", "BlogCategory", new { id = item.ID })" style="cursor:pointer"><span class="glyphicon glyphicon-trash"></span></a>
+            </p>    
+            <hr />
+            }
+        </div>
+    }
+</div>
 
-</table>

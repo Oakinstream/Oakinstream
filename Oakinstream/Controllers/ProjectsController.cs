@@ -206,7 +206,7 @@ namespace Oakinstream.Controllers
           {
               var projectToUpdate = db.Projects.Include(p => p.ProjectFileMappings).
                   Where(p => p.ID == viewModel.ID).Single();
-              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "BlogCategoryID", "UpdatedBy", "UpdatedDate" }))
+              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "ProjectCategoryID", "UpdatedBy", "UpdatedDate" }))
               {
                   if (projectToUpdate.ProjectFileMappings == null)
                   {

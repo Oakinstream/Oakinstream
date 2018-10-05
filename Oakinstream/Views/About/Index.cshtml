@@ -16,9 +16,12 @@
         <div class="jumbotron col-md-12">
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
+                var itemcount = 0;
+
                 foreach (var item in Model)
                 {
-                    <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    if (itemcount == 0) {<span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })}
+                    itemcount++;
                 }
             }
             <h1>@Html.DisplayFor(model => model.First().Name)</h1>

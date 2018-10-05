@@ -214,6 +214,13 @@ textarea {
     font-size:24px;
 }
 
+.FormBox-Category {
+    height: 50px;
+    max-width: none;
+    width: 100%;
+    font-size: 24px;
+}
+
 .FormBox-File {
     border: 2px solid black;
     padding: 20px;
@@ -238,5 +245,10 @@ textarea {
     width: 50%;
     font-size: 24px;
     border-radius:unset;
+}
+
+.Form-Message {
+    height: 50px;
+    width: 80%;
 }
 

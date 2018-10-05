@@ -156,9 +156,9 @@ namespace Oakinstream.Controllers
             {
                 viewModel.ImageLists.Add(new SelectList(db.BlogImages, "ID", "FileName"));
             }
+            viewModel.BlogCategoryID = Convert.ToInt32(blog.BlogCategoryID);
             viewModel.Title = blog.Title;
             viewModel.Description = blog.Description;
-            viewModel.ID = blog.ID;
             viewModel.Link = blog.Link;
             viewModel.CreatedDate = blog.CreatedDate;
             viewModel.CreatedBy = blog.CreatedBy;

@@ -10,7 +10,7 @@ namespace Oakinstream.Models
     public class AboutImage
     {
         public int ID { get; set; }
-        [Display(Name = "File")]
+        [Display(Name = "Image")]
         [StringLength(100)]
         [Index(IsUnique = true)]
         public string FileName { get; set; }

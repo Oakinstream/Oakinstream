@@ -16,6 +16,7 @@ namespace Oakinstream.ViewModels
         public int? ProjectImageID { get; set; }
         public ProjectImage ProjectImage { get; set; }
         public SelectList ProjectImageList { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Required(ErrorMessage = "Choose a category")]
         public int? ProjectCategoryID { get; set; }

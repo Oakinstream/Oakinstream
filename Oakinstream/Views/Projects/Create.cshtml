@@ -1,87 +1,101 @@
 ﻿@model Oakinstream.ViewModels.ProjectViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Project";
 }
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Project</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12  NormalBorder-Bottom">
+            <br />
+            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProjectCategoryID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ProjectImageID, "ProjectImage", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProjectImageID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Project File 1 </label>
-        <div class="col-md-10">
-            @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ProjectFiles, "", new { @class = "text-danger" })
-            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#Files" style="">Add more files</button>
-        </div>
-    </div>
-
-
-    <div id="Files" class="collapse">
-        @for (int i = 1; i < Model.FileList.Count; i++)
-        {
-            <div class="form-group">
-                <label class="control-label col-md-2">Project File @(i + 1): </label>
-                <div class="col-md-10">
-                    @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ProjectFiles, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        }
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-    }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Projects", "Index")
     </div>
+    <br />
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="jumbotron Margin-Top-20 NormalBorder">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <h4><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
+                </div>
+                <div class="col-md-8 NormalBorder-Left text-left">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "FormBox" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <h4><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
+                </div>
+                <div class="col-md-8 NormalBorder-Left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "FormBox" })
+                    @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <h4><span class="glyphicon glyphicon-picture"></span> Project Image </h4>
+                </div>
+                <div class="col-md-8 NormalBorder-Left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "FormBox" })
+                    @Html.ValidationMessageFor(model => model.ProjectImageID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <h4><span class="glyphicon glyphicon-file"></span> File 1</h4>
+                </div>
+                <div class="col-md-8 NormalBorder-Left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "FormBox" })
+                    @Html.ValidationMessageFor(model => model.FileList, "", new { @class = "text-danger" })
+                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#Files" style="">Add more images</button>
+                </div>
+            </div>
+            <hr />
+            <div id="Files" class="collapse">
+                @for (int i = 1; i < Model.FileList.Count; i++)
+                {
+                    <div class="row Margin-Top-20">
+                        <div class="col-md-4 text-right">
+                            <h4><span class="glyphicon glyphicon-file"></span> File @(i + 1):</h4>
+                        </div>
+                        <div class="col-md-8 NormalBorder-Left text-left">
+                            @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "FormBox" })
+                            @Html.ValidationMessageFor(model => model.FileList, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Description)</h4>
+                </div>
+                <div class="col-md-8 NormalBorder-Left text-left">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { rows = "10", cols = "50", style ="resize:none; max-width:none;" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-success FormBtn" />
+                </div>
+            </div>
+            <br />
+        </div>
     }
+</div>
