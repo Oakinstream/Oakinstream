@@ -11,7 +11,7 @@ namespace Oakinstream.Models
         public int? AboutImageID { get; set; }
         public virtual AboutImage AboutImage { get; set; }
         public string Name { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
         public string Info1 { get; set; }
         public string Info2 { get; set; }
         public string Info3 { get; set; }

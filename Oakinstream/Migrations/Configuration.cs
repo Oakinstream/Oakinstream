@@ -41,10 +41,10 @@ namespace Oakinstream.Migrations
 
             var projectCategory = new List<ProjectCategory>
             {
-                new ProjectCategory {Name = "projectCategory1"},
-                new ProjectCategory {Name = "projectCategory2"},
-                new ProjectCategory {Name = "projectCategory3"},
-                new ProjectCategory {Name = "projectCategory4"},
+                new ProjectCategory {Name = "No Category", ID = 1},
+                new ProjectCategory {Name = "ProjectCategory1"},
+                new ProjectCategory {Name = "ProjectCategory2"},
+                new ProjectCategory {Name = "ProjectCategory3"},
             };
             projectCategory.ForEach(c => context.ProjectCategorys.AddOrUpdate(p => p.Name, c));
             context.SaveChanges();
@@ -52,10 +52,10 @@ namespace Oakinstream.Migrations
 
             var blogCategory = new List<BlogCategory>
             {
-                new BlogCategory {Name = "projectCategory1"},
-                new BlogCategory {Name = "projectCategory2"},
-                new BlogCategory {Name = "projectCategory3"},
-                new BlogCategory {Name = "projectCategory4"},
+                new BlogCategory {Name = "No Category", ID = 1},
+                new BlogCategory {Name = "BlogCategory1"},
+                new BlogCategory {Name = "BlogCategory2"},
+                new BlogCategory {Name = "BlogCategory3"},
             };
             blogCategory.ForEach(c => context.BlogCategorys.AddOrUpdate(p => p.Name, c));
             context.SaveChanges();

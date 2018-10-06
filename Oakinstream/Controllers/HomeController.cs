@@ -16,14 +16,6 @@ namespace Oakinstream.Controllers
 
         public ActionResult Index()
         {
-            if (User.Identity.GetUserId() != null)
-            {
-                /*var userId = User.Identity.GetUserId();
-                var checkingAccountId = db.CheckingAccounts.Where(c => c.ApplicationUserId == userId).First().ID;
-                var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var user = manager.FindById(userId);
-                ViewBag.Pin = user.Pin;*/
-            }
             return View();
         }
     }

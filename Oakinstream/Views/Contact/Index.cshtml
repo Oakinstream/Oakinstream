@@ -60,9 +60,25 @@
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <input type="submit" value="Send" class="btn btn-default" style="width:100%;" onclick="alert('Sending...');" />
+                            <input type="submit" value="Send" class="btn btn-default" style="width:100%;" />
                         </div>
                     </div>
+                    @if (ViewData["Error"] != null)
+                    {
+                    <div class="form-group">
+                        <div class="col-md-10 text-warning">
+                            <h3>@ViewData["Error"].ToString()</h3>
+                        </div>
+                    </div>
+                    }
+                    @if (TempData["Success"] != null)
+                    {
+                    <div class="form-group">
+                        <div class="col-md-10 text-success">
+                            <h3>@TempData["Success"].ToString()</h3>
+                        </div>
+                    </div>
+                    }
                 </div>
             }
 

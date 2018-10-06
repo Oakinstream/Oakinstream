@@ -39,7 +39,7 @@
                     <h4><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "FormBox" })
+                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, htmlAttributes: new { @class = "FormBox" })
                     @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
                 </div>
             </div>

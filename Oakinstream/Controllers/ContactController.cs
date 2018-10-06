@@ -36,12 +36,16 @@ namespace Oakinstream.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["Success"] = "Your message was sent! :)";
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(contact);
+            else
+            {
+                ViewData["Error"] = "Something went wrong please try again! :(";
+                return View(contact);
+            }
         }
 
         // GET: Contact/Delete/5

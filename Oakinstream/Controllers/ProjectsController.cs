@@ -141,6 +141,16 @@ namespace Oakinstream.Controllers
             project.UpdatedDate = DateTime.Now;
             project.UpdatedBy = null;
 
+            if (project.Name == null)
+            {
+                project.Name = "[Enter a Title]";
+            }
+
+            if (project.Description == null)
+            {
+                project.Description = "No Description";
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -186,7 +196,6 @@ namespace Oakinstream.Controllers
                   viewModel.FileList.Add(new SelectList(db.ProjectFiles, "ID", "FileName"));
               }
 
-              ViewBag.ProjectCategoryID = new SelectList(db.ProjectCategorys, "ID", "Name", project.ProjectCategoryID);
               viewModel.ID = project.ID;
               viewModel.Name = project.Name;
               viewModel.Description = project.Description;
@@ -206,7 +215,7 @@ namespace Oakinstream.Controllers
           {
               var projectToUpdate = db.Projects.Include(p => p.ProjectFileMappings).
                   Where(p => p.ID == viewModel.ID).Single();
-              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "Description", "ProjectCategoryID", "UpdatedBy", "UpdatedDate" }))
+              if (TryUpdateModel(projectToUpdate, "", new string[] {"Name", "ProjectImageID", "Description", "ProjectCategoryID", "UpdatedBy", "UpdatedDate" }))
               {
                   if (projectToUpdate.ProjectFileMappings == null)
                   {
@@ -246,11 +255,23 @@ namespace Oakinstream.Controllers
                       }
                   }
 
+
+                if (projectToUpdate.Name == null)
+                {
+                    projectToUpdate.Name = "[Enter a Title]";
+                }
+
+                if (projectToUpdate.Description == null)
+                {
+                    projectToUpdate.Description = "No Description";
+                }
+
+
                 projectToUpdate.UpdatedBy = User.Identity.Name;
                 projectToUpdate.UpdatedDate = DateTime.Now;
 
                 db.SaveChanges();
-                  return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
               return View(viewModel);
         }

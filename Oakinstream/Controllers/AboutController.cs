@@ -106,6 +106,31 @@ namespace Oakinstream.Controllers
                     }
                 }
 
+                if (aboutToUpdate.Name == null)
+                {
+                    aboutToUpdate.Name = "[Enter a Name]";
+                }
+
+                if (aboutToUpdate.Age == null)
+                {
+                    aboutToUpdate.Age = 1337;
+                }
+
+                if (aboutToUpdate.Info1 == null)
+                {
+                    aboutToUpdate.Info1 = "No information";
+                }
+
+                if (aboutToUpdate.Info2 == null)
+                {
+                    aboutToUpdate.Info2 = "No information";
+                }
+
+                if (aboutToUpdate.Info3 == null)
+                {
+                    aboutToUpdate.Info3 = "No information";
+                }
+
                 aboutToUpdate.UpdatedBy = User.Identity.Name;
                 aboutToUpdate.UpdatedDate = DateTime.Now;
 

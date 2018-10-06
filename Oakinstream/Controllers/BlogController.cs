@@ -115,6 +115,16 @@ namespace Oakinstream.Controllers
             blog.UpdatedDate = DateTime.Now;
             blog.UpdatedBy = null;
 
+            if (blog.Title == null)
+            {
+                blog.Title = "[Enter a Title]";
+            }
+
+            if (blog.Description == null)
+            {
+                blog.Description = " ";
+            }
+
             if (ModelState.IsValid)
             {
                 db.Blogs.Add(blog);
@@ -213,6 +223,16 @@ namespace Oakinstream.Controllers
                     {
                         db.BlogImageMappings.Remove(imageMappingToEdit);
                     }
+                }
+
+                if (blogToUpdate.Title == null)
+                {
+                    blogToUpdate.Title = "[Enter a Title]";
+                }
+
+                if (blogToUpdate.Description == null)
+                {
+                    blogToUpdate.Description = "No Info";
                 }
 
                 blogToUpdate.UpdatedBy = User.Identity.Name;

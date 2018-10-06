@@ -35,17 +35,17 @@
         <hr />
 
         <div class="row">
-            <div class="col-md-3 NormalBorder-Right">
-                @Html.DisplayFor(model => model.ID)
-            </div>
-            <div class="col-md-3 NormalBorder-Right">
-                @Html.DisplayFor(model => model.Title)
-            </div>
-            <div class="col-md-3 NormalBorder-Right">
-                @Html.DisplayFor(model => model.CreatedBy)
+            <div class="col-md-3">
+                <strong>@Html.DisplayFor(model => model.ID)</strong>
             </div>
             <div class="col-md-3">
-                @Html.DisplayFor(model => model.CreatedDate)
+                <strong>@Html.DisplayFor(model => model.Title)</strong>
+            </div>
+            <div class="col-md-3">
+                <strong>@Html.DisplayFor(model => model.CreatedBy)</strong>
+            </div>
+            <div class="col-md-3">
+                <strong>@Html.DisplayFor(model => model.CreatedDate)</strong>
             </div>
         </div>
         <hr />
