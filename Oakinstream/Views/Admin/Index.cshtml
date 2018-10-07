@@ -13,6 +13,30 @@
         }
     </div>
     <hr />
+
+    <div class="jumbotron">
+        <h1>Manage Home: </h1>
+        <hr />
+        <div class="well Width-80 Margin-Auto Margin-Top-10">
+            <div class="btn-group-justified">
+                <a class="btn btn-default" href="@Url.Action("index", "HomeImages")" style="cursor:pointer"><h2>Images</h2></a>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="jumbotron">
+        <h1>Manage About: </h1>
+        <hr />
+        <div class="well Width-80 Margin-Auto Margin-Top-10">
+            <div class="btn-group-justified">
+                <a class="btn btn-default" href="@Url.Action("index", "AboutImages")" style="cursor:pointer"><h2>Images</h2></a>
+                <a class="btn btn-default" href="@Url.Action("index", "AboutFiles")" style="cursor:pointer"><h2>Files</h2></a>
+            </div>
+        </div>
+        <hr />
+    </div>
+
     <div class="jumbotron">
         <h1>Manage Project:</h1>
         <hr />
@@ -39,12 +63,11 @@
     </div>
 
     <div class="jumbotron">
-        <h1>Manage About: </h1>
+        <h1>Check Contact Messages: </h1>
         <hr />
         <div class="well Width-80 Margin-Auto Margin-Top-10">
             <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("index", "AboutImages")" style="cursor:pointer"><h2>Images</h2></a>
-                <a class="btn btn-default" href="@Url.Action("index", "AboutFiles")" style="cursor:pointer"><h2>Files</h2></a>
+                <a class="btn btn-default" href="@Url.Action("List", "Contact")" style="cursor:pointer"><h2>Messages</h2></a>
             </div>
         </div>
         <hr />
@@ -56,17 +79,6 @@
         <div class="well Width-80 Margin-Auto Margin-Top-10">
             <div class="btn-group-justified">
                 <a class="btn btn-default" href="@Url.Action("List", "CheckingAccount")" style="cursor:pointer"><h2>Users</h2></a>
-            </div>
-        </div>
-        <hr />
-    </div>
-
-    <div class="jumbotron">
-        <h1>Check Contact Messages: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("List", "Contact")" style="cursor:pointer"><h2>Messages</h2></a>
             </div>
         </div>
         <hr />

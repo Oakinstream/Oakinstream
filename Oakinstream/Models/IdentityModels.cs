@@ -51,5 +51,9 @@ namespace Oakinstream.Models
         public System.Data.Entity.DbSet<Oakinstream.Models.AboutImage> AboutImages { get; set; }
 
         public System.Data.Entity.DbSet<Oakinstream.Models.Contact> Contacts { get; set; }
+        public System.Data.Entity.DbSet<Oakinstream.Models.HomeImage> HomeImages { get; set; }
+        public DbSet<HomeImageMapping> HomeImageMappings { get; set; }
+
+        public System.Data.Entity.DbSet<Oakinstream.Models.Home> Homes { get; set; }
     }
 }

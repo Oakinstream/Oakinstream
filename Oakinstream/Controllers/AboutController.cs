@@ -23,6 +23,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: About/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -63,6 +64,7 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(AboutViewModel viewModel)
         {
             var aboutToUpdate = db.Abouts.Include(p => p.AboutFileMappings).

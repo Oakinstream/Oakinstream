@@ -212,6 +212,7 @@
     <Compile Include="Controllers\CheckingAccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectCategoryController.cs" />
     <Compile Include="Controllers\ProjectFilesController.cs" />
@@ -241,6 +242,9 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\CheckingAccount.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Home.cs" />
+    <Compile Include="Models\HomeImage.cs" />
+    <Compile Include="Models\HomeImageMapping.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProjectCategory.cs" />
@@ -254,6 +258,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\SearchIndexViewModel.cs" />
   </ItemGroup>
@@ -295,7 +300,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -357,6 +361,12 @@
     <Content Include="Views\AboutFiles\Upload.cshtml" />
     <Content Include="Views\AboutFiles\Delete.cshtml" />
     <Content Include="Views\AboutFiles\Index.cshtml" />
+    <Content Include="Views\HomeImages\Upload.cshtml" />
+    <Content Include="Views\HomeImages\Delete.cshtml" />
+    <Content Include="Views\HomeImages\Index.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\HomeImages\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +374,7 @@
     <Folder Include="Content\Files\ProjectFiles\" />
     <Folder Include="Content\Images\AboutImages\Thumbnails\" />
     <Folder Include="Content\Images\BlogImages\Thumbnails\" />
+    <Folder Include="Content\Images\HomeImages\Thumbnails\" />
     <Folder Include="Content\Images\ProjectImages\Thumbnails\" />
   </ItemGroup>
   <ItemGroup>

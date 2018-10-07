@@ -13,11 +13,13 @@ using Oakinstream.Models;
 
 namespace Oakinstream.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AboutImagesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AboutImages
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.AboutImages.ToList());
@@ -25,6 +27,7 @@ namespace Oakinstream.Controllers
 
 
         // GET: AboutImages/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Upload()
         {
             return View();
@@ -140,6 +143,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: AboutImages/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -157,6 +161,7 @@ namespace Oakinstream.Controllers
         // POST: AboutImages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             AboutImage aboutImage = db.AboutImages.Find(id);

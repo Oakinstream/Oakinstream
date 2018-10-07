@@ -1,0 +1,69 @@
+﻿@model Oakinstream.Models.HomeImage
+
+@{
+    ViewBag.Title = "Upload";
+}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12  NormalBorder-Bottom">
+            <br />
+            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <br />
+    <div class="jumbotron NormalBorder col-md-12">
+        @using (Html.BeginForm("Upload", "HomeImages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-3 text-right">
+                    <h3><span class="glyphicon glyphicon-picture"></span>  @Html.LabelFor(model => model.FileName):</h3>
+                </div>
+                <div class="col-md-6 NormalBorder-Left text-left">
+                    <input type="file" name="files" id="files" multiple="multiple" class="FormBox-File btn-default" accept=".png,.jpg,.jpeg,.gif" />
+                    @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <h4><span class="glyphicon glyphicon-header"></span> @Html.LabelFor(model => model.ImageHeader):</h4>
+                        </div>
+                        <div class="col-md-8 NormalBorder-Left text-left">
+                            @Html.EditorFor(model => model.ImageHeader, new { htmlAttributes = new { @class = "FormBox" } })
+                            @Html.ValidationMessageFor(model => model.ImageHeader, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <h4><span class="glyphicon glyphicon-text-size"></span> @Html.LabelFor(model => model.ImageCaption):</h4>
+                        </div>
+                        <div class="col-md-8 NormalBorder-Left text-left">
+                            @Html.EditorFor(model => model.ImageCaption, new { htmlAttributes = new { @class = "FormBox" } })
+                            @Html.ValidationMessageFor(model => model.ImageCaption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-right">
+                            <h4><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.ImageLink):</h4>
+                        </div>
+                        <div class="col-md-8 NormalBorder-Left text-left">
+                            @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "FormBox" } })
+                            @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-left">
+                    <input type="submit" value="Add >>" class="btn btn-default FormBtn-height" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

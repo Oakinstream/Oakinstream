@@ -84,6 +84,28 @@ namespace Oakinstream.Migrations
                 context.SaveChanges();
             }
 
+            if (!context.Homes.Any(t => t.ID == 1))
+            {
+                var Defualtinfo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Malesuada fames ac turpis egestas maecenas pharetra convallis.";
+                var home = new List<Home>
+                {
+                    new Home
+                    {
+                    ID = 1,
+                    Title = "Oakinstream",
+                    Info1 = Defualtinfo,
+                    Info2 = Defualtinfo,
+                    Info3 = Defualtinfo,
+                    CreatedBy = "Default",
+                    CreatedDate = DateTime.Now,
+                    UpdatedBy = null,
+                    UpdatedDate = DateTime.Now
+                    }
+                };
+                home.ForEach(c => context.Homes.AddOrUpdate(p => p.Title, c));
+                context.SaveChanges();
+            }
+
 
             //  This method will be called after migrating to the latest version.
 

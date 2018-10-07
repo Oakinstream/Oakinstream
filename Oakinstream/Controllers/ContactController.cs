@@ -15,6 +15,7 @@ namespace Oakinstream.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Contact
+        [Authorize(Roles = "Admin")]
         public ActionResult List()
         {
             return View(db.Contacts.ToList());
@@ -49,6 +50,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Contact/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -66,6 +68,7 @@ namespace Oakinstream.Controllers
         // POST: Contact/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Contact contact = db.Contacts.Find(id);

@@ -1,23 +1,70 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div class="jumbotron" style="text-align: center">
-    <h1>@ViewBag.Title</h1>
-    <p class="lead">This is a template for a basic asp.net application</p>
-</div>
+﻿@model IEnumerable<Oakinstream.Models.Home>
 
 <div class="container">
     <div class="row" style="text-align: center">
-        <div class="col-md-4">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Malesuada fames ac turpis egestas maecenas pharetra convallis.</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Malesuada fames ac turpis egestas maecenas pharetra convallis.</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Malesuada fames ac turpis egestas maecenas pharetra convallis.</h3>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @foreach (var item in Model.First().HomeImagesMappings)
+                {
+                    <li data-target="#myCarousel" data-slide-to="@item.ImageNumber" class="active"></li>
+                }
+            </ol>
+            <div class="carousel-inner Home-Slider">
+                @foreach (var item in Model.First().HomeImagesMappings)
+                {
+                    if (item.ImageNumber == 0)
+                    {
+                        <div class="item active Home-Images">
+                            <a href="@item.HomeImage.ImageLink"><img src="@Url.Content(Constants.HomeImagePath + item.HomeImage.FileName)" alt="@item.HomeImage.FileName" style="width:100%;"></a>
+                            <div class="carousel-caption">
+                                <h3>@item.HomeImage.ImageHeader</h3>
+                                <p>@item.HomeImage.ImageCaption</p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item Home-Images">
+                            <a href="@item.HomeImage.ImageLink"><img src="@Url.Content(Constants.HomeImagePath + item.HomeImage.FileName)" alt="@item.HomeImage.FileName" style="width:100%;"></a>
+                            <div class="carousel-caption">
+                                <h3>@item.HomeImage.ImageHeader</h3>
+                                <p>@item.HomeImage.ImageCaption</p>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
         </div>
     </div>
 </div>
 
+
+@foreach (var item in Model)
+{
+    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+}
+
+<div class="container">
+    <div class="row" style="text-align: center">
+        <div class="col-md-4">
+            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+        </div>
+    </div>
+</div>
