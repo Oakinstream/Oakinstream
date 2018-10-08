@@ -10,8 +10,8 @@ namespace Oakinstream
         public static string SiteName { get; } = "Oakinstream";
 
         public const int HometItemsPerPage = 1;
-        public const int HomeImageMinWidth = 200;
-        public const int HomeImageMaxWidth = 1000;
+        public const int HomeImageMinWidth = 1500;
+        public const int HomeImageMaxWidth = 3000;
         public const int HomeThumbnailMaxWidth = 250;
 
         public const int NumberOfHomeImages = 5;

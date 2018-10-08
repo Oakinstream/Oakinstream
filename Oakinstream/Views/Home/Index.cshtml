@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Oakinstream.Models.Home>
 
-<div class="container">
-    <div class="row" style="text-align: center">
+<div class="container home-container">
+    <div class="row">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 @foreach (var item in Model.First().HomeImagesMappings)
@@ -9,26 +9,40 @@
                     <li data-target="#myCarousel" data-slide-to="@item.ImageNumber" class="active"></li>
                 }
             </ol>
-            <div class="carousel-inner Home-Slider">
+            <div class="carousel-inner home-slider">
                 @foreach (var item in Model.First().HomeImagesMappings)
                 {
                     if (item.ImageNumber == 0)
                     {
-                        <div class="item active Home-Images">
+                        <div class="item active">
                             <a href="@item.HomeImage.ImageLink"><img src="@Url.Content(Constants.HomeImagePath + item.HomeImage.FileName)" alt="@item.HomeImage.FileName" style="width:100%;"></a>
                             <div class="carousel-caption">
                                 <h3>@item.HomeImage.ImageHeader</h3>
                                 <p>@item.HomeImage.ImageCaption</p>
+                                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    foreach (var edit in Model)
+                                    {
+                                    <a class="btn btn-info " href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                                    }
+                                }
                             </div>
                         </div>
                     }
                     else
                     {
-                        <div class="item Home-Images">
+                        <div class="item">
                             <a href="@item.HomeImage.ImageLink"><img src="@Url.Content(Constants.HomeImagePath + item.HomeImage.FileName)" alt="@item.HomeImage.FileName" style="width:100%;"></a>
                             <div class="carousel-caption">
                                 <h3>@item.HomeImage.ImageHeader</h3>
                                 <p>@item.HomeImage.ImageCaption</p>
+                                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    foreach (var edit in Model)
+                                    {
+                                        <a class="btn btn-info " href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                                    }
+                                }
                             </div>
                         </div>
                     }
@@ -44,27 +58,39 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
             </a>
-
+        </div>
+        <div class="row home-slider-footer">
         </div>
     </div>
-</div>
-
-
-@foreach (var item in Model)
-{
-    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-}
-
-<div class="container">
-    <div class="row" style="text-align: center">
-        <div class="col-md-4">
-            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+    <div class="row">
+        <div class="col-md-4 home-info">
+            <div class="home-infobox">
+                <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+            </div>
+            <div class="home-infobox">
+                <h3>Read More</h3>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+        <div class="col-md-4 home-info">
+            <div class="home-infobox">
+                <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+            </div>
+            <div class="home-infobox">
+                <h3>Read More</h3>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+        <div class="col-md-4 home-info">
+            <div class="home-infobox">
+                <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+            </div>
+            <div class="home-infobox">
+                <h3>Read More</h3>
+            </div>
+        </div>
+        <div class="col-md-12 jumbotron">
+            <hr />
+            <canvas class="home-canvas" height="500" width="500" id="canvasLayer1"></canvas>
+            <hr />
         </div>
     </div>
 </div>

@@ -1,80 +1,61 @@
 ﻿@model IEnumerable<Oakinstream.Models.About>
 
-@{
-    ViewBag.Title = "About";
-}
-
-<div class="container text-center">
+<div class="container about-container" data-aos="zoom-out-up" data-aos-duration="3000">
     <div class="row">
-        <div class="col-md-12  NormalBorder-Bottom">
+        <div class="jumbotron col-md-12 about-holder">
+
             <br />
-            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
-        </div>
-
-        <hr />
-
-        <div class="jumbotron col-md-12">
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 var itemcount = 0;
-
                 foreach (var item in Model)
                 {
                     if (itemcount == 0)
-                    {<span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit", new { id = item.ID })}
-                itemcount++;
+                    {<a class="btn btn-info " href="@Url.Action("Edit", "About", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>}
+                    itemcount++;
+                }
             }
-        }
-            <h1>@Html.DisplayFor(model => model.First().Name)</h1>
+
+            <h1 data-aos="zoom-out-up" data-aos-duration="2000"><span class="about-title">@Html.DisplayFor(model => model.First().Name)</span></h1>
             @if (Model.First().Age >= 0 && Model.First().Age <= 200)
             {
-                <h3>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.First().Age)</h3>
+                <h2 data-aos="zoom-out-up" data-aos-duration="2000"><span class="about-age"> @Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.First().Age)</span></h2>
             }
             else
             {
-                <h3>@Html.DisplayNameFor(model => model.Age): Unknown</h3>
+                <h2 data-aos="zoom-out-up" data-aos-duration="2000"><span class="about-age">@Html.DisplayNameFor(model => model.Age): Unknown</span></h2>
             }
 
             <br />
 
             @if (Model.First().AboutImage != null)
             {
-                <img class="AboutImage" src="@Url.Content(Constants.AboutThumbnailPath + Model.First().AboutImage.FileName)" alt="@Model.First().AboutImage.FileName" />
+                <img class="about-image" data-aos="zoom-out-up" data-aos-duration="2000"  src="@Url.Content(Constants.AboutThumbnailPath + Model.First().AboutImage.FileName)" alt="@Model.First().AboutImage.FileName" />
             }
             else
             {
-                <img class="AboutImage" src="@Url.Content(Constants.DefualtImagePath + "default.jpg")" alt="LOL.png" />
+                <img class="about-image" data-aos="zoom-out-up" data-aos-duration="2000"  src="@Url.Content(Constants.DefualtImagePath + "default.jpg")" alt="LOL.png" />
             }
             <hr />
 
-            @{
-                var Cols = 30;
-
-                var Info1Length = @Html.DisplayFor(model => model.First().Info1.Length);
-                var Info2Length = @Html.DisplayFor(model => model.First().Info1.Length);
-                var Info3Length = @Html.DisplayFor(model => model.First().Info1.Length);
-
-                var Info1ToDec = Convert.ToDecimal(Info1Length.ToString());
-                var Info2ToDec = Convert.ToDecimal(Info2Length.ToString());
-                var Info3ToDec = Convert.ToDecimal(Info3Length.ToString());
-
-                var Info1Row = Convert.ToInt32(Info1ToDec / Cols);
-                var Info2Row = Convert.ToInt32(Info2ToDec / Cols);
-                var Info3Row = Convert.ToInt32(Info3ToDec / Cols);
-            }
-
             <div class="row" style="text-align:center;">
                 <div class="col-md-4">
-                    <h4>About:</h4>
-                    <textarea class="AboutInfo table-bordered Margin-Top-20" readonly rows="@Info1Row" cols="@Cols">@Html.DisplayFor(model => model.First().Info1)</textarea>
+                    <h3><span class="about-text-header">About:</span></h3>
+                    <div class="about-text">
+                        @Html.DisplayFor(model => model.First().Info1)
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <h4>Hobby:</h4>
-                    <textarea class="AboutInfo table-bordered Margin-Top-20" readonly rows="@Info2Row" cols="@Cols">@Html.DisplayFor(model => model.First().Info2)</textarea>
+                    <h3><span class="about-text-header">Hobby:</span></h3>
+                    <div class="about-text">
+                        @Html.DisplayFor(model => model.First().Info2)
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <h4>Experience:</h4>
-                    <textarea class="AboutInfo table-bordered Margin-Top-20" readonly rows="@Info3Row" cols="@Cols">@Html.DisplayFor(model => model.First().Info3)</textarea>
+                    <h3><span class="about-text-header">Experience:</span></h3>
+                    <div class="about-text">
+                        @Html.DisplayFor(model => model.First().Info3)
+                    </div>
                 </div>
             </div>
 
@@ -91,12 +72,12 @@
             @if (itemcounter != 0)
             {
                 <div class="col-md-12">
-                    <h4>Files:</h4>
-                    <div class="well Width-80 Margin-Auto Margin-Top-10">
+                    <h3><span class="about-files-header">Files:</span></h3>
+                    <div class="well Width-80 Margin-Auto Margin-Top-10 about-file-holder">
                         <div class="btn-group-justified">
                             @foreach (var file in Model.First().AboutFileMappings)
                             {
-                                <a class="btn btn-default" href="@Url.Content(Constants.AboutFilePath + file.AboutFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.AboutFile.FileName</a>
+                                <a class="btn btn-default about-file-btn" href="@Url.Content(Constants.AboutFilePath + file.AboutFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.AboutFile.FileName</a>
                             }
                         </div>
                     </div>
@@ -106,16 +87,20 @@
 
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                <br />
-
-                <p>Created by: @Html.DisplayFor(model => model.First().CreatedBy) - @Html.DisplayFor(model => model.First().CreatedDate)</p>
+                <p><span class="about-created">Created by: @Html.DisplayFor(model => model.First().CreatedBy) - @Html.DisplayFor(model => model.First().CreatedDate)</span></p>
                 if (Model.First().UpdatedBy != null)
                 {
-                    <p>Updated by: @Html.DisplayFor(model => model.First().UpdatedBy) - @Html.DisplayFor(model => model.First().UpdatedDate)</p>
+                    <p><span class="about-created">Updated by: @Html.DisplayFor(model => model.First().UpdatedBy) - @Html.DisplayFor(model => model.First().UpdatedDate)</span></p>
                 }
             }
         </div>
     </div>
 </div>
 
-
+@section Scripts {
+    @Scripts.Render("~/Scripts/aos.js")
+    <script>
+            AOS.init({
+            });
+    </script>
+}

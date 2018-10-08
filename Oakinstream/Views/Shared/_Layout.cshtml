@@ -12,11 +12,18 @@
 
     @Html.Partial("_Navbar")
 
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container site-container">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("_Footer")
+            </div>
+        </div>
     </div>
-
-    @Html.Partial("_Footer")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
