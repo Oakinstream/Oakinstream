@@ -4,82 +4,73 @@
     ViewBag.Title = Html.DisplayFor(@model => model.Name);
 }
 
-<div class="container text-center Margin-Top-20">
-    <div class="row">
+<div class="container project-details-container">
+    <div class="row project-details-header-holder">
         <div class="col-md-12">
-            <h1 class="text-primary text-uppercase"><strong>@ViewBag.Title</strong></h1>
-        </div>
-        <hr />
-        <p>
-            <h3 class="text-muted text-uppercase">Category: @Html.DisplayFor(model => model.ProjectCategory.Name)</h3>
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) @Html.Raw(" |")
-            }
-            @Html.ActionLink("Back to Projects", "Index")
-        </p>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            @if (Model.ProjectImage != null)
-            {
-            <img src="@Url.Content(Constants.ProjectThumbnailPath + Model.ProjectImage.FileName)" alt="@Model.ProjectImage.FileName" />
-            }
-            else
-            {
-            <img src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default.png" />
-            }
-        </div>
-    </div>
-    <br />
-</div>
-
-
-@{
-    var DescLength = @Html.DisplayFor(model => model.Description.Length);
-    var DescToDec = Convert.ToDecimal(DescLength.ToString());
-    var Cols = 100;
-    var Rows = Convert.ToInt32(DescToDec / Cols);
-}
-
-<div class="container text-center">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well Width-80 Margin-Auto ">
-                <h1 class="text-info text-uppercase" style="text-decoration:underline;">Description:</h1>
-                <br />
-                @if (Rows < 50)
-                {
-                    <textarea class="ProjectDescription" readonly rows="@Rows" cols="@Cols">@Html.DisplayFor(model => model.Description)</textarea>
-                }
-                else
-                {
-                    <textarea class="ProjectDescription" readonly rows="50" cols="@Cols">@Html.DisplayFor(model => model.Description)</textarea>
-                }
-                <hr />
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
-                    if (Model.UpdatedBy != null)
-                    {
-                        <p><strong>Updated by: @Html.DisplayFor(model => model.UpdatedBy) - @Html.DisplayFor(model => model.UpdatedDate)</strong></p>
-                    }
-                }
-            </div>
+            <h1 class="text-uppercase"><span class="project-details-header-title">Title: @ViewBag.Title</span></h1>
+            <h3 class="text-muted text-uppercase"><span class="project-details-header-category">Category: @Html.DisplayFor(model => model.ProjectCategory.Name)</span></h3>
         </div>
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <div class="col-md-12">
-                <div class="well Width-80 Margin-Auto Margin-Top-10">
-                    <h1>Files:</h1>
-                    <div class="btn-group-justified">
-                        @foreach (var file in Model.ProjectFileMappings)
+            <div class="btn">
+                <a class="btn btn-info project-details-edit-btn" href="@Url.Action("Edit", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
+            <div class="btn">
+                <a class="btn btn-danger project-details-delete-btn" href="@Url.Action("Delete", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-trash"></span></a>
+            </div>
+        }
+        <br />
+        <div class="btn">
+            <a class="btn project-details-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
+        </div>
+    </div>
+    <br />
+    <div class="jumbotron project-details-jumbotron">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @if (Model.ProjectImage != null)
+                {
+                    <img class="project-details-image" src="@Url.Content(Constants.ProjectThumbnailPath + Model.ProjectImage.FileName)" alt="@Model.ProjectImage.FileName" />
+                }
+                else
+                {
+                    <img class="project-details-image" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="Default.png" />
+                }
+            </div>
+            <div class="col-md-12 project-details-description-holder">
+                <div class="well project-details-description">
+                    <div class="project-details-description-text">
+                        <h2 class="text-uppercase"><strong>Description:</strong></h2>
+                        <br />
+                        @Html.DisplayFor(model => model.Description)
+                        <hr />
+
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
+                            <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
+                            if (Model.UpdatedBy != null)
+                            {
+                                <p><strong>Updated by: @Html.DisplayFor(model => model.UpdatedBy) - @Html.DisplayFor(model => model.UpdatedDate)</strong></p>
+                            }
                         }
                     </div>
                 </div>
             </div>
-        }
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <div class="col-md-12 project-details-files-holder">
+                    <div class="well Width-80 project-details-files">
+                        <h2 class="text-uppercase"><strong>Files:</strong></h2>
+                        <hr />
+                        <div class="btn-group-justified">
+                            @foreach (var file in Model.ProjectFileMappings)
+                            {
+                                <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>

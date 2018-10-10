@@ -18,13 +18,32 @@ textarea {
 
 /*css for the Site*/
 
+.site-navbar{
+    background-color:rgba(0, 0, 0, 0.80);
+    border-bottom:2px solid black;
+}
+
+.site-navbar-big-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+    font-family: sans-serif;
+}
+
+.site-navbar-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+    font-family: sans-serif;
+}
+
 .site-container {
-    max-width: 3000px;
+    max-width: 4000px;
     width: 100%;
     height: auto;
     padding: 0;
     text-align: center;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .site-container-footer {
@@ -57,9 +76,9 @@ textarea {
 }
 
 .home-slider {
-    height: auto;
+    height:auto;
     width: 100%;
-    background-color: blue;
+    background-color: transparent;
     object-fit:fill;
 }
 
@@ -82,6 +101,11 @@ textarea {
 
 .home-canvas {
     border:1px solid black;
+}
+
+.home-edit-container {
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
 }
 
 /*css for the About view*/
@@ -107,10 +131,11 @@ textarea {
     font-family: sans-serif;
     font-size: 1em;
     font-weight: bold;
-    background: #fff;
     padding: 5px;
-    border-bottom: 10px solid #808080;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-age {
@@ -118,24 +143,26 @@ textarea {
     font-family: sans-serif;
     font-size: 1em;
     font-weight: bold;
-    background: #fff;
     padding: 5px;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);;
 }
 
 .about-image {
     width: auto;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
 }
 
 .about-text-header {
     font-weight: bold;
     font-family: sans-serif;
-    background: #fff;
     padding: 2px;
-    border-bottom: 7px solid #808080;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-text {
@@ -146,32 +173,38 @@ textarea {
     text-align: center;
     font-weight: bold;
     text-decoration: double;
-    font-weight: bold;
-    background: #fff;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-files-header {
     font-weight: bold;
-    background: #fff;
     padding: 2px;
-    border-bottom: 7px solid #808080;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-file-holder {
-    max-width:none;
-    width:100%;
+    max-width: none;
+    width: 100%;
     font-weight: bold;
-    background: #fff;
     padding: 2px;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-file-btn {
     font-size: smaller;
     font-family: sans-serif;
-    background-color: #fff;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    border-top: 2px solid rgba(0, 0, 0, 0.80);
+    border-left: 1px solid rgba(0, 0, 0, 0.80);
+    border-right: 1px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
 }
 
 .about-created {
@@ -181,21 +214,34 @@ textarea {
     text-align: center;
     font-weight: bold;
     text-decoration: double;
-    font-weight: bold;
-    background: #fff;
-    border-bottom: 10px solid #808080;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
+}
+
+.about-edit-container {
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.about-edit-jumbotron {
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-geometric.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 /*css for the Projects view*/
 
 .project-container {
-    margin-top: 50px;
     max-width: none;
     width: 100%;
     height: 100%;
+    background-color: #c78d50;
+    background-image: url(../Content/Images/Default/wood-pattern.png);
 }
 
 .project-header-holder {
+    padding:50px;
     max-width: 1000px;
     margin: auto;
     background-color: transparent;
@@ -210,12 +256,23 @@ textarea {
     text-align: center;
 }
 
+.project-search-bar {
+    max-width: none;
+    height: auto;
+    width: 80%;
+    margin: auto;
+    font-size: 36px;
+    text-align: center;
+    border: 1px solid black;
+}
+
 .project-filter {
     margin-top: 10px;
     height: 100%;
     width: auto;
     font-size: 24px;
     text-align: center;
+    border: 1px solid black;
 }
 
 .project-filter-list {
@@ -223,22 +280,183 @@ textarea {
     width: auto;
     font-size: 24px;
     text-align: center;
+    border: 1px solid black;
 }
 
-.project-image {
+.project-holder {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    border:1px solid black;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/smooth-wall-dark.png);
     transition: all .2s ease-in-out;
 }
 
-.project-image:hover {
-    transform: scale(1.05);
+.project-name {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 5px;
+    color: black;
+    text-decoration:underline;
+}
+
+.project-holder:hover {
+    transform: scale(1.08);
+}
+
+.project-image {
+    margin-bottom:50px;
+    border:1px solid black;
+}
+
+.project-details-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
+    ´//background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-header-holder {
+    margin-top:75px;
+}
+
+.project-details-header-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-header-category {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-edit-btn {
+    margin-top: 15px;
+    border-bottom: 10px solid #1595b7;
+    cursor: pointer;
+}
+
+.project-details-delete-btn {
+    margin-top: 15px;
+    border-bottom: 10px solid #a00505;
+    cursor: pointer;
+}
+
+.project-details-back-btn {
+    margin-top: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-back-btn:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(255, 255, 255, 0.50);
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-back-btn:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(255, 255, 255, 0.50);
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    background-image: url("https://www.transparenttextures.com/patterns/grid-me.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-image {
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+}
+
+.project-details-description-holder {
+    margin-top: 50px;
+}
+
+.project-details-description {
+    width: 80%;
+    margin: auto;
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+    background-color: #ffffff;
+    //background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+    background-image: url("https://www.transparenttextures.com/patterns/dark-circles.png");
+    //background-image: url("https://www.transparenttextures.com/patterns/double-lined.png");
+    //background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+    /background-image: url("https://www.transparenttextures.com/patterns/grunge-wall.png");
+}
+
+.project-details-description-text {
+    width: 75%;
+    margin: auto;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.project-details-files-holder {
+    margin-top: 50px;
+}
+
+.project-details-files {
+    margin: auto;
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-circles.png");
 }
 
 .ProjectItem {
-    width:50%;
-    height:auto;
+    width: 50%;
+    height: auto;
     margin: auto;
-    background-color:white;
-    text-align:center;
+    background-color: white;
+    text-align: center;
 }
 
 .ProjectDescription {
@@ -258,8 +476,11 @@ textarea {
     border: none;
     text-align: center;
     font-weight: bold;
-    text-decoration:double;
+    text-decoration: double;
     font-size: 16px;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 

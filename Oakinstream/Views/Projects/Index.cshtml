@@ -3,9 +3,9 @@
 
 <div class="container project-container">
     <div class="row project-header-holder">
+        <br />
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <br />
             <div class="btn">
                 <a class="btn btn-success" href="@Url.Action("Create", "Projects")" style="cursor:pointer;"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
@@ -13,20 +13,20 @@
         <div class="col-md-12">
             @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get, new { @class = "project-search" }))
             {
-                @Html.TextBox("Search", null, new { @class = "project-search", @placeholder = "Search" })
+                @Html.TextBox("Search", null, new { @class = "project-search-bar", @placeholder = "Search" })
             }
             @{
                 string ProjectString = "";
                 if (Model.Projects.TotalItemCount == 1) { ProjectString = "project"; } else { ProjectString = "projects"; }
             }
-            @(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount @ProjectString
+            <p style="font-weight:bold">@(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount @ProjectString</p>
             @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get))
             {
                 <button type="button" class="btn btn-default project-filter" data-toggle="collapse" data-target="#filters">Filters</button>
-                <hr />
                 <div id="filters" class="collapse">
                     <div class="row" style="text-align:center">
                         <div class="btn-group-vertical">
+                            <br />
                             @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "project-filter-list" })
                             @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "project-filter-list" })
                             <input type="submit" value="Filter" class="btn btn-success" />
@@ -35,54 +35,52 @@
                     </div>
                 </div>
             }
+            <br />
         </div>
     </div>
-</div>
-<hr />
-
-<div class="container">
-    <div class="row">
+    <div class="row" sstyle="margin:auto;">
         @foreach (var item in Model.Projects)
         {
-            <div class="col-md-12" style="text-align:center">
-                @if (item.ProjectImage != null)
-                {
-                    <a href="@Url.Action("Details", new { id = item.ID })" style="text-decoration:none;">
-                        <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
-                    </a>
-                }
-                else
-                {
-                    <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
-                        <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
-                    </a>
-                }
-                <br />
-                <a href="@Url.Action("Details",new { id = item.ID })" style="text-decoration:none;">
-                    <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
-                </a>
-                <br />
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    <span class="glyphicon glyphicon-edit"></span>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.Raw(" | ")
-                    <span class="glyphicon glyphicon-remove-circle"></span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
-                <hr />
+            <div class="col-md-12" style="text-align:center;">
+                <div class="project-holder" style="cursor:pointer;" onclick="location.href='@Url.Action("Details", new { id = item.ID })';">
+                        <br />
+                        <h1><span class="glyphicon glyphicon-remove"></span></h1>
+                        <h1><span class="project-name">@Html.DisplayFor(modelItem => item.Name)</span></h1>
+                        <br />
+                        @if (item.ProjectImage != null)
+                        {
+                            <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
+                        }
+                        else
+                        {
+                            <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
+                        }
+                        <br />
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <div class="btn">
+                                <a class="btn btn-info" href="@Url.Action("Edit", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                            <div class="btn">
+                                <a class="btn btn-danger" href="@Url.Action("Delete", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-trash"></span></a>
+                            </div>
+                            <br>
+                        }
+                </div>
             </div>
+
         }
     </div>
-</div>
-<hr />
 
-@if (Model.Projects.PageCount > 10)
-{
-    <div class="row" style="text-align:center;">
-        Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of
-        @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page =>
+
+    @if (Model.Projects.PageCount > 10)
+    {
+        <div class="row" style="text-align:center;">
+            Page @(Model.Projects.PageCount < Model.Projects.PageNumber ? 0 : Model.Projects.PageNumber) of
+            @Model.Projects.PageCount @Html.PagedListPager(Model.Projects, page =>
 Url.Action("Index", new { category = Model.Category, search = Model.Search, sortBy = Model.SortBy, page}))
-    </div>
-}
+        </div>
+    }
 
+    <br />
+</div>
