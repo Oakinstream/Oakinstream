@@ -4,16 +4,14 @@
     ViewBag.Title = "Edit Project";
 }
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col-md-12  NormalBorder-Bottom">
-            <br />
-            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+<div class="container project-create-container">
+    <div class="row project-create-header">
+        <div class="col-md-12">
+            <h1 class="text-uppercase"><span class="project-create-header-title"><strong>@ViewBag.Title</strong></span></h1>
         </div>
-    </div>
-
-    <div>
-        @Html.ActionLink("Back to Projects", "Index")
+        <div class="btn">
+            <a class="btn site-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
+        </div>
     </div>
     <br />
 
@@ -21,56 +19,56 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="jumbotron Margin-Top-20 NormalBorder">
+        <div class="jumbotron Margin-Top-20 NormalBorder project-create-jumbotron">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
+                    <h4 class="project-create-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "FormBox" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <hr />
+            <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
+                    <h4 class="project-create-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, htmlAttributes: new { @class = "FormBox" })
+                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "FormBox" })
                     @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <hr />
+            <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-picture"></span> Project Image </h4>
+                    <h4 class="project-create-text"><span class="glyphicon glyphicon-picture"></span> Project Image </h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
                     @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "FormBox" })
                     @Html.ValidationMessageFor(model => model.ProjectImageID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <hr />
+            <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-file"></span> File 1</h4>
+                    <h4 class="project-create-text"><span class="glyphicon glyphicon-file"></span> File 1</h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
                     @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "FormBox" })
                     @Html.ValidationMessageFor(model => model.FileList, "", new { @class = "text-danger" })
-                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#Files" style="">Add more images</button>
+                    <button class="site-add-more-btn" type="button" data-toggle="collapse" data-target="#Files">Add more images</button>
                 </div>
             </div>
-            <hr />
+            <br />
             <div id="Files" class="collapse">
                 @for (int i = 1; i < Model.FileList.Count; i++)
                 {
                     <div class="row Margin-Top-20">
                         <div class="col-md-4 text-right">
-                            <h4><span class="glyphicon glyphicon-file"></span> File @(i + 1):</h4>
+                            <h4 class="project-create-text"><span class="glyphicon glyphicon-file"></span> File @(i + 1):</h4>
                         </div>
                         <div class="col-md-8 NormalBorder-Left text-left">
                             @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "FormBox" })
@@ -79,20 +77,20 @@
                     </div>
                 }
             </div>
-            <hr />
+            <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Description)</h4>
+                    <h4 class="project-create-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Description)</h4>
                 </div>
                 <div class="col-md-8 NormalBorder-Left text-left">
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none;" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <hr />
+            <br />
             <div class="form-group">
                 <div class="col-md-12">
-                    <input type="submit" value="Edit" class="btn btn-success FormBtn" />
+                    <input type="submit" value="Edit" class="btn btn-info site-edit-btn-big" />
                 </div>
             </div>
             <br />

@@ -7,29 +7,39 @@
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
             <div class="btn">
-                <a class="btn btn-success" href="@Url.Action("Create", "Projects")" style="cursor:pointer;"><span class="glyphicon glyphicon-plus"></span></a>
+                <a class="btn btn-success site-create-btn" href="@Url.Action("Create", "Projects")" style="cursor:pointer;"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
         }
         <div class="col-md-12">
-            @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get, new { @class = "project-search" }))
+            @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get, new { @class = "site-search" }))
             {
-                @Html.TextBox("Search", null, new { @class = "project-search-bar", @placeholder = "Search" })
+                @Html.TextBox("Search", null, new { @class = "site-search-bar", @placeholder = "Search" })
             }
             @{
                 string ProjectString = "";
                 if (Model.Projects.TotalItemCount == 1) { ProjectString = "project"; } else { ProjectString = "projects"; }
             }
-            <p style="font-weight:bold">@(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount @ProjectString</p>
+            @if (Model.Search != null)
+            {
+                if (Model.Search.Length < 50)
+                {
+                    <p style="font-weight:bold"><span class="site-search-text">@(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount @ProjectString</span></p>
+                }
+            }
+            else
+            {
+                <p style="font-weight:bold"><span class="site-search-text">@(String.IsNullOrWhiteSpace(Model.Search) ? "Showing" : "You searched for " + Model.Search + ", found") @Model.Projects.TotalItemCount @ProjectString</span></p>
+            }
             @using (Html.BeginRouteForm("ProjectIndex", FormMethod.Get))
             {
-                <button type="button" class="btn btn-default project-filter" data-toggle="collapse" data-target="#filters">Filters</button>
+                <button type="button" class="btn btn-default site-filter" data-toggle="collapse" data-target="#filters">Filters</button>
                 <div id="filters" class="collapse">
                     <div class="row" style="text-align:center">
                         <div class="btn-group-vertical">
                             <br />
-                            @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "project-filter-list" })
-                            @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "project-filter-list" })
-                            <input type="submit" value="Filter" class="btn btn-success" />
+                            @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "site-filter-list" })
+                            @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "site-filter-list" })
+                            <input type="submit" value="Filter" class="btn btn-success site-filter-btn" />
                             <input type="hidden" name="Search" id="Search" value="@Model.Search" />
                         </div>
                     </div>
@@ -38,34 +48,49 @@
             <br />
         </div>
     </div>
+
+    @{ 
+        var aoseffect = "fade-left";
+    }
+
     <div class="row" sstyle="margin:auto;">
         @foreach (var item in Model.Projects)
         {
-            <div class="col-md-12" style="text-align:center;">
+            if(aoseffect == "fade-left")
+            {
+                aoseffect = "fade-right";
+            }
+            else
+            {
+                aoseffect = "fade-left";
+            }
+            <div class="col-md-12" data-aos="@aoseffect" data-aos-duration="500" style="text-align:center;">
                 <div class="project-holder" style="cursor:pointer;" onclick="location.href='@Url.Action("Details", new { id = item.ID })';">
-                        <br />
-                        <h1><span class="glyphicon glyphicon-remove"></span></h1>
-                        <h1><span class="project-name">@Html.DisplayFor(modelItem => item.Name)</span></h1>
-                        <br />
-                        @if (item.ProjectImage != null)
-                        {
-                            <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
-                        }
-                        else
-                        {
-                            <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
-                        }
-                        <br />
-                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                        {
-                            <div class="btn">
-                                <a class="btn btn-info" href="@Url.Action("Edit", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
-                            </div>
-                            <div class="btn">
-                                <a class="btn btn-danger" href="@Url.Action("Delete", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                            <br>
-                        }
+                    <br />
+                    <h1><span class="glyphicon glyphicon-map-marker"></span></h1>
+                    <h1><span class="project-name">@Html.DisplayFor(modelItem => item.Name)</span></h1>
+                    <br />
+                    @if (item.ProjectImage != null)
+                    {
+                        <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + item.ProjectImage.FileName)" alt="@item.ProjectImage.FileName" />
+                    }
+                    else
+                    {
+                        <img class="project-image" src="@Url.Content(Constants.ProjectThumbnailPath + "ProjectDefault.png")" alt="ProjectDefault.png" />
+                    }
+                    <h1><span class="project-category-text">Category: @Html.DisplayFor(modelItem => item.ProjectCategory.Name)</span></h1>
+                    <br />
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <div class="btn">
+                            <a class="btn btn-info site-edit-btn" href="@Url.Action("Edit", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                        </div>
+                        <div class="btn">
+                            <a class="btn btn-danger site-delete-btn" href="@Url.Action("Delete", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    }
+                    <br>
                 </div>
             </div>
 
@@ -84,3 +109,11 @@ Url.Action("Index", new { category = Model.Category, search = Model.Search, sort
 
     <br />
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/aos.js")
+    <script>
+        AOS.init({
+        });
+    </script>
+}

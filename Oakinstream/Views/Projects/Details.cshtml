@@ -13,15 +13,15 @@
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
             <div class="btn">
-                <a class="btn btn-info project-details-edit-btn" href="@Url.Action("Edit", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-info site-edit-btn" href="@Url.Action("Edit", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-edit"></span></a>
             </div>
             <div class="btn">
-                <a class="btn btn-danger project-details-delete-btn" href="@Url.Action("Delete", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="btn btn-danger site-delete-btn" href="@Url.Action("Delete", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-trash"></span></a>
             </div>
         }
         <br />
         <div class="btn">
-            <a class="btn project-details-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
+            <a class="btn btn site-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
         </div>
     </div>
     <br />
@@ -43,10 +43,10 @@
                         <h2 class="text-uppercase"><strong>Description:</strong></h2>
                         <br />
                         @Html.DisplayFor(model => model.Description)
-                        <hr />
 
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
+                            <hr />
                             <p><strong>Created by: @Html.DisplayFor(model => model.CreatedBy) - @Html.DisplayFor(model => model.CreatedDate)</strong></p>
                             if (Model.UpdatedBy != null)
                             {
@@ -61,11 +61,10 @@
                 <div class="col-md-12 project-details-files-holder">
                     <div class="well Width-80 project-details-files">
                         <h2 class="text-uppercase"><strong>Files:</strong></h2>
-                        <hr />
                         <div class="btn-group-justified">
                             @foreach (var file in Model.ProjectFileMappings)
                             {
-                                <a class="btn btn-default" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
+                                <a class="btn btn-default project-details-files-btn" href="@Url.Content(Constants.ProjectFilePath + file.ProjectFile.FileName)" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @file.ProjectFile.FileName</a>
                             }
                         </div>
                     </div>
