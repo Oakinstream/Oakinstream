@@ -642,8 +642,16 @@ textarea {
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #c78d50;
-    background-image: url(../Content/Images/Default/wood-pattern.png);
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+}
+
+.blog-container-empty {
+    max-width: none;
+    width: 100%;
+    height: 100vh;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
 }
 
 .blog-header-holder {
@@ -653,18 +661,45 @@ textarea {
     background-color: transparent;
 }
 
-.BlogDescription {
-    width: auto;
-    max-width: none;
-    resize: none;
-    border: none;
-    text-align: center;
+.blog-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 15px;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #ededed;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+
+.blog-title-text {
+    padding:10px;
+    color: black;
+    font-weight:bold;
+}
+
+.blog-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+.blog-small-images-holder {
+    width: 100%;
+    margin: auto;
+}
+
+.blog-small-images {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-link-text {
+    font-size: 20px;
     font-weight: bold;
-    text-decoration: double;
-    font-size: 16px;
-    background-color: #b8b8b8;
-    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .contact-forms {
