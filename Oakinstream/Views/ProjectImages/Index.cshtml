@@ -4,22 +4,22 @@
     ViewBag.Title = "Project Images";
 }
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col-md-12  NormalBorder-Bottom">
-            <br />
-            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+<div class="container projectimages-container">
+    <div class="row projectimages-header">
+        <div class="col-md-12">
+            <h1 class="text-uppercase"><span class="projectimages-title">@ViewBag.Title</span></h1>
+        </div>
+        <div class="btn">
+            <a class="btn site-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
         </div>
     </div>
-    <a href="@Url.Action("Index", "Admin")" class="text-primary">Back to admin</a>
-    <br />
-    <div class="row">
-        <div class="btn" style="width:30%;">
-            <span class="glyphicon glyphicon-plus"></span>
-            <a href="@Url.Action("Upload", "ProjectImages")" class="btn btn-success" style="width:50%;">Add a image</a>
+
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="btn">
+            <a class="btn btn-success site-btn-create" href="@Url.Action("Upload", "ProjectImages")"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
-    </div>
-    <hr />
+    }
 
     @{
         var itemcounter = 0;
@@ -31,15 +31,14 @@
 
     @if (itemcounter != 0)
     {
-        <div class="jumbotron col-md-12 NormalBorder">
-            <h2 class="text-primary">@Html.DisplayNameFor(model => model.First().FileName):</h2>
+        <div class="jumbotron site-border-normal projectimages-jumbotron">
+            <h2 class="projectimages-text">@Html.DisplayNameFor(model => model.First().FileName):</h2>
             <hr />
             @foreach (var item in Model)
             {
-                <a class="btn btn-danger " href="@Url.Action("Delete", "ProjectImages", new { id = item.ID })" style="cursor:pointer; margin-left:500px;"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "ProjectImages", new { id = item.ID })" style="margin-left:500px;"><span class="glyphicon glyphicon-remove"></span></a>
                 <br />
-                <img src="@Url.Content(Constants.ProjectThumbnailPath+item.FileName)" alt="@item.FileName" title="@item.FileName" />
-
+                <img class="projectimages-image" src="@Url.Content(Constants.ProjectThumbnailPath+item.FileName)" alt="@item.FileName" title="@item.FileName" />
                 <hr />
             }
         </div>

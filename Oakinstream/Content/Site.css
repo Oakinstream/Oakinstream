@@ -55,40 +55,41 @@ textarea {
     background-color: black;
 }
 
-.site-create-btn {
+.site-btn-create {
     border-bottom: 10px solid #548f42;
     cursor: pointer;
 }
 
-.site-create-btn:hover {
+.site-btn-create:hover {
     border-bottom: 10px solid rgba(84, 143, 66, 0.75);
     cursor: pointer;
 }
 
-.site-create-btn:active {
+.site-btn-create:active {
     border-bottom: 2px solid #548f42;
     text-shadow:none;
     cursor: pointer;
 }
 
-.site-search-btn {
+
+.site-btn-search {
     border-bottom: 10px solid #1595b7;
     cursor: pointer;
 }
 
-.site-search-btn:hover {
+.site-btn-search:hover {
     border-bottom: 10px solid #1595b7;
     cursor: pointer;
 }
 
-.site-search-btn:active {
+.site-btn-search:active {
     border-bottom: 2px solid #1595b7;
     text-shadow:none;
     cursor: pointer;
 }
 
 
-.site-create-btn-big {
+.site-btn-create-big {
     height: 50px;
     width: 100%;
     margin-top: 15px;
@@ -96,13 +97,13 @@ textarea {
     cursor: pointer;
 }
 
-.site-edit-btn {
+.site-btn-edit {
     margin-top: 15px;
     border-bottom: 10px solid #1595b7;
     cursor: pointer;
 }
 
-.site-edit-btn-big {
+.site-btn-edit-big {
     height: 50px;
     width: 100%;
     margin-top: 15px;
@@ -110,13 +111,13 @@ textarea {
     cursor: pointer;
 }
 
-.site-delete-btn {
+.site-btn-delete {
     margin-top: 15px;
     border-bottom: 10px solid #a00505;
     cursor: pointer;
 }
 
-.site-delete-btn-big {
+.site-btn-delete-big {
     height: 50px;
     width: 100%;
     margin-top: 15px;
@@ -124,7 +125,7 @@ textarea {
     cursor: pointer;
 }
 
-.site-back-btn {
+.site-btn-back {
     margin-top: 15px;
     font-family: sans-serif;
     text-align: center;
@@ -136,7 +137,7 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.site-back-btn:hover {
+.site-btn-back:hover {
     border: 1px solid black;
     border-bottom: 7px solid rgba(0, 0, 0, 0.50);
     background-color: rgba(0, 0, 0, 0.50);
@@ -144,7 +145,7 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.site-back-btn:active {
+.site-btn-back:active {
     border: 1px solid black;
     border-bottom: 2px solid rgba(0, 0, 0, 0.50);
     background-color: rgba(0, 0, 0, 0.50);
@@ -152,7 +153,32 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.site-add-more-btn {
+.site-btn-link {
+    margin-top: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    background-color: #FFFFFF;
+}
+
+.site-btn-link:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.site-btn-link:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.site-btn-add-more {
     padding:5px;
     font-family: sans-serif;
     text-align: center;
@@ -164,7 +190,7 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.site-add-more-btn:hover {
+.site-btn-add-more:hover {
     border: 1px solid black;
     border-bottom: 7px solid rgba(0, 0, 0, 0.50);
     background-color: rgba(0, 0, 0, 0.50);
@@ -172,13 +198,31 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.site-add-more-btn:active {
+.site-btn-add-more:active {
     border: 1px solid black;
     border-bottom: 2px solid rgba(0, 0, 0, 0.50);
     background-color: rgba(0, 0, 0, 0.50);
     color: rgba(255, 255, 255, 0.50);
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
+
+.site-btn-file {
+    margin-top:15px;
+    border-bottom: 10px solid #bfbfbf;
+    cursor: pointer;
+}
+
+.site-btn-file:hover {
+    border-bottom: 10px solid #a7a7a7;
+    cursor: pointer;
+}
+
+.site-btn-file:active {
+    border-bottom: 2px solid #bfbfbf;
+    text-shadow:none;
+    cursor: pointer;
+}
+
 
 .site-search {
     max-width: none;
@@ -231,20 +275,20 @@ textarea {
     border-bottom: 10px solid black;
 }
 
-.site-filter-btn {
+.site-btn-filter {
     border-bottom: 10px solid #548f42;
     cursor: pointer;
 }
 
-.site-filter-btn:hover {
-        border-bottom: 10px solid rgba(84, 143, 66, 0.75);
-        cursor: pointer;
+.site-btn-filter:hover {
+    border-bottom: 10px solid rgba(84, 143, 66, 0.75);
+    cursor: pointer;
 }
 
-.site-filter-btn:active {
-        border-bottom: 2px solid #548f42;
-        text-shadow: none;
-        cursor: pointer;
+.site-btn-filter:active {
+    border-bottom: 2px solid #548f42;
+    text-shadow: none;
+    cursor: pointer;
 }
 
 
@@ -258,47 +302,6 @@ textarea {
 .footer-btn {
     margin: 0 10px;
     border-radius: 0;
-}
-
-/*css for the Home view*/
-
-.home-container {
-    max-width: none;
-    width: 100%;
-    height: 100%;
-}
-
-.home-slider {
-    height:auto;
-    width: 100%;
-    background-color: transparent;
-    object-fit:fill;
-}
-
-.home-slider-footer {
-    height: 50px;
-    margin: 0;
-    width: 100%;
-    background-color: black;
-}
-
-.home-info {
-    height: 100%;
-    text-align:center;
-}
-
-.home-infobox {
-    margin: 25px;
-    border: 1px solid black;
-}
-
-.home-canvas {
-    border:1px solid black;
-}
-
-.home-edit-container {
-    background-color: #ffffff;
-    background-image: url(../Content/Images/Default/crissxcross.png);
 }
 
 /*css for the About view*/
@@ -413,15 +416,771 @@ textarea {
 }
 
 .about-edit-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
     background-image: url(../Content/Images/Default/crissxcross.png);
 }
 
-.about-edit-jumbotron {
-    background-color: #ffffff;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-geometric.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+.about-edit-header {
+    margin-top: 50px;
 }
+
+.about-edit-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.about-edit-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.about-edit-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the AboutFiles view*/
+
+.aboutfiles-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.aboutfiles-header {
+    margin-top: 50px;
+}
+
+.aboutfiles-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.aboutfiles-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.aboutfiles-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the AboutImages view*/
+
+.aboutimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.aboutimages-header {
+    margin-top: 50px;
+}
+
+.aboutimages-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.aboutimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.aboutimages-text {
+    color: white;
+    font-weight: bold;
+}
+
+.aboutimages-image {
+    width: auto;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+/*css for the Admin view*/
+
+.admin-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.admin-header {
+    margin-top: 50px;
+}
+
+.admin-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.admin-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.admin-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the Blog view*/
+
+.blog-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+}
+
+.blog-container-empty {
+    max-width: none;
+    width: 100%;
+    height: 1350px;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+}
+
+.blog-header-holder {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: transparent;
+}
+
+.blog-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 15px;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #ededed;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+
+.blog-title-text {
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.blog-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-small-images-holder {
+    width: 100%;
+    margin: auto;
+}
+
+.blog-small-images {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-link-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.blog-CED-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+
+.blog-CED-header {
+    margin-top: 50px;
+}
+
+.blog-CED-header-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blog-CED-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blog-CED-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the BlogCategory view*/
+
+.blogcategory-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.blogcategory-header {
+    margin-top: 50px;
+}
+
+.blogcategory-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogcategory-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogcategory-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the BlogImages view*/
+
+.blogimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.blogimages-header {
+    margin-top: 50px;
+}
+
+.blogimages-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogimages-text {
+    color: white;
+    font-weight: bold;
+}
+
+.blogimages-image {
+    width: auto;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+/*css for the CheckingAccount view*/
+
+.checkingaccount-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.checkingaccount-header {
+    margin-top: 50px;
+}
+
+.checkingaccount-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.checkingaccount-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.checkingaccount-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the Contact view*/
+
+.contact-container {
+    max-width: none;
+    width: 100%;
+    height: 1350px;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.contact-list-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+
+.contact-header {
+    margin-top: 50px;
+}
+
+.contact-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    text-decoration: double;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.contact-jumbotron {
+    max-width: 1500px;
+    height: 100%;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.contact-jumbotron-half {
+    width:50%;
+    float:left;
+}
+
+
+.contact-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the Home view*/
+
+.home-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+}
+
+.home-slider {
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    object-fit: fill;
+}
+
+.home-slider-footer {
+    height: 50px;
+    margin: 0;
+    width: 100%;
+    background-color: black;
+}
+
+.home-info {
+    height: 100%;
+    text-align: center;
+}
+
+.home-infobox {
+    margin: 25px;
+    border: 1px solid black;
+}
+
+.home-linkbox {
+    padding:5px;
+    margin: 50px;
+    border: 1px solid black;
+}
+
+.home-canvas {
+    border: 1px solid black;
+}
+
+.home-edit-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.home-edit-header {
+    margin-top: 50px;
+}
+
+.home-edit-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.home-edit-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.home-edit-text {
+    color: white;
+    font-weight: bold;
+}
+
+
+/*css for the HomeImages view*/
+
+.homeimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.homeimages-header {
+    margin-top: 50px;
+}
+
+.homeimages-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.homeimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.homeimages-jumbotron-half {
+    width: 25%;
+    float: left;
+}
+
+.homeimages-text {
+    color: white;
+    font-weight: bold;
+}
+
+.homeimages-image {
+    width: 100%;
+    height:auto;
+    object-fit:cover;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+/*css for the ProjectCategory view*/
+
+.projectcategory-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.projectcategory-header {
+    margin-top: 50px;
+}
+
+.projectcategory-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectcategory-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectcategory-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the ProjectFiles view*/
+
+.projectfiles-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.projectfiles-header {
+    margin-top: 50px;
+}
+
+.projectfiles-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectfiles-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectfiles-text {
+    color: white;
+    font-weight: bold;
+}
+
+/*css for the ProjectImages view*/
+
+.projectimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../Content/Images/Default/crissxcross.png);
+}
+
+.projectimages-header {
+    margin-top: 50px;
+}
+
+.projectimages-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.projectimages-text {
+    color: white;
+    font-weight: bold;
+}
+
+.projectimages-image {
+    width: auto;
+    height: auto;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
 
 /*css for the Projects view*/
 
@@ -433,8 +1192,16 @@ textarea {
     background-image: url(../Content/Images/Default/wood-pattern.png);
 }
 
-.project-header-holder {
-    padding:50px;
+.project-container-empty {
+    max-width: none;
+    width: 100%;
+    height: 1350px;
+    background-color: #c78d50;
+    background-image: url(../Content/Images/Default/wood-pattern.png);
+}
+
+.project-header {
+    padding: 50px;
     max-width: 1000px;
     margin: auto;
     background-color: transparent;
@@ -594,7 +1361,7 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
 }
 
-.project-create-container {
+.project-CED-container {
     max-width: none;
     width: 100%;
     height: 100%;
@@ -602,11 +1369,11 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
 }
 
-.project-create-header{
+.project-CED-header{
     margin-top:50px;
 }
 
-.project-create-header-title {
+.project-CED-header-title {
     padding: 10px;
     font-family: sans-serif;
     background-color: transparent;
@@ -620,7 +1387,7 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.project-create-jumbotron {
+.project-CED-jumbotron {
     max-width: 1500px;
     margin: auto;
     background: transparent;
@@ -631,78 +1398,14 @@ textarea {
     background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
-.project-create-text {
+.project-CED-text {
     color:white;
     font-weight:bold;
 }
 
-/*css for the Blog view*/
-
-.blog-container {
-    max-width: none;
-    width: 100%;
-    height: 100%;
-    background-color: #b8b8b8;
-    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
-}
-
-.blog-container-empty {
-    max-width: none;
-    width: 100%;
-    height: 100vh;
-    background-color: #b8b8b8;
-    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
-}
-
-.blog-header-holder {
-    max-width: 1000px;
-    margin: auto;
-    margin-top: 50px;
-    background-color: transparent;
-}
-
-.blog-jumbotron {
-    max-width: 1500px;
-    margin: auto;
-    margin-top: 15px;
-    background: transparent;
-    border: 2px solid black;
-    border-bottom: 10px solid black;
-    margin-bottom: 150px;
-    background-color: #ededed;
-    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
-}
-
-.blog-title-text {
-    padding:10px;
-    color: black;
-    font-weight:bold;
-}
-
-.blog-image {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
-}
 
 
-.blog-small-images-holder {
-    width: 100%;
-    margin: auto;
-}
-
-.blog-small-images {
-    width: 20%;
-    height: auto;
-    object-fit: cover;
-}
-
-.blog-link-text {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.contact-forms {
+.site-forms-contact {
     width: 80%;
     max-width: none;
     resize: none;
@@ -755,35 +1458,66 @@ textarea {
     width: 100%;
 }
 
-.SmalBorder {
+.site-border-small {
     border: 1px solid black;
 }
-.NormalBorder {
+.site-border-normal {
     border: 2px solid black;
 }
-.NormalBorder-Top {
-    border-top: 2px solid black;
-}
-.NormalBorder-Right {
-    border-Right: 2px solid black;
-}
-.NormalBorder-Bottom {
-    border-bottom: 2px solid black;
-}
-.NormalBorder-Left {
-    border-left: 2px solid black;
+.site-border-thicc {
+    border: 3px solid black;
 }
 
-.Margin-Auto{
+.site-border-small-top {
+    border-top: 1px solid black;
+}
+.site-border-normal-top {
+    border-top: 2px solid black;
+}
+.site-border-thicc-top {
+    border-top: 3px solid black;
+}
+
+.site-border-small-right {
+    border-right: 1px solid black;
+}
+.site-border-normal-right {
+    border-right: 2px solid black;
+}
+.site-border-thicc-right {
+    border-right: 3px solid black;
+}
+
+.site-border-small-bottom {
+    border-bottom: 1px solid black;
+}
+.site-border-normal-bottom {
+    border-bottom: 2px solid black;
+}
+.site-border-thicc-bottom {
+    border-bottom: 3px solid black;
+}
+
+.site-border-small-left {
+    border-left: 1px solid black;
+}
+.site-border-normal-left {
+    border-left: 2px solid black;
+}
+.site-border-thicc-left {
+    border-left: 3px solid black;
+}
+
+.site-margin-auto{
     margin:auto;
 }
-.Margin-Top-10{
+.site-margin-top-10{
     margin-top:10px;
 }
-.Margin-Top-20 {
+.site-margin-top-20 {
     margin-top: 20px;
 }
-.Margin-Bottom-10 {
+.site-margin-bottom-10 {
     margin-bottom: 10px;
 }
 
@@ -794,21 +1528,21 @@ textarea {
     float: left;
 }
 
-.FormBox{
+.site-form{
     height: 50px;
     max-width: none;
     width:50%;
     font-size:24px;
 }
 
-.FormBox-Category {
+.site-form-category {
     height: 50px;
     max-width: none;
     width: 100%;
     font-size: 24px;
 }
 
-.FormBox-File {
+.site-form-file {
     border: 2px solid black;
     padding: 20px;
     max-width: none;
@@ -817,16 +1551,16 @@ textarea {
     font-size: 24px;
 }
 
-.FormText {
+.site-form-text {
     font-size: 36px;
 }
 
-.FormBtn {
+.site-form-btn {
     height: 50px;
     width: 100%;
 }
 
-.FormBtn-height {
+.site-form-height {
     border: 2px solid black;
     height: 75px;
     width: 50%;
@@ -834,7 +1568,7 @@ textarea {
     border-radius:unset;
 }
 
-.Form-Message {
+.site-form-message {
     height: 50px;
     width: 80%;
 }

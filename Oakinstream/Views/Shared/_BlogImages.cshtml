@@ -1,7 +1,0 @@
-﻿@model IEnumerable<Oakinstream.Models.BlogImage>
-
-@foreach (var item in Model)
-{
-    <img src="@Url.Content(Constants.BlogThumbnailPath+item.FileName)" alt="@item.FileName" title="@item.FileName" />
-    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-}

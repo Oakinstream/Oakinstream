@@ -11,7 +11,7 @@
                 foreach (var item in Model)
                 {
                     if (itemcount == 0)
-                    {<a class="btn btn-info " href="@Url.Action("Edit", "About", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>}
+                    {<a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "About", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span></a>}
                     itemcount++;
                 }
             }
@@ -34,7 +34,7 @@
             }
             else
             {
-                <img class="about-image" data-aos="zoom-out-up" data-aos-duration="2000"  src="@Url.Content(Constants.DefualtImagePath + "default.jpg")" alt="LOL.png" />
+                <img class="about-image" data-aos="zoom-out-up" data-aos-duration="2000"  src="@Url.Content(Constants.DefualtImagePath + "default.jpg")" alt="default-image" />
             }
             <hr />
 
@@ -73,7 +73,7 @@
             {
                 <div class="col-md-12">
                     <h3><span class="about-files-header">Files:</span></h3>
-                    <div class="well Margin-Auto Margin-Top-10 about-file-holder">
+                    <div class="well about-file-holder">
                         <div class="btn-group-justified">
                             @foreach (var file in Model.First().AboutFileMappings)
                             {

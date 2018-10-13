@@ -15,8 +15,8 @@
         {
             <div class="col-md-12">
                 <div class="btn">
-                    <a class="btn btn-success site-create-btn" href="@Url.Action("Create", "Blog")" style="cursor:pointer;"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a class="btn btn-info site-search-btn" data-toggle="collapse" data-target="#AdminSearch" style="cursor:pointer;"><span class="glyphicon glyphicon-search"></span></a>
+                    <a class="btn btn-success site-btn-create" href="@Url.Action("Create", "Blog")"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a class="btn btn-info site-btn-search" data-toggle="collapse" data-target="#AdminSearch"><span class="glyphicon glyphicon-search"></span></a>
                 </div>
                 <br />
                 @{
@@ -35,7 +35,7 @@
                     <br />
                     @using (Html.BeginRouteForm("BlogsIndex", FormMethod.Get))
                     {
-                        <button type="button" class="btn btn-success site-filter-btn" data-toggle="collapse" data-target="#filters">Filters</button>
+                        <button type="button" class="btn btn-success site-btn-filter" data-toggle="collapse" data-target="#filters">Filters</button>
                         <br />
                         <div id="filters" class="collapse">
                             <br />
@@ -43,7 +43,7 @@
                                 <div class="btn-group-vertical">
                                     @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "site-filter-list" })
                                     @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "site-filter-list" })
-                                    <input type="submit" value="Filter" class="btn btn-success site-filter-btn" />
+                                    <input type="submit" value="Filter" class="btn btn-success site-btn-filter" />
                                     <input type="hidden" name="Search" id="Search" value="@Model.Search" />
                                 </div>
                             </div>
@@ -63,10 +63,10 @@
                 {
                     <h2 class="text-info text-uppercase">Category: <strong>@Html.DisplayFor(Model => item.BlogCategoryModels.Name)</strong></h2>
                     <div class="btn">
-                        <a class="btn btn-info site-edit-btn" href="@Url.Action("Edit", "Blog", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "Blog", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span></a>
                     </div>
                     <div class="btn">
-                        <a class="btn btn-danger site-delete-btn" href="@Url.Action("Delete", "Blog", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "Blog", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>
 
                 }

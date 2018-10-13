@@ -341,7 +341,6 @@
     <Content Include="Views\BlogImages\Upload.cshtml" />
     <Content Include="Views\BlogImages\Index.cshtml" />
     <Content Include="Views\BlogImages\Delete.cshtml" />
-    <Content Include="Views\Shared\_BlogImages.cshtml" />
     <Content Include="Views\BlogCategory\Create.cshtml" />
     <Content Include="Views\BlogCategory\Delete.cshtml" />
     <Content Include="Views\BlogCategory\Index.cshtml" />

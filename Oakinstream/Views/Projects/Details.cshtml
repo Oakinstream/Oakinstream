@@ -13,15 +13,15 @@
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
             <div class="btn">
-                <a class="btn btn-info site-edit-btn" href="@Url.Action("Edit", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-edit"></span></a>
             </div>
             <div class="btn">
-                <a class="btn btn-danger site-delete-btn" href="@Url.Action("Delete", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "Projects", new { id = Model.ID })"><span class="glyphicon glyphicon-trash"></span></a>
             </div>
         }
         <br />
         <div class="btn">
-            <a class="btn btn site-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
+            <a class="btn btn site-btn-back" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
         </div>
     </div>
     <br />

@@ -4,57 +4,69 @@
     ViewBag.Title = "Edit Home";
 }
 
-<div class="container text-center  home-edit-container">
-    <div class="row">
-        <div class="col-md-12  NormalBorder-Bottom Margin-Top-20">
-            <br />
-            <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
+<div class="container  home-edit-container">
+    <div class="row home-edit-header">
+        <div class="col-md-12">
+            <h1 class="text-uppercase"><span class="home-edit-title">@ViewBag.Title</span></h1>
+        </div>
+        <div class="btn">
+            <a class="btn site-btn-back" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-backward"></span> Back to Home</a>
         </div>
     </div>
-
-    <div>
-        @Html.ActionLink("Back to home", "Index")
-    </div>
-    <br />
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-    <div class="jumbotron Margin-Top-20 NormalBorder">
+    <div class="jumbotron home-edit-jumbotron">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="row">
             <div class="col-md-4 text-right">
-                <h4><span class="glyphicon glyphicon-book"></span> @Html.LabelFor(model => model.Title):</h4>
+                <h4 class="home-edit-text"><span class="glyphicon glyphicon-book"></span> @Html.LabelFor(model => model.Title):</h4>
             </div>
-            <div class="col-md-8 NormalBorder-Left text-left">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "FormBox" } })
+            <div class="col-md-8 site-border-normal-left text-left">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "site-form" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
         <hr />
 
+        <div class="row">
+            <div class="col-md-4 text-right">
+                <h4 class="home-edit-text"><span class="glyphicon glyphicon-picture"></span> File 1</h4>
+            </div>
+            <div class="col-md-8 site-border-normal-left text-left">
+                @Html.DropDownListFor(vm => vm.HomeImages, Model.ImageLists[0], "Choose Image", htmlAttributes: new { @class = "site-form" })
+                @Html.ValidationMessageFor(model => model.HomeImages, "", new { @class = "text-danger" })
+                <button class="site-btn-add-more" type="button" data-toggle="collapse" data-target="#Images">Add more images</button>
+            </div>
+        </div>
+        <hr />
+
+        <div id="Images" class="collapse">
         @for (int i = 0; i < Model.ImageLists.Count; i++)
         {
-            <div class="row Margin-Top-20">
+            <div class="row site-margin-top-20">
                 <div class="col-md-4 text-right">
-                    <h4><span class="glyphicon glyphicon-picture"></span> File @(i + 1):</h4>
+                    <h4 class="home-edit-text"><span class="glyphicon glyphicon-picture"></span> File @(i + 1):</h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.HomeImages, Model.ImageLists[i], "Choose Image", htmlAttributes: new { @class = "FormBox" })
+                <div class="col-md-8 site-border-normal-left text-left">
+                    @Html.DropDownListFor(vm => vm.HomeImages, Model.ImageLists[i], "Choose Image", htmlAttributes: new { @class = "site-form" })
                     @Html.ValidationMessageFor(model => model.HomeImages, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <hr />
+            <br />
         }
+            <hr />
+        </div>
+        <br />
 
-        <hr />
         <div class="row">
             <div class="col-md-4 text-right">
-                <h4><span style="resize:none" class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info1)</h4>
+                <h4 class="home-edit-text"><span style="resize:none" class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info1)</h4>
             </div>
-            <div class="col-md-8 NormalBorder-Left text-left">
+            <div class="col-md-8 site-border-normal-left text-left">
                 @Html.EditorFor(model => model.Info1, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none;" } })
                 @Html.ValidationMessageFor(model => model.Info1, "", new { @class = "text-danger" })
             </div>
@@ -62,9 +74,9 @@
         <hr />
         <div class="row">
             <div class="col-md-4 text-right">
-                <h4><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info2)</h4>
+                <h4 class="home-edit-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info2)</h4>
             </div>
-            <div class="col-md-8 NormalBorder-Left text-left">
+            <div class="col-md-8 site-border-normal-left text-left">
                 @Html.EditorFor(model => model.Info2, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none;" } })
                 @Html.ValidationMessageFor(model => model.Info2, "", new { @class = "text-danger" })
             </div>
@@ -72,9 +84,9 @@
         <hr />
         <div class="row">
             <div class="col-md-4 text-right">
-                <h4><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.Info3)</h4>
+                <h4 class="home-edit-text"><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.Info3)</h4>
             </div>
-            <div class="col-md-8 NormalBorder-Left text-left">
+            <div class="col-md-8 site-border-normal-left text-left">
                 @Html.EditorFor(model => model.Info3, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none;" } })
                 @Html.ValidationMessageFor(model => model.Info3, "", new { @class = "text-danger" })
             </div>
@@ -82,10 +94,10 @@
         <hr />
         <div class="form-group">
             <div class="col-md-12">
-                <input type="submit" value="Edit" class="btn btn-success FormBtn" />
+                <input type="submit" value="Edit" class="btn btn-info site-btn-edit-big" />
             </div>
+            <br />
         </div>
-        <br />
     </div>
     }
 </div>

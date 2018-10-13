@@ -23,7 +23,7 @@
                                 {
                                     foreach (var edit in Model)
                                     {
-                                    <a class="btn btn-info " href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
                                     }
                                 }
                             </div>
@@ -40,7 +40,7 @@
                                 {
                                     foreach (var edit in Model)
                                     {
-                                        <a class="btn btn-info " href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "Home", new { id = edit.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
                                     }
                                 }
                             </div>
@@ -67,24 +67,24 @@
             <div class="home-infobox">
                 <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
             </div>
-            <div class="home-infobox">
-                <h3>Read More</h3>
+            <div class="btn">
+                <a class="btn site-btn-link" href="@Url.Action("Index", "Blog")"><span class="glyphicon glyphicon-book"></span> Read More</a>
             </div>
         </div>
         <div class="col-md-4 home-info">
             <div class="home-infobox">
-                <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+                <h3>@Html.DisplayFor(model => model.First().Info2)</h3>
             </div>
-            <div class="home-infobox">
-                <h3>Read More</h3>
+            <div class="btn">
+                <a class="btn site-btn-link" href="@Url.Action("Index", "Blog")"><span class="glyphicon glyphicon-book"></span> Read More</a>
             </div>
         </div>
         <div class="col-md-4 home-info">
             <div class="home-infobox">
-                <h3>@Html.DisplayFor(model => model.First().Info1)</h3>
+                <h3>@Html.DisplayFor(model => model.First().Info3)</h3>
             </div>
-            <div class="home-infobox">
-                <h3>Read More</h3>
+            <div class="btn">
+                <a class="btn site-btn-link" href="@Url.Action("Index", "Blog")"><span class="glyphicon glyphicon-book"></span> Read More</a>
             </div>
         </div>
         <div class="col-md-12 jumbotron">

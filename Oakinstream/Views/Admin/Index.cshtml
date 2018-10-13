@@ -2,85 +2,53 @@
     ViewBag.Title = "Admin";
 }
 
-<div class="container" style="text-align:center">
-    <div class="row NormalBorder-Bottom">
-        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <div class="col-md-12">
-                <br />
-                <h1 class="text-primary"><strong>@ViewBag.Title</strong></h1>
-            </div>
-        }
+<div class="container admin-container">
+    <div class="row admin-header">
+        <div class="col-md-12">
+            <h1 class="text-uppercase"><span class="admin-title">@ViewBag.Title</span></h1>
+        </div>
     </div>
     <hr />
 
-    <div class="jumbotron">
-        <h1>Manage Home: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("index", "HomeImages")" style="cursor:pointer"><h2>Images</h2></a>
-            </div>
+    <div class="jumbotron site-border-normal admin-jumbotron">
+        <h2 class="admin-text">Manage Home: </h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "HomeImages")"><h2>Images</h2></a>
         </div>
-        <hr />
-    </div>
+        <br />
 
-    <div class="jumbotron">
-        <h1>Manage About: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("index", "AboutImages")" style="cursor:pointer"><h2>Images</h2></a>
-                <a class="btn btn-default" href="@Url.Action("index", "AboutFiles")" style="cursor:pointer"><h2>Files</h2></a>
-            </div>
+        <h2 class="admin-text">Manage About: </h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "AboutImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "AboutFiles")"><h2>Files</h2></a>
         </div>
-        <hr />
-    </div>
+        <br />
 
-    <div class="jumbotron">
-        <h1>Manage Project:</h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("index", "ProjectImages")" style="cursor:pointer"><h2>Images</h2></a>
-                <a class="btn btn-default" href="@Url.Action("index", "ProjectFiles")" style="cursor:pointer"><h2>Files</h2></a>
-                <a class="btn btn-default" href="@Url.Action("index", "ProjectCategory")" style="cursor:pointer"><h2>Category</h2></a>
-            </div>
+        <h2 class="admin-text">Manage Project:</h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectFiles")"><h2>Files</h2></a>
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectCategory")"><h2>Category</h2></a>
         </div>
-        <hr />
-    </div>
+        <br />
 
-    <div class="jumbotron">
-        <h1>Manage Blog: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("index", "BlogImages")" style="cursor:pointer"><h2>Images</h2></a>
-                <a class="btn btn-default" href="@Url.Action("index", "BlogCategory")" style="cursor:pointer"><h2>Category</h2></a>
-            </div>
+        <h2 class="admin-text">Manage Blog: </h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "BlogImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "BlogCategory")"><h2>Category</h2></a>
         </div>
-        <hr />
-    </div>
+        <br />
 
-    <div class="jumbotron">
-        <h1>Check Contact Messages: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("List", "Contact")" style="cursor:pointer"><h2>Messages</h2></a>
-            </div>
+        <h2 class="admin-text">Check Contact Messages: </h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("List", "Contact")"><h2>Messages</h2></a>
         </div>
-        <hr />
-    </div>
+        <br />
 
-    <div class="jumbotron">
-        <h1>Manage Account: </h1>
-        <hr />
-        <div class="well Width-80 Margin-Auto Margin-Top-10">
-            <div class="btn-group-justified">
-                <a class="btn btn-default" href="@Url.Action("List", "CheckingAccount")" style="cursor:pointer"><h2>Users</h2></a>
-            </div>
+        <h2 class="admin-text">Manage Account: </h2>
+        <div class="btn-group-justified">
+            <a class="btn btn-default site-btn-file" href="@Url.Action("List", "CheckingAccount")"><h2>Users</h2></a>
         </div>
-        <hr />
+        <br />
     </div>
 </div>

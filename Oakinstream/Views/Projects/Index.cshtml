@@ -1,13 +1,21 @@
 ﻿@model Oakinstream.ViewModels.SearchIndexViewModel
 @using PagedList.Mvc;
 
-<div class="container project-container">
-    <div class="row project-header-holder">
+@{ 
+    string projectContainer = "project-container";
+    if (Model.Projects.Count == 0)
+    {
+        projectContainer = "project-container-empty";
+    }
+}
+
+<div class="container @projectContainer">
+    <div class="row project-header">
         <br />
         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
             <div class="btn">
-                <a class="btn btn-success site-create-btn" href="@Url.Action("Create", "Projects")" style="cursor:pointer;"><span class="glyphicon glyphicon-plus"></span></a>
+                <a class="btn btn-success site-btn-create" href="@Url.Action("Create", "Projects")"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
         }
         <div class="col-md-12">
@@ -39,7 +47,7 @@
                             <br />
                             @Html.DropDownListFor(vm => vm.Category, Model.CategoryFilterItems, "CategoryList", new { @class = "site-filter-list" })
                             @Html.DropDownListFor(vm => vm.SortBy, new SelectList(Model.Sorts, "Value", "Key"), "SortBy", new { @class = "site-filter-list" })
-                            <input type="submit" value="Filter" class="btn btn-success site-filter-btn" />
+                            <input type="submit" value="Filter" class="btn btn-success site-btn-filter" />
                             <input type="hidden" name="Search" id="Search" value="@Model.Search" />
                         </div>
                     </div>
@@ -53,7 +61,7 @@
         var aoseffect = "fade-left";
     }
 
-    <div class="row" sstyle="margin:auto;">
+    <div class="row">
         @foreach (var item in Model.Projects)
         {
             if(aoseffect == "fade-left")
@@ -83,17 +91,15 @@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <div class="btn">
-                            <a class="btn btn-info site-edit-btn" href="@Url.Action("Edit", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a class="btn btn-info site-btn-edit" href="@Url.Action("Edit", "Projects", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span></a>
                         </div>
                         <div class="btn">
-                            <a class="btn btn-danger site-delete-btn" href="@Url.Action("Delete", "Projects", new { id = item.ID })" style="cursor:pointer;"><span class="glyphicon glyphicon-trash"></span></a>
+                            <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "Projects", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span></a>
                         </div>
-
                     }
                     <br>
                 </div>
             </div>
-
         }
     </div>
 

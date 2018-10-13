@@ -4,74 +4,73 @@
     ViewBag.Title = "Edit Project";
 }
 
-<div class="container project-create-container">
-    <div class="row project-create-header">
+<div class="container project-CED-container">
+    <div class="row project-CED-header">
         <div class="col-md-12">
-            <h1 class="text-uppercase"><span class="project-create-header-title"><strong>@ViewBag.Title</strong></span></h1>
+            <h1 class="text-uppercase"><span class="project-CED-header-title"><strong>@ViewBag.Title</strong></span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-back-btn" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
+            <a class="btn site-btn-back" href="@Url.Action("Index", "Projects")"><span class="glyphicon glyphicon-backward"></span> Back to Projects</a>
         </div>
     </div>
-    <br />
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="jumbotron Margin-Top-20 NormalBorder project-create-jumbotron">
+        <div class="jumbotron site-border-normal project-CED-jumbotron">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4 class="project-create-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
+                    <h4 class="project-CED-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "FormBox" } })
+                <div class="col-md-8 site-border-normal-left text-left">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4 class="project-create-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
+                    <h4 class="project-CED-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.ProjectCategoryID, "Category"):</h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "FormBox" })
+                <div class="col-md-8 site-border-normal-left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectCategoryID, Model.ProjectCategoryList, "Choose Category", htmlAttributes: new { @class = "site-form" })
                     @Html.ValidationMessageFor(model => model.ProjectCategoryID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4 class="project-create-text"><span class="glyphicon glyphicon-picture"></span> Project Image </h4>
+                    <h4 class="project-CED-text"><span class="glyphicon glyphicon-picture"></span> Project Image </h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "FormBox" })
+                <div class="col-md-8 site-border-normal-left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectImageID, Model.ProjectImageList, "Choose Image", htmlAttributes: new { @class = "site-form" })
                     @Html.ValidationMessageFor(model => model.ProjectImageID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4 class="project-create-text"><span class="glyphicon glyphicon-file"></span> File 1</h4>
+                    <h4 class="project-CED-text"><span class="glyphicon glyphicon-file"></span> File 1</h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
-                    @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "FormBox" })
+                <div class="col-md-8 site-border-normal-left text-left">
+                    @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "site-form" })
                     @Html.ValidationMessageFor(model => model.FileList, "", new { @class = "text-danger" })
-                    <button class="site-add-more-btn" type="button" data-toggle="collapse" data-target="#Files">Add more images</button>
+                    <button class="site-btn-add-more" type="button" data-toggle="collapse" data-target="#Files">Add more files</button>
                 </div>
             </div>
             <br />
             <div id="Files" class="collapse">
                 @for (int i = 1; i < Model.FileList.Count; i++)
                 {
-                    <div class="row Margin-Top-20">
+                    <div class="row site-margin-top-20">
                         <div class="col-md-4 text-right">
-                            <h4 class="project-create-text"><span class="glyphicon glyphicon-file"></span> File @(i + 1):</h4>
+                            <h4 class="project-CED-text"><span class="glyphicon glyphicon-file"></span> File @(i + 1):</h4>
                         </div>
-                        <div class="col-md-8 NormalBorder-Left text-left">
-                            @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "FormBox" })
+                        <div class="col-md-8 site-border-normal-left text-left">
+                            @Html.DropDownListFor(vm => vm.ProjectFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "site-form" })
                             @Html.ValidationMessageFor(model => model.FileList, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -80,9 +79,9 @@
             <br />
             <div class="row">
                 <div class="col-md-4 text-right">
-                    <h4 class="project-create-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Description)</h4>
+                    <h4 class="project-CED-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Description)</h4>
                 </div>
-                <div class="col-md-8 NormalBorder-Left text-left">
+                <div class="col-md-8 site-border-normal-left text-left">
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none;" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
@@ -90,7 +89,7 @@
             <br />
             <div class="form-group">
                 <div class="col-md-12">
-                    <input type="submit" value="Edit" class="btn btn-info site-edit-btn-big" />
+                    <input type="submit" value="Edit" class="btn btn-info site-btn-edit-big" />
                 </div>
             </div>
             <br />
