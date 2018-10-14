@@ -1,4 +1,4 @@
-﻿    <div class="navbar navbar-inverse navbar-fixed-top site-navbar">
+﻿<div class="navbar navbar-inverse navbar-fixed-top site-navbar">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,7 +19,10 @@
                     <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                 }
             </ul>
-            @Html.Partial("_LoginPartial")
-            </div>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @Html.Partial("_LoginPartial")
+            }
         </div>
     </div>
+</div>

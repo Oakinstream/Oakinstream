@@ -1,0 +1,87 @@
+﻿/*css for the AboutImages view*/
+
+.aboutimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(Images/AboutImages/background-mountain.jpg);
+}
+
+.aboutimages-header {
+    margin-top: 50px;
+}
+
+.aboutimages-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    color: black;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/AboutImages/mocha-grunge.png);
+}
+
+.aboutimages-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding:5px;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/AboutImages/mocha-grunge.png);
+}
+.aboutimages-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/AboutImages/mocha-grunge.png);
+}
+.aboutimages-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/AboutImages/mocha-grunge.png);
+}
+
+.aboutimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+    margin-bottom: 150px;
+}
+
+.aboutimages-jumbotron-text {
+    width: 20%;
+    float: left;
+}
+
+.aboutimages-jumbotron-input {
+    background: transparent;
+    width: 50%;
+    float: left;
+}
+
+.aboutimages-jumbotron-submit {
+    width: 30%;
+    float: right;
+}
+
+.aboutimages-text {
+    color: black;
+    font-weight: bold;
+}
+
+.aboutimages-image {
+    width: auto;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}

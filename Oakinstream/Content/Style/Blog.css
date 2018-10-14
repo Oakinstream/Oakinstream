@@ -1,0 +1,106 @@
+﻿/*css for the Blog view*/
+
+.blog-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+}
+
+.blog-container-empty {
+    max-width: none;
+    width: 100%;
+    height: 1350px;
+    background-color: #b8b8b8;
+    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+}
+
+.blog-header-holder {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: transparent;
+}
+
+.blog-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 15px;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #ededed;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+
+.blog-title-text {
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.blog-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-small-images-holder {
+    width: 100%;
+    margin: auto;
+}
+
+.blog-small-images {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog-link-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.blog-CED-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+}
+
+.blog-CED-header {
+    margin-top: 50px;
+}
+
+.blog-CED-header-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blog-CED-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blog-CED-text {
+    color: white;
+    font-weight: bold;
+}

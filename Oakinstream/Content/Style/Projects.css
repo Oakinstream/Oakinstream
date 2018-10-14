@@ -1,0 +1,220 @@
+﻿/*css for the Projects view*/
+
+.project-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #c78d50;
+    background-image: url(../../Content/Images/Default/wood-pattern.png);
+}
+
+.project-container-empty {
+    max-width: none;
+    width: 100%;
+    height: 1350px;
+    background-color: #c78d50;
+    background-image: url(../../Content/Images/Default/wood-pattern.png);
+}
+
+.project-header {
+    padding: 50px;
+    max-width: 1000px;
+    margin: auto;
+    background-color: transparent;
+}
+
+.project-holder {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    background-color: #ffffff;
+    background-image: url(../../Content/Images/Default/smooth-wall-dark.png);
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    transition: all .2s ease-in-out;
+    color: #a00505;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+}
+
+    .project-holder:hover {
+        transform: scale(1.08);
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.60);
+    }
+
+.project-name {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 5px;
+    color: white;
+    text-decoration: underline;
+}
+
+.project-image {
+    border: 1px solid black;
+}
+
+.project-category-text {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.project-details-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
+}
+
+.project-edit-btn {
+    border-bottom: 10px solid #1595b7;
+    cursor: pointer;
+}
+
+.project-delete-btn {
+    border-bottom: 10px solid #a00505;
+    cursor: pointer;
+}
+
+.project-details-header-holder {
+    margin-top: 75px;
+}
+
+.project-details-header-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-header-category {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-details-image {
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+}
+
+.project-details-description-holder {
+    margin-top: 50px;
+}
+
+.project-details-description {
+    width: 80%;
+    margin: auto;
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/iron-grip.png");
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+}
+
+.project-details-description-text {
+    width: 75%;
+    margin: auto;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+}
+
+.project-details-files-holder {
+    margin-top: 50px;
+}
+
+.project-details-files {
+    margin: auto;
+    border: 3px solid black;
+    border-bottom: 7px solid black;
+    color: white;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+}
+
+.project-details-files-btn {
+    margin: auto;
+    color: white;
+    border: 2px solid white;
+    border-bottom: 5px solid white;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/little-knobs.png");
+}
+
+.project-CED-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/shattered.png");
+}
+
+.project-CED-header {
+    margin-top: 50px;
+}
+
+.project-CED-header-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-CED-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.project-CED-text {
+    color: white;
+    font-weight: bold;
+}

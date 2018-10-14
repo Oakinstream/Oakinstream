@@ -1,0 +1,205 @@
+﻿/*css for the About view*/
+
+.about-container {
+    max-width: none;
+    width: auto;
+    background-image: url(Images/About/background-mountain.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+.about-holder {
+    max-width: 1000px;
+    background-color: transparent;
+}
+
+.about-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid black;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-age {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid black;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-image {
+    border: 1px solid black;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+.about-text-header {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 2px;
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-text {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid black;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-files-header {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 2px;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-file-holder {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 2px;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-file-btn {
+    font-size: smaller;
+    font-family: sans-serif;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    border-top: 2px solid rgba(0, 0, 0, 0.80);
+    border-left: 1px solid rgba(0, 0, 0, 0.80);
+    border-right: 1px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-created {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+/*EDIT*/
+
+.about-edit-container {
+    max-width: none;
+    width: 100%;
+    background-color: #ffffff;
+    background-image: url(Images/About/background-mountain.jpg);
+}
+
+.about-edit-header {
+    margin-top: 50px;
+}
+
+.about-edit-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-edit-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.about-edit-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.about-edit-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-edit-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+    margin-bottom: 150px;
+}
+
+.about-edit-jumbotron-text {
+    width:35%;
+    float: left;
+}
+
+.about-edit-jumbotron-input {
+    margin-left:3%;
+    width: 62%;
+    float: left;
+}
+
+.about-edit-btn-add-more {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    color: black;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.about-edit-btn-add-more:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-edit-btn-add-more:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.about-edit-text {
+    color: black;
+    font-weight: bold;
+}

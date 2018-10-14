@@ -10,7 +10,7 @@
             <h1 class="text-primary"><span class="about-edit-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "about")"><span class="glyphicon glyphicon-backward"></span> Back to about</a>
+            <a class="btn about-edit-btn-back" href="@Url.Action("Index", "about")"><span class="glyphicon glyphicon-backward"></span> Back to about</a>
         </div>
     </div>
     <br />
@@ -19,100 +19,117 @@
     {
         @Html.AntiForgeryToken()
 
-    <div class="jumbotron site-border-normal about-edit-jumbotron">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="jumbotron site-border-normal about-edit-jumbotron">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form site-border-normal" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-picture"></span> @Html.LabelFor(model => model.AboutImageID, "Image"):</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.DropDownListFor(vm => vm.AboutImageID, Model.AboutImageList, "Choose Image", htmlAttributes: new { @class = "site-form site-border-normal" })
-                @Html.ValidationMessageFor(model => model.AboutImageID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-time"></span> @Html.LabelFor(model => model.Age)</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "site-form site-border-normal" } })
-                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-file"></span><strong> File 1</strong></h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left ">
-                @Html.DropDownListFor(vm => vm.AboutFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "site-form site-border-normal" })
-                @Html.ValidationMessageFor(model => model.AboutFiles, "", new { @class = "text-danger" })
-                <button type="button" class="site-btn-add-more" data-toggle="collapse" data-target="#Files" style="">Add more files</button>
-            </div>
-        </div>
-        <div id="Files" class="collapse">
-            @for (int i = 1; i < Model.FileList.Count; i++)
-            {
-                <div class="row site-margin-top-20">
-                    <div class="col-md-4 text-right">
-                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-file"></span><strong> File @(i + 1):</strong></h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.Name):</h4>
                     </div>
-                    <div class="col-md-8 site-border-normal-left text-left">
-                        @Html.DropDownListFor(vm => vm.AboutFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "site-form site-border-normal" })
-                        @Html.ValidationMessageFor(model => model.AboutFiles, "", new { @class = "text-danger" })
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form site-border-normal" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            }
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-picture"></span> @Html.LabelFor(model => model.AboutImageID, "Image"):</h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.DropDownListFor(vm => vm.AboutImageID, Model.AboutImageList, "Choose Image", htmlAttributes: new { @class = "site-form site-border-normal" })
+                        @Html.ValidationMessageFor(model => model.AboutImageID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-time"></span> @Html.LabelFor(model => model.Age)</h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "site-form site-border-normal" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-file"></span><strong> File 1</strong></h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.DropDownListFor(vm => vm.AboutFiles, Model.FileList[0], "Choose File", htmlAttributes: new { @class = "site-form site-border-normal" })
+                        @Html.ValidationMessageFor(model => model.AboutFiles, "", new { @class = "text-danger" })
+                        <button type="button" class="about-edit-btn-add-more" data-toggle="collapse" data-target="#Files" style="">Add more files</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div id="Files" class="collapse">
+                @for (int i = 1; i < Model.FileList.Count; i++)
+                {
+                    <div class="row site-margin-top-20">
+                        <div class="col-md-12">
+                            <div class="about-edit-jumbotron-text text-right">
+                                <h4 class="about-edit-text"><span class="glyphicon glyphicon-file"></span><strong> File @(i + 1):</strong></h4>
+                            </div>
+                            <div class="about-edit-jumbotron-input text-left">
+                                @Html.DropDownListFor(vm => vm.AboutFiles, Model.FileList[i], "Choose File", htmlAttributes: new { @class = "site-form site-border-normal" })
+                                @Html.ValidationMessageFor(model => model.AboutFiles, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span style="resize:none" class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info1)</h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.Info1, new { htmlAttributes = new { rows = "10", cols = "45", style = "resize:none; max-width:none; border: 2px solid black;" } })
+                        @Html.ValidationMessageFor(model => model.Info1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info2)</h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.Info2, new { htmlAttributes = new { rows = "10", cols = "45", style = "resize:none; max-width:none; border: 2px solid black;" } })
+                        @Html.ValidationMessageFor(model => model.Info2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about-edit-jumbotron-text text-right">
+                        <h4 class="about-edit-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info3)</h4>
+                    </div>
+                    <div class="about-edit-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.Info3, new { htmlAttributes = new { rows = "10", cols = "45", style = "resize:none; max-width:none; border: 2px solid black;" } })
+                        @Html.ValidationMessageFor(model => model.Info3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Edit" class="btn btn-info site-btn-edit-big" />
+                </div>
+            </div>
+            <br />
         </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span style="resize:none" class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info1)</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.EditorFor(model => model.Info1, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none; border: 2px solid black;" } })
-                @Html.ValidationMessageFor(model => model.Info1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info2)</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.EditorFor(model => model.Info2, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none; border: 2px solid black;" } })
-                @Html.ValidationMessageFor(model => model.Info2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-4 text-right">
-                <h4 class="about-edit-text"><span class="glyphicon glyphicon-info-sign"></span> @Html.LabelFor(model => model.Info3)</h4>
-            </div>
-            <div class="col-md-8 site-border-normal-left text-left">
-                @Html.EditorFor(model => model.Info3, new { htmlAttributes = new { rows = "10", cols = "50", style = "resize:none; max-width:none; border: 2px solid black;" } })
-                @Html.ValidationMessageFor(model => model.Info3, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="submit" value="Edit" class="btn btn-success site-btn-edit-big site-border-normal" />
-            </div>
-        </div>
-        <br />
-    </div>
     }
 </div>

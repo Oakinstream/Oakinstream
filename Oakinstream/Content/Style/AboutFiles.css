@@ -1,0 +1,78 @@
+﻿/*css for the AboutFiles view*/
+
+.aboutfiles-container {
+    max-width: none;
+    width: 100%;
+    height: 1250px;
+    background-color: #ffffff;
+    background-image: url(Images/AboutFiles/background-mountain.jpg);
+}
+
+.aboutfiles-header {
+    margin-top: 50px;
+}
+
+.aboutfiles-title {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    color: black;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.aboutfiles-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.aboutfiles-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.aboutfiles-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/About/mocha-grunge.png);
+}
+
+.aboutfiles-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+    margin-bottom: 150px;
+}
+
+.aboutfiles-jumbotron-text {
+    width: 20%;
+    float: left;
+}
+.aboutfiles-jumbotron-input {
+    background: transparent;
+    width: 50%;
+    float: left;
+}
+.aboutfiles-jumbotron-submit {
+    width: 30%;
+    float: right;
+}
+
+.aboutfiles-text {
+    color: black;
+    font-weight: bold;
+}

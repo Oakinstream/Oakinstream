@@ -1,0 +1,49 @@
+﻿/*css for the BlogImages view*/
+
+.blogimages-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: url(../../Content/Images/Default/crissxcross.png);
+}
+
+.blogimages-header {
+    margin-top: 50px;
+}
+
+.blogimages-title {
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: double;
+    color: white;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogimages-jumbotron {
+    max-width: 1500px;
+    margin: auto;
+    background: transparent;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    margin-bottom: 150px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogimages-text {
+    color: white;
+    font-weight: bold;
+}
+
+.blogimages-image {
+    width: auto;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}

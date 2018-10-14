@@ -25,7 +25,22 @@ namespace Oakinstream
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/aos.css"));
+                      "~/Content/aos.css",
+                      "~/Content/Style/About.css",
+                      "~/Content/Style/AboutFiles.css",
+                      "~/Content/Style/AboutImages.css",
+                      "~/Content/Style/Admin.css",
+                      "~/Content/Style/Blog.css",
+                      "~/Content/Style/BlogCategory.css",
+                      "~/Content/Style/BlogImages.css",
+                      "~/Content/Style/CheckingAccount.css",
+                      "~/Content/Style/Contact.css",
+                      "~/Content/Style/Home.css",
+                      "~/Content/Style/HomeImages.css",
+                      "~/Content/Style/ProjectCategory.css",
+                      "~/Content/Style/ProjectFiles.css",
+                      "~/Content/Style/ProjectImages.css",
+                      "~/Content/Style/Projects.css"));
         }
     }
 }
