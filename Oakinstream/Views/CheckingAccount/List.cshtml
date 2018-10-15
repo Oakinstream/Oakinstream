@@ -10,7 +10,7 @@
             <h1 class="text-uppercase"><span class="checkingaccount-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
+            <a class="btn checkingaccount-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
         </div>
     </div>
 
@@ -33,54 +33,54 @@
     {
         <div class="jumbotron checkingaccount-jumbotron">
 
-            <div class="row">
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Pin)</h3>
+            <div class="row" style="background-color:black; color:white;">
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Pin)</h5>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.AccountNumber)</h3>
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.AccountNumber)</h5>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.Name)</h3>
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.Name)</h5>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.UserName)</h3>
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.UserName)</h5>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Email)</h3>
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">@Html.DisplayNameFor(model => model.User.Email)</h5>
                 </div>
-                <div class="col-md-2">
-                    <h3 class="text-uppercase checkingaccount-text" style="text-decoration:underline">Locked</h3>
+                <div class="checkingaccount-jumbotron-list">
+                    <h5 class="text-uppercase checkingaccount-text" style="text-decoration:underline">Locked</h5>
                 </div>
             </div>
             <hr />
             @foreach (var item in Model)
             {
-                <div class="row">
-                    <div class="col-md-2 NormalBorder-Right">
+                <div class="row site-border-normal" style="background-color:black; color:white;">
+                    <div class="checkingaccount-jumbotron-list">
                         @if (item.User.Pin == null)
                         {
-                            <h5 class="checkingaccount-text">@Html.Raw("No Pin")</h5>
+                            <h6 class="checkingaccount-text">@Html.Raw("No Pin")</h6>
                         }
                         else
                         {
-                            <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.User.Pin)</h5>
+                            <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.User.Pin)</h6>
                         }
                     </div>
-                    <div class="col-md-2 NormalBorder-Right">
-                        <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.AccountNumber)</h5>
+                    <div class="checkingaccount-jumbotron-list">
+                        <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.AccountNumber)</h6>
                     </div>
-                    <div class="col-md-2 NormalBorder-Right">
-                        <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.Name)</h5>
+                    <div class="checkingaccount-jumbotron-list">
+                        <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.Name)</h6>
                     </div>
-                    <div class="col-md-2 NormalBorder-Right">
-                        <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.User.UserName)</h5>
+                    <div class="checkingaccount-jumbotron-list">
+                        <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.User.UserName)</h6>
                     </div>
-                    <div class="col-md-2 NormalBorder-Right">
-                        <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.User.Email)</h5>
+                    <div class="checkingaccount-jumbotron-list">
+                        <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.User.Email)</h6>
                     </div>
-                    <div class="col-md-2">
-                        <h5 class="checkingaccount-text">@Html.DisplayFor(model => item.User.LockoutEnabled)</h5>
+                    <div class="checkingaccount-jumbotron-list">
+                        <h6 class="checkingaccount-text">@Html.DisplayFor(model => item.User.LockoutEnabled)</h6>
                     </div>
                 </div>
                 <hr />

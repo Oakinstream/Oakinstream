@@ -4,8 +4,8 @@
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-    background-image: url(../../Content/Images/Default/crissxcross.png);
+    background-color: #b8b8b8;
+    background-image: url(Images/BlogCategory/shley-tree-1.png);
 }
 
 .blogcategory-header {
@@ -13,28 +13,63 @@
 }
 
 .blogcategory-title {
-    padding: 10px;
     font-family: sans-serif;
-    background-color: transparent;
-    text-align: center;
     font-weight: bold;
-    text-decoration: double;
-    color: white;
+    padding: 10px;
+    color: black;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ededed;
+    background-image: url(Images/BlogCategory/low-contrast-linen.png);
+}
+
+.blogcategory-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ededed;
+    background-image: url(Images/BlogCategory/low-contrast-linen.png);
+}
+.blogcategory-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: #ededed;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/BlogCategory/low-contrast-linen.png);
+}
+.blogcategory-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: #ededed;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/BlogCategory/low-contrast-linen.png);
 }
 
 .blogcategory-jumbotron {
     max-width: 1500px;
     margin: auto;
-    background: transparent;
     border: 2px solid black;
     border-bottom: 10px solid black;
+    background-color: #ededed;
+    background-image: url(Images/BlogCategory/low-contrast-linen.png);
     margin-bottom: 150px;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+
+.blogcategory-jumbotron-text {
+    width: 20%;
+    float: left;
+}
+.blogcategory-jumbotron-input {
+    background: transparent;
+    width: 50%;
+    float: left;
+}
+.blogcategory-jumbotron-submit {
+    width: 30%;
+    float: right;
 }
 
 .blogcategory-text {

@@ -4,8 +4,8 @@
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-    background-image: url(../../Content/Images/Default/crissxcross.png);
+    background-color: #484d61;
+    background-image: url(Images/Admin/cubes.png);
 }
 
 .admin-header {
@@ -13,17 +13,14 @@
 }
 
 .admin-title {
-    padding: 10px;
     font-family: sans-serif;
-    background-color: transparent;
-    text-align: center;
     font-weight: bold;
-    text-decoration: double;
+    padding: 10px;
     color: white;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #484d61;
+    background-image: url(Images/Admin/dark-mosaic.png);
 }
 
 .admin-jumbotron {
@@ -33,8 +30,31 @@
     border: 2px solid black;
     border-bottom: 10px solid black;
     margin-bottom: 150px;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #484d61;
+    background-image: url(Images/Admin/dark-mosaic.png);
+}
+
+.admin-btn-home {
+
+}
+.admin-btn-about {
+    background-color: #ffffff;
+    background-image: url(Images/About/mocha-grunge.png);
+}
+.admin-btn-project {
+
+}
+.admin-btn-blog {
+    background-color: #ededed;
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+.admin-btn-contact {
+    background-color: #ededed;
+    background-image: url(Images/Contact/diagonal-striped-brick.png);
+}
+.admin-btn-account {
+    background-color: #ededed;
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
 }
 
 .admin-text {

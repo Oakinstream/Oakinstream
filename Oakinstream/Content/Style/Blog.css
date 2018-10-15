@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     background-color: #b8b8b8;
-    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+    background-image: url(Images/Blog/shley-tree-1.png);
 }
 
 .blog-container-empty {
@@ -13,7 +13,7 @@
     width: 100%;
     height: 1350px;
     background-color: #b8b8b8;
-    background-image: url("https://www.transparenttextures.com/patterns/shley-tree-1.png");
+    background-image: url(Images/Blog/shley-tree-1.png);
 }
 
 .blog-header-holder {
@@ -27,12 +27,11 @@
     max-width: 1500px;
     margin: auto;
     margin-top: 15px;
-    background: transparent;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    margin-bottom: 150px;
     background-color: #ededed;
-    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    background-image: url(Images/Blog/low-contrast-linen.png);
+    margin-bottom: 150px;
 }
 
 .blog-title-text {
@@ -67,26 +66,50 @@
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/low-contrast-linen.png");
+    background-color: #b8b8b8;
+    background-image: url(Images/Blog/shley-tree-1.png);
 }
 
 .blog-CED-header {
     margin-top: 50px;
 }
 
-.blog-CED-header-title {
-    padding: 10px;
+.blog-CED-title {
     font-family: sans-serif;
-    background-color: transparent;
-    text-align: center;
     font-weight: bold;
-    text-decoration: double;
-    color: white;
+    padding: 10px;
+    color: black;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ededed;
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+
+.blog-CED-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ededed;
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+
+.blog-CED-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: #ededed;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+
+.blog-CED-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: #ededed;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/Blog/low-contrast-linen.png);
 }
 
 .blog-CED-jumbotron {
@@ -96,11 +119,50 @@
     border: 2px solid black;
     border-bottom: 10px solid black;
     margin-bottom: 150px;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ededed;
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+.blog-CED-jumbotron-text {
+    width: 35%;
+    float: left;
+}
+.blog-CED-jumbotron-input {
+    margin-left: 3%;
+    width: 62%;
+    float: left;
+}
+.blog-CED-jumbotron-delete {
+    width: 25%;
+    float: left;
+}
+
+.blog-CED-btn-add-more {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    color: black;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    background-color: #ededed;
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+.blog-CED-btn-add-more:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/Blog/low-contrast-linen.png);
+}
+
+.blog-CED-btn-add-more:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/Blog/low-contrast-linen.png);
 }
 
 .blog-CED-text {
-    color: white;
+    color: black;
     font-weight: bold;
 }

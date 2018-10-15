@@ -4,8 +4,8 @@
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-    background-image: url(../../Content/Images/Default/crissxcross.png);
+    background-color: #ededed;
+    background-image: url(Images/CheckingAccount/cartographer.png);
 }
 
 .checkingaccount-header {
@@ -13,28 +13,67 @@
 }
 
 .checkingaccount-title {
-    padding: 10px;
     font-family: sans-serif;
-    background-color: transparent;
-    text-align: center;
     font-weight: bold;
-    text-decoration: double;
-    color: white;
+    padding: 10px;
+    color: black;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ededed;
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
+}
+
+.checkingaccount-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ededed;
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
+}
+.checkingaccount-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    background-color: #fffafa;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
+}
+.checkingaccount-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: #fffafa;
+    color: rgba(0, 0, 0, 0.50);
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
 }
 
 .checkingaccount-jumbotron {
     max-width: 1500px;
     margin: auto;
-    background: transparent;
     border: 2px solid black;
     border-bottom: 10px solid black;
+    background-color: #fffafa;
+    background-image: url(Images/CheckingAccount/dark-brick-wall.png);
     margin-bottom: 150px;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+}
+.checkingaccount-jumbotron-text {
+    width: 35%;
+    float: left;
+}
+.checkingaccount-jumbotron-input {
+    margin-left: 3%;
+    width: 62%;
+    float: left;
+}
+.checkingaccount-jumbotron-list {
+    width: 16%;
+    float: left;
+}
+
+.checkingaccount-create-text {
+    color: black;
+    font-weight: bold;
 }
 
 .checkingaccount-text {

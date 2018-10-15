@@ -425,6 +425,21 @@ textarea {
     cursor: pointer;
 }
 
+.site-btn-standard {
+    margin-top: 15px;
+    border-bottom: 10px solid #bfbfbf;
+    cursor: pointer;
+}
+.site-btn-standard:hover {
+    border-bottom: 10px solid #a7a7a7;
+    cursor: pointer;
+}
+.site-btn-standard:active {
+    border-bottom: 2px solid #bfbfbf;
+    text-shadow:none;
+    cursor: pointer;
+}
+
 
 /*css for the Footer*/
 

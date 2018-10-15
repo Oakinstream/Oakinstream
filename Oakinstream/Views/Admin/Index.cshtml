@@ -8,46 +8,45 @@
             <h1 class="text-uppercase"><span class="admin-title">@ViewBag.Title</span></h1>
         </div>
     </div>
-    <hr />
-
+    <br />
     <div class="jumbotron site-border-normal admin-jumbotron">
         <h2 class="admin-text">Manage Home: </h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "HomeImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-home" href="@Url.Action("index", "HomeImages")"><h2>Images</h2></a>
         </div>
         <br />
 
         <h2 class="admin-text">Manage About: </h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "AboutImages")"><h2>Images</h2></a>
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "AboutFiles")"><h2>Files</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-about" href="@Url.Action("index", "AboutImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-about" href="@Url.Action("index", "AboutFiles")"><h2>Files</h2></a>
         </div>
         <br />
 
         <h2 class="admin-text">Manage Project:</h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectImages")"><h2>Images</h2></a>
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectFiles")"><h2>Files</h2></a>
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "ProjectCategory")"><h2>Category</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-project" href="@Url.Action("index", "ProjectImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-project" href="@Url.Action("index", "ProjectFiles")"><h2>Files</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-project" href="@Url.Action("index", "ProjectCategory")"><h2>Category</h2></a>
         </div>
         <br />
 
         <h2 class="admin-text">Manage Blog: </h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "BlogImages")"><h2>Images</h2></a>
-            <a class="btn btn-default site-btn-file" href="@Url.Action("index", "BlogCategory")"><h2>Category</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-blog" href="@Url.Action("index", "BlogImages")"><h2>Images</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-blog" href="@Url.Action("index", "BlogCategory")"><h2>Category</h2></a>
         </div>
         <br />
 
         <h2 class="admin-text">Check Contact Messages: </h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("List", "Contact")"><h2>Messages</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-contact" href="@Url.Action("List", "Contact")"><h2>Messages</h2></a>
         </div>
         <br />
 
         <h2 class="admin-text">Manage Account: </h2>
         <div class="btn-group-justified">
-            <a class="btn btn-default site-btn-file" href="@Url.Action("List", "CheckingAccount")"><h2>Users</h2></a>
+            <a class="btn btn-default site-btn-standard admin-btn-account" href="@Url.Action("List", "CheckingAccount")"><h2>Users</h2></a>
         </div>
         <br />
     </div>

@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <h1 class="text-uppercase"><span class="contact-title">@ViewBag.Title</span></h1>
             <br />
-            <h2> I'm happy to answer any questions you have! <span class="glyphicon glyphicon-thumbs-up"></span></h2>
+            <h2><span class="contact-message"> I'm happy to answer any questions you have! <span class="glyphicon glyphicon-thumbs-up"></span></span></h2>
             <br />
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <div class="contact-jumbotron-half site-border-normal-right">
                         <h3>
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-forms-contact", @placeholder = "Name" } })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-forms-contact site-border-normal", @placeholder = "Name" } })
                             <br />
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </h3>
@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="contact-jumbotron-half site-border-normal-right">
                         <h3>
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "site-forms-contact", @placeholder = "Email" } })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "site-forms-contact site-border-normal", @placeholder = "Email" } })
                             <br />
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </h3>
@@ -56,13 +56,13 @@
                 <div class="col-md-12">
                     <div class="contact-jumbotron-half site-border-normal-right">
                         <h3>
-                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "site-forms-contact", @placeholder = "Subject" } })
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "site-forms-contact site-border-normal", @placeholder = "Subject" } })
                             <br />
                             @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
                         </h3>
                     </div>
                     <div class="contact-jumbotron-half">
-                        <h3 class="contact-text"><span class="glyphicon glyphicon-phone "></span>[My Number Here]</h3>
+                        <h3 class="contact-text"><span class="glyphicon glyphicon-envelope "></span><strong><a class="contact-text" href="mailto:" target="_top">[My Email Mail]</a></strong></h3>
                     </div>
                 </div>
             </div>
@@ -72,13 +72,13 @@
                 <div class="col-md-12">
                     <div class="contact-jumbotron-half site-border-normal-right">
                         <h3>
-                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "site-forms-contact", @placeholder = "Message", @rows = "5" } })
+                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "site-forms-contact site-border-normal", @placeholder = "Message", @rows = "5" } })
                             <br />
                             @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
                         </h3>
                     </div>
                     <div class="contact-jumbotron-half">
-                        <h3 class="contact-text"><span class="glyphicon glyphicon-envelope "></span>[My Email Here]</h3>
+                        <h3 class="contact-text"><span class="glyphicon glyphicon-picture"></span></h3>
                     </div>
                 </div>
             </div>

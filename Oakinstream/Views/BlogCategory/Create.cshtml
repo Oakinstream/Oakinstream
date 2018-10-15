@@ -10,28 +10,31 @@
             <h1 class="text-uppercase"><span class="blogcategory-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "BlogCategory")"><span class="glyphicon glyphicon-backward"></span> Back to list</a>
+            <a class="btn blogcategory-btn-back" href="@Url.Action("Index", "BlogCategory")"><span class="glyphicon glyphicon-backward"></span> Back to list</a>
         </div>
     </div>
 
-    <div class="jumbotron blogcategory-jumbotron">
-        @using (Html.BeginForm("Create", "BlogCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Create", "BlogCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="jumbotron site-border-normal blogcategory-jumbotron">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="row">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="col-md-4 text-right">
-                    <h4 class="blogcategory-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.Name):</h4>
-                </div>
-                <div class="col-md-4 site-border-normal-left text-left">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form-category" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2 text-left">
-                    <input type="submit" value="Add >>" class="btn btn-success site-form-btn" />
+                <div class="col-md-12">
+                    <div class="blogcategory-jumbotron-text">
+                        <h4 class="blogcategory-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.Name):</h4>
+                    </div>
+                    <div class="blogcategory-jumbotron-input">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form-category" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="blogcategory-jumbotron-submit">
+                        <input type="submit" value="Add >>" class="btn btn-default site-form-category" />
+                    </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
