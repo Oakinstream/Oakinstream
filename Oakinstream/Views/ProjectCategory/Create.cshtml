@@ -10,28 +10,32 @@
             <h1 class="text-uppercase"><span class="projectcategory-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "ProjectCategory")"><span class="glyphicon glyphicon-backward"></span> Back to List</a>
+            <a class="btn projectcategory-btn-back" href="@Url.Action("Index", "ProjectCategory")"><span class="glyphicon glyphicon-backward"></span> Back to List</a>
         </div>
     </div>
 
-    <div class="jumbotron site-border-normal projectcategory-jumbotron">
-        @using (Html.BeginForm("Create", "ProjectCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+
+    @using (Html.BeginForm("Create", "ProjectCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="jumbotron site-border-normal projectcategory-jumbotron">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="row">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="col-md-4 text-right">
-                    <h4 class="projectcategory-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.Name):</h4>
-                </div>
-                <div class="col-md-4 site-border-normal-left text-left">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form-category" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2 text-left">
-                    <input type="submit" value="Add >>" class="btn btn-success site-form-btn" />
+                <div class="col-md-12">
+                    <div class="projectcategory-jumbotron-text">
+                        <h4 class="projectcategory-text"><span class="glyphicon glyphicon-th-large"></span> @Html.LabelFor(model => model.Name):</h4>
+                    </div>
+                    <div class="projectcategory-jumbotron-input">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "site-form-category" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="projectcategory-jumbotron-submit">
+                        <input type="submit" value="Add >>" class="btn btn-success site-form-btn" />
+                    </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>

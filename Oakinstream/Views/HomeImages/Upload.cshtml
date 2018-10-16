@@ -10,57 +10,73 @@
             <h1 class="text-primary"><span class="homeimages-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "HomeImages")"><span class="glyphicon glyphicon-backward"></span> Back to List</a>
+            <a class="btn homeimages-btn-back" href="@Url.Action("Index", "HomeImages")"><span class="glyphicon glyphicon-backward"></span> Back to List</a>
         </div>
     </div>
 
-    <div class="jumbotron site-border-normal homeimages-jumbotron">
-        @using (Html.BeginForm("Upload", "HomeImages", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Upload", "HomeImages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="jumbotron site-border-normal homeimages-jumbotron">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="row">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="col-md-3 text-right">
-                    <h4 class="homeimages-text"><span class="glyphicon glyphicon-picture"></span>  @Html.LabelFor(model => model.FileName):</h4>
-                </div>
-                <div class="col-md-6 site-border-normal-left text-left">
-                    <input type="file" name="files" id="files" multiple="multiple" class="site-form-file btn-default" accept=".png,.jpg,.jpeg,.gif" />
-                    @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
-                    <div class="row">
-                        <div class="col-md-4 text-right">
-                            <h4 class="homeimages-text"><span class="glyphicon glyphicon-header"></span> @Html.LabelFor(model => model.ImageHeader):</h4>
-                        </div>
-                        <div class="col-md-8 site-border-normal-left text-left">
-                            @Html.EditorFor(model => model.ImageHeader, new { htmlAttributes = new { @class = "site-form" } })
-                            @Html.ValidationMessageFor(model => model.ImageHeader, "", new { @class = "text-danger" })
-                        </div>
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-picture"></span>  @Html.LabelFor(model => model.FileName):</h4>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 text-right">
-                            <h4 class="homeimages-text"><span class="glyphicon glyphicon-text-size"></span> @Html.LabelFor(model => model.ImageCaption):</h4>
-                        </div>
-                        <div class="col-md-8 site-border-normal-left text-left">
-                            @Html.EditorFor(model => model.ImageCaption, new { htmlAttributes = new { @class = "site-form" } })
-                            @Html.ValidationMessageFor(model => model.ImageCaption, "", new { @class = "text-danger" })
-                        </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        <input type="file" name="files" id="files" multiple="multiple" class="site-form-file btn-default" accept=".png,.jpg,.jpeg,.gif" />
+                        @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 text-right">
-                            <h4 class="homeimages-text"><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.ImageLink):</h4>
-                        </div>
-                        <div class="col-md-8 site-border-normal-left text-left">
-                            @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "site-form" } })
-                            @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 text-left">
-                    <input type="submit" value="Add >>" class="btn btn-default site-form-height" />
                 </div>
             </div>
-        }
-    </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-header"></span> @Html.LabelFor(model => model.ImageHeader):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageHeader, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageHeader, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-text-size"></span> @Html.LabelFor(model => model.ImageCaption):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageCaption, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageCaption, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.ImageLink):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Add>>" class="btn btn-success site-btn-create-big" />
+                </div>
+                <br />
+            </div>
+        </div>
+    }
 </div>
 
 @section Scripts {

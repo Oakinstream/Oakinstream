@@ -4,8 +4,8 @@
     max-width: none;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-    background-image: url(../../Content/Images/Default/crissxcross.png);
+    background-color: #000000;
+    background-image: url(Images/ProjectCategory/shattered.png);
 }
 
 .projectcategory-header {
@@ -13,28 +13,63 @@
 }
 
 .projectcategory-title {
-    padding: 10px;
     font-family: sans-serif;
-    background-color: transparent;
-    text-align: center;
     font-weight: bold;
-    text-decoration: double;
+    padding: 10px;
     color: white;
     border: 2px solid black;
     border-bottom: 10px solid black;
     background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-image: url(Images/ProjectCategory/project-paper.png);
+}
+
+.projectcategory-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: white;
+    background-color: #000000;
+    background-image: url(Images/ProjectCategory/project-paper.png);
+}
+.projectcategory-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #000000;
+    background-image: url(Images/ProjectCategory/project-paper.png);
+}
+.projectcategory-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #000000;
+    background-image: url(Images/ProjectCategory/project-paper.png);
 }
 
 .projectcategory-jumbotron {
     max-width: 1500px;
     margin: auto;
-    background: transparent;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    margin-bottom: 150px;
     background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-image: url(Images/ProjectCategory/project-paper.png);
+    margin-bottom: 150px;
+}
+
+.projectcategory-jumbotron-text {
+    width: 20%;
+    float: left;
+}
+.projectcategory-jumbotron-input {
+    background: transparent;
+    width: 50%;
+    float: left;
+}
+.projectcategory-jumbotron-submit {
+    width: 30%;
+    float: right;
 }
 
 .projectcategory-text {

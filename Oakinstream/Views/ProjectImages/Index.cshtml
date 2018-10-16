@@ -10,7 +10,7 @@
             <h1 class="text-uppercase"><span class="projectimages-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
+            <a class="btn projectimages-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
         </div>
     </div>
 
@@ -33,13 +33,13 @@
     {
         <div class="jumbotron site-border-normal projectimages-jumbotron">
             <h2 class="projectimages-text">@Html.DisplayNameFor(model => model.First().FileName):</h2>
-            <hr />
+            <br />
             @foreach (var item in Model)
             {
                 <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "ProjectImages", new { id = item.ID })" style="margin-left:500px;"><span class="glyphicon glyphicon-remove"></span></a>
                 <br />
                 <img class="projectimages-image" src="@Url.Content(Constants.ProjectThumbnailPath+item.FileName)" alt="@item.FileName" title="@item.FileName" />
-                <hr />
+                <br />
             }
         </div>
     }

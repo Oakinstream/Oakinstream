@@ -277,7 +277,8 @@
     <Content Include="Content\Images\Default\default.jpg" />
     <Content Include="Content\Images\Default\retina-wood.png" />
     <Content Include="Content\Images\Default\smooth-wall-dark.png" />
-    <Content Include="Content\Images\Default\wood-pattern.png" />
+    <Content Include="Content\Style\Images\Projects\little-knobs.png" />
+    <Content Include="Content\Style\Images\Projects\wood-pattern.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Style\About.css" />
     <Content Include="Content\Style\AboutFiles.css" />
@@ -303,6 +304,18 @@
     <Content Include="Content\Style\Images\CheckingAccount\dark-brick-wall.png" />
     <Content Include="Content\Style\Images\Contact\brick-wall-dark.png" />
     <Content Include="Content\Style\Images\Contact\diagonal-striped-brick.png" />
+    <Content Include="Content\Style\Images\HomeImages\fabric-1-dark.png" />
+    <Content Include="Content\Style\Images\HomeImages\white-leather.png" />
+    <Content Include="Content\Style\Images\Home\fabric-1-dark.png" />
+    <Content Include="Content\Style\Images\Home\white-leather.png" />
+    <Content Include="Content\Style\Images\ProjectCategory\project-paper.png" />
+    <Content Include="Content\Style\Images\ProjectCategory\shattered.png" />
+    <Content Include="Content\Style\Images\ProjectFiles\project-paper.png" />
+    <Content Include="Content\Style\Images\ProjectFiles\shattered.png" />
+    <Content Include="Content\Style\Images\ProjectImages\project-paper.png" />
+    <Content Include="Content\Style\Images\ProjectImages\shattered.png" />
+    <Content Include="Content\Style\Images\Projects\project-paper.png" />
+    <Content Include="Content\Style\Images\Projects\shattered.png" />
     <Content Include="Content\Style\Projects.css" />
     <Content Include="Content\Style\ProjectCategory.css" />
     <Content Include="Content\Style\ProjectFiles.css" />
@@ -414,12 +427,6 @@
     <Folder Include="Content\Images\BlogImages\Thumbnails\" />
     <Folder Include="Content\Images\HomeImages\Thumbnails\" />
     <Folder Include="Content\Images\ProjectImages\Thumbnails\" />
-    <Folder Include="Content\Style\Images\HomeImages\" />
-    <Folder Include="Content\Style\Images\Home\" />
-    <Folder Include="Content\Style\Images\ProjectCategory\" />
-    <Folder Include="Content\Style\Images\ProjectFiles\" />
-    <Folder Include="Content\Style\Images\ProjectImages\" />
-    <Folder Include="Content\Style\Images\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

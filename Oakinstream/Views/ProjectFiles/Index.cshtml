@@ -10,7 +10,7 @@
             <h1 class="text-primary"><span class="projectfiles-title">@ViewBag.Title</span></h1>
         </div>
         <div class="btn">
-            <a class="btn site-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
+            <a class="btn projectfiles-btn-back" href="@Url.Action("Index", "Admin")"><span class="glyphicon glyphicon-backward"></span> Back to admin</a>
         </div>
     </div>
 
@@ -33,12 +33,12 @@
     {
         <div class="jumbotron projectfiles-jumbotron">
             <h2 class="projectfiles-text">@Html.DisplayNameFor(model => model.First().FileName):</h2>
-            <hr />
+            <br />
             @foreach (var item in Model)
             {
-                <a class="btn btn-default site-btn-file" href="@Url.Content(Constants.ProjectFilePath + Html.DisplayFor(modelItem => item.FileName))" style="cursor:pointer"><span class="glyphicon glyphicon-file"></span> @Html.DisplayFor(modelItem => item.FileName)</a>
+                <a class="btn btn-default site-btn-file" href="@Url.Content(Constants.ProjectFilePath + Html.DisplayFor(modelItem => item.FileName))"><span class="glyphicon glyphicon-file"></span> @Html.DisplayFor(modelItem => item.FileName)</a>
                 <a class="btn btn-danger site-btn-delete" href="@Url.Action("Delete", "ProjectFiles", new { id = item.ID })"><span class="glyphicon glyphicon-trash"></span></a>
-                <hr />
+                <br />
             }
         </div>
     }

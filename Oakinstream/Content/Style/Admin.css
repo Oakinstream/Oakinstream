@@ -35,14 +35,16 @@
 }
 
 .admin-btn-home {
-
+    background-color: #ffffff;
+    background-image: url(Images/HomeImages/white-leather.png);
 }
 .admin-btn-about {
     background-color: #ffffff;
     background-image: url(Images/About/mocha-grunge.png);
 }
 .admin-btn-project {
-
+    background-color: #ffffff;
+    background-image: url(Images/ProjectFiles/project-paper.png);
 }
 .admin-btn-blog {
     background-color: #ededed;

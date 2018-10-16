@@ -4,6 +4,8 @@
     max-width: none;
     width: 100%;
     height: 100%;
+    background-color: #ffffff;
+    background-image: url(Images/Home/fabric-1-dark.png);
 }
 
 .home-slider {
@@ -27,7 +29,11 @@
 
 .home-infobox {
     margin: 25px;
-    border: 1px solid black;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: white;
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
 }
 
 .home-linkbox {
@@ -36,8 +42,45 @@
     border: 1px solid black;
 }
 
-.home-canvas {
+.home-btn-read-more {
+    font-family: sans-serif;
+    font-weight: bold;
     border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-read-more:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-read-more:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+
+.home-jumbotron {
+    margin: 50px auto;
+    background-color: transparent;
+}
+
+.home-canvas {
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+    background-color: white
+}
+
+.home-text {
+    padding:5px;
+    color: black;
+    font-weight: bold;
 }
 
 .home-edit-container {
@@ -45,7 +88,7 @@
     width: 100%;
     height: 100%;
     background-color: #ffffff;
-    background-image: url(../../Content/Images/Default/crissxcross.png);
+    background-image: url(Images/Home/fabric-1-dark.png);
 }
 
 .home-edit-header {
@@ -59,11 +102,36 @@
     text-align: center;
     font-weight: bold;
     text-decoration: double;
-    color: white;
+    color: black;
     border: 2px solid black;
     border-bottom: 10px solid black;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+
+.home-btn-back {
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    color: black;
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-back:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-back:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
 }
 
 .home-edit-jumbotron {
@@ -73,11 +141,45 @@
     border: 2px solid black;
     border-bottom: 10px solid black;
     margin-bottom: 150px;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-edit-jumbotron-text {
+    width: 35%;
+    float: left;
+}
+.home-edit-jumbotron-input {
+    margin-left: 3%;
+    width: 62%;
+    float: left;
+}
+
+.home-btn-add-more {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    color: black;
+    border: 1px solid black;
+    border-bottom: 7px solid black;
+    background-color: #ededed;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-add-more:hover {
+    border: 1px solid black;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
+}
+.home-btn-add-more:active {
+    border: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.50);
+    color: rgba(0, 0, 0, 0.50);
+    background-color: #ffffff;
+    background-image: url(Images/Home/white-leather.png);
 }
 
 .home-edit-text {
-    color: white;
+    color: black;
     font-weight: bold;
 }

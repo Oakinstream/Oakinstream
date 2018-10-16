@@ -31,41 +31,51 @@
                     @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <hr />
             <div class="row">
-                <div class="col-md-4 text-right">
-                    <h4 class="homeimages-text"><span class="glyphicon glyphicon-header"></span> @Html.LabelFor(model => model.ImageHeader):</h4>
-                </div>
-                <div class="col-md-8 site-border-normal-left text-left">
-                    @Html.EditorFor(model => model.ImageHeader, new { htmlAttributes = new { @class = "site-form" } })
-                    @Html.ValidationMessageFor(model => model.ImageHeader, "", new { @class = "text-danger" })
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-header"></span> @Html.LabelFor(model => model.ImageHeader):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageHeader, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageHeader, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
+            <hr />
             <div class="row">
-                <div class="col-md-4 text-right">
-                    <h4 class="homeimages-text"><span class="glyphicon glyphicon-text-size"></span> @Html.LabelFor(model => model.ImageCaption):</h4>
-                </div>
-                <div class="col-md-8 site-border-normal-left text-left">
-                    @Html.EditorFor(model => model.ImageCaption, new { htmlAttributes = new { @class = "site-form" } })
-                    @Html.ValidationMessageFor(model => model.ImageCaption, "", new { @class = "text-danger" })
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-text-size"></span> @Html.LabelFor(model => model.ImageCaption):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageCaption, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageCaption, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
+            <hr />
             <div class="row">
-                <div class="col-md-4 text-right">
-                    <h4 class="homeimages-text"><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.ImageLink):</h4>
-                </div>
-                <div class="col-md-8 site-border-normal-left text-left">
-                    @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "site-form" } })
-                    @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+                <div class="col-md-12">
+                    <div class="homeimages-jumbotron-text text-right">
+                        <h4 class="homeimages-text"><span class="glyphicon glyphicon-link"></span> @Html.LabelFor(model => model.ImageLink):</h4>
+                    </div>
+                    <div class="homeimages-jumbotron-input text-left">
+                        @Html.EditorFor(model => model.ImageLink, new { htmlAttributes = new { @class = "site-form" } })
+                        @Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-            <br />
+            <hr />
             <div class="form-group">
                 <div class="col-md-12">
-                    <input type="submit" value="Edit >>" class="btn btn-info site-btn-edit-big" />
+                    <input type="submit" value="Edit" class="btn btn-info site-btn-edit-big" />
                 </div>
                 <br />
             </div>
-            <br />
         </div>
+
+
     }
 </div>
