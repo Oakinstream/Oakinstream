@@ -29,6 +29,7 @@ namespace Oakinstream
                       "~/Content/Style/About.css",
                       "~/Content/Style/AboutFiles.css",
                       "~/Content/Style/AboutImages.css",
+                      "~/Content/Style/Account.css",
                       "~/Content/Style/Admin.css",
                       "~/Content/Style/Blog.css",
                       "~/Content/Style/BlogCategory.css",

@@ -4,59 +4,70 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+<div class="container account-container">
+    <div class="row account-header">
+        <div class="col-md-12">
+            <h1 class="text-uppercase"><span class="account-title">@ViewBag.Title</span></h1>
+            <br />
+        </div>
+    </div>
+
+    <div class="jumbotron site-border-normal account-jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <section id="loginForm">
+                        <div class="contact-jumbotron-half site-border-normal-right">
+                            <h2><span class="account-title">Local account</span></h2>
+                            <br />
+                            <h3>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "site-form-account site-border-normal", @placeholder = "Username" })
+                                <br />
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </h3>
+                            <h3>
+                                @Html.PasswordFor(m => m.Password, new { @class = "site-form-account site-border-normal", @placeholder = "Password" })
+                                <br />
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </h3>
+                            <div class="checkbox left">
+                                <span class="account-text">@Html.CheckBoxFor(m => m.RememberMe)</span>
+                                <span class="account-text">@Html.LabelFor(m => m.RememberMe)</span>
+                            </div>
+                                <input type="submit" value="Log In" class="btn btn-default account-btn-login" style="width:60%;" />
                         </div>
+                    </section>
+                }
+
+                <section id="socialLoginForm">
+                    <div class="contact-jumbotron-half">
+                        <h2><span class="account-title">Other Account</span></h2>
+                        <br />
+                        <br />
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 site-border-normal-top site-margin-top-20">
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    <br />
+                    <span class="account-text">@Html.ActionLink("Register as a new user", "Register")</span>
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+            </div>
+        </div>
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

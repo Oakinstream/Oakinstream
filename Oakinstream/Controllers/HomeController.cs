@@ -22,6 +22,7 @@ namespace Oakinstream.Controllers
         }
 
         // GET: Home/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -61,6 +62,7 @@ namespace Oakinstream.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(HomeViewModel viewModel)
         {
             var homeToUpdate = db.Homes.Include(p => p.HomeImagesMappings).Where(p => p.ID == viewModel.ID).Single();

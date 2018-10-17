@@ -53,6 +53,12 @@ textarea {
     background-color: black;
 }
 
+.site-footer-image {
+    height:auto;
+    width: 100%;
+    object-fit:contain;
+}
+
 .site-search {
     max-width: none;
     height: auto;
@@ -201,7 +207,15 @@ textarea {
     font-size: 24px;
 }
 
-.site-forms-contact {
+.site-form-contact {
+    width: 80%;
+    max-width: none;
+    resize: none;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.site-form-account {
     width: 80%;
     max-width: none;
     resize: none;

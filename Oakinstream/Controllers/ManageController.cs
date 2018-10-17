@@ -101,6 +101,7 @@ namespace Oakinstream.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        [Authorize(Roles = "Admin")]
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -108,6 +109,7 @@ namespace Oakinstream.Controllers
 
         //
         // POST: /Manage/AddPhoneNumber
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -162,6 +164,7 @@ namespace Oakinstream.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -171,6 +174,7 @@ namespace Oakinstream.Controllers
 
         //
         // POST: /Manage/VerifyPhoneNumber
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -196,6 +200,7 @@ namespace Oakinstream.Controllers
 
         //
         // POST: /Manage/RemovePhoneNumber
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -246,6 +251,7 @@ namespace Oakinstream.Controllers
 
         //
         // GET: /Manage/SetPassword
+        [Authorize(Roles = "Admin")]
         public ActionResult SetPassword()
         {
             return View();
@@ -253,6 +259,7 @@ namespace Oakinstream.Controllers
 
         //
         // POST: /Manage/SetPassword
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -301,6 +308,7 @@ namespace Oakinstream.Controllers
 
         //
         // POST: /Manage/LinkLogin
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -311,6 +319,7 @@ namespace Oakinstream.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());

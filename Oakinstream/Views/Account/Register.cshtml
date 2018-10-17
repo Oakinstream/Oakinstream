@@ -2,51 +2,87 @@
 @{
     ViewBag.Title = "Register";
 }
+<div class="container account-container">
+    <div class="row account-header">
+        <div class="col-md-12">
+            <h1 class="text-primary"><span class="account-title">@ViewBag.Title</span></h1>
+        </div>
+        <div class="btn">
+            <a class="btn account-btn-back" href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-backward"></span> Back to Login</a>
+        </div>
+    </div>
 
-<h2>@ViewBag.Title.</h2>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+
+        <div class="jumbotron site-border-normal account-jumbotron">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.FirstName):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "site-form" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-user"></span> @Html.LabelFor(model => model.LastName):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "site-form" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-envelope"></span> @Html.LabelFor(model => model.Email):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "site-form" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-lock"></span> @Html.LabelFor(model => model.Password):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.PasswordFor(m => m.Password, new { @class = "site-form" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-lock"></span> @Html.LabelFor(model => model.ConfirmPassword):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "site-form" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Register" />
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+    }
+
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

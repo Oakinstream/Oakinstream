@@ -2,34 +2,46 @@
 @{
     ViewBag.Title = "Register";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>Associate your @ViewBag.LoginProvider account.</h3>
-
-@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-
-    <h4>Association Form</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p class="text-info">
-        You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
-        logging in.
-    </p>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+<div class="container account-container">
+    <div class="row account-header">
+        <div class="col-md-12">
+            <h1 class="text-primary"><span class="account-title">@ViewBag.Title</span></h1>
+        </div>
+        <div class="btn">
+            <a class="btn account-btn-back" href="@Url.Action("Login", "Account")"><span class="glyphicon glyphicon-backward"></span> Back to Login</a>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+
+    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="jumbotron site-border-normal account-jumbotron">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="account-text">
+                        You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
+                        Please enter a user name for this site below and click the Register button to finish
+                        logging in.
+                    </p>
+                    <br />
+                    <div class="account-jumbotron-text text-right">
+                        <h4 class="account-text"><span class="glyphicon glyphicon-envelope"></span> @Html.LabelFor(model => model.Email):</h4>
+                    </div>
+                    <div class="account-jumbotron-input text-left">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "site-form" })
+                        <input type="submit" class="btn btn-default" value="Register" />
+                        <br />
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-}
+    }
+
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
